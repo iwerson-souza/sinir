@@ -58,7 +58,7 @@ internal sealed class IntegrationService
     public async Task UpdateStakeholderRangeAsync(string unidade, string cpfCnpj, DateTime start, DateTime end)
     {
         const string sql = @"UPDATE stakeholder
-                             SET data_inicial=@di, data_final=@df, last_modified_by='system', last_modified_dt=UTC_TIMESTAMP()
+                             SET data_inicial=@di, data_final=@df, last_modified_by='system', last_modified_dt=NOW()
                              WHERE unidade=@unidade AND cpf_cnpj=@cpf";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
@@ -86,7 +86,7 @@ internal sealed class IntegrationService
 
     public async Task<bool> TryClaimMtrLoadAsync(string url, string workerId)
     {
-        const string sql = @"UPDATE mtr_load SET status='PROCESSING', locked_by=@worker, locked_at=UTC_TIMESTAMP()
+        const string sql = @"UPDATE mtr_load SET status='PROCESSING', locked_by=@worker, locked_at=NOW()
                              WHERE url=@url AND status='PENDING'";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
@@ -118,7 +118,7 @@ internal sealed class IntegrationService
     public async Task MarkErrorAsync(string source, string? reference, Exception ex, object? extra = null)
     {
         const string sql = @"INSERT INTO error (source, reference, message, stack, created_dt, extra)
-                             VALUES (@source, @reference, @message, @stack, UTC_TIMESTAMP(), @extra)";
+                             VALUES (@source, @reference, @message, @stack, NOW(), @extra)";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@source", source);
@@ -132,7 +132,7 @@ internal sealed class IntegrationService
     public async Task InsertStakeholdersIgnoreAsync(List<Stakeholder> stakeholders, string user)
     {
         const string sql = @"INSERT IGNORE INTO stakeholder (unidade, cpf_cnpj, nome, data_inicial, data_final, created_by, created_dt)
-                             VALUES (@unidade, @cpf, @nome, NULL, NULL, @user, UTC_TIMESTAMP())";
+                             VALUES (@unidade, @cpf, @nome, NULL, NULL, @user, NOW())";
         using (var conn = await OpenAsync())
         {
             foreach (var s in stakeholders)
@@ -158,7 +158,7 @@ internal sealed class IntegrationService
             (@numero, @tipo_manifesto, @responsavel_emissao, @tem_mtr_complementar, @numero_mtr_provisorio,
              @data_emissao, @data_recebimento, @situacao, @responsavel_recebimento, @justificativa, @tratamento,
              @numero_cdf, @residuos, @residuos_codigo, @residuos_classe, @gerador, @transportador, @destinador,
-             @gerador_cpf, @transportador_cpf, @destinador_cpf, @cpfs, @user, UTC_TIMESTAMP())
+             @gerador_cpf, @transportador_cpf, @destinador_cpf, @cpfs, @user, NOW())
             ON DUPLICATE KEY UPDATE
              tipo_manifesto=VALUES(tipo_manifesto),
              responsavel_emissao=VALUES(responsavel_emissao),
@@ -219,4 +219,3 @@ internal sealed class IntegrationService
         }
     }
 }
-

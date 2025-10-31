@@ -25,7 +25,7 @@ internal static class Runner
                 Url = u,
                 Unidade = sh.Unidade,
                 CreatedBy = "system",
-                CreatedDt = DateTime.UtcNow
+                CreatedDt = DateTime.Now
             }));
 
             await svc.UpdateStakeholderRangeAsync(sh.Unidade, sh.CpfCnpj, strat.Summary.StartDate, strat.Summary.FinalDate);
@@ -38,18 +38,18 @@ internal static class Runner
     {
         var svc = new IntegrationService(config.ConnectionString);
 
-        Console.WriteLine($"[{DateTime.UtcNow:O}] Fetching up to {config.BatchSize} pending loads from DB...");
+        // Console.WriteLine($"[{DateTime.Now:O}] Fetching up to {config.BatchSize} pending loads from DB...");
         var batch = await svc.ListPendingMtrLoadsAsync(config.BatchSize);
         if (batch.Count == 0)
         {
-            Console.WriteLine($"[{DateTime.UtcNow:O}] No pending loads found.");
+            // Console.WriteLine($"[{DateTime.Now:O}] No pending loads found.");
             return;
         }
 
-        Console.WriteLine($"[{DateTime.UtcNow:O}] Processing {batch.Count} load(s) with DOP={config.MaxDegreeOfParallelism}...");
+        // Console.WriteLine($"[{DateTime.Now:O}] Processing {batch.Count} load(s) with DOP={config.MaxDegreeOfParallelism}...");
         foreach (var b in batch.Take(5))
         {
-            Console.WriteLine($"[{DateTime.UtcNow:O}] Pending URL: {b.Url}");
+            // Console.WriteLine($"[{DateTime.Now:O}] Pending URL: {b.Url}");
         }
 
         var handler = new SocketsHttpHandler
@@ -82,29 +82,29 @@ internal static class Runner
                 try
                 {
                     var localStart = Interlocked.Increment(ref started);
-                    Console.WriteLine($"[{DateTime.UtcNow:O}] [#{localStart}] Claiming: {load.Url}");
+                    // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Claiming: {load.Url}");
                     var claimed = await svc.TryClaimMtrLoadAsync(load.Url, workerId);
                     if (!claimed)
                     {
-                        Console.WriteLine($"[{DateTime.UtcNow:O}] [#{localStart}] Skipped (already claimed): {load.Url}");
+                        // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Skipped (already claimed): {load.Url}");
                         return;
                     }
 
                     var localClaim = Interlocked.Increment(ref claimedCount);
-                    Console.WriteLine($"[{DateTime.UtcNow:O}] [#{localStart}] Claimed OK by {workerId}. Processing...");
+                    // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Claimed OK by {workerId}. Processing...");
 
                     await ProcessSingleAsync(svc, http, load, localStart, mtrsRoot, TimeSpan.FromSeconds(config.RequestTimeoutSeconds));
-                    Console.WriteLine($"[{DateTime.UtcNow:O}] [#{localStart}] Deleting load: {load.Url}");
+                    // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Deleting load: {load.Url}");
                     await svc.DeleteMtrLoadAsync(load.Url);
                     var done = Interlocked.Increment(ref completed);
                     if (done % 5 == 0 || done == batch.Count)
                     {
-                        Console.WriteLine($"[{DateTime.UtcNow:O}] Progress: {done}/{batch.Count} completed.");
+                        Console.WriteLine($"[{DateTime.Now:O}] Progress: {done}/{batch.Count} completed.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"[{DateTime.UtcNow:O}] ERROR while processing {load.Url}: {ex.Message}");
+                    Console.WriteLine($"[{DateTime.Now:O}] ERROR while processing {load.Url}: {ex.Message}");
                     await svc.MarkErrorAsync("processor", load.Url, ex);
                     await svc.FailMtrLoadAsync(load.Url, ex);
                 }
@@ -116,12 +116,12 @@ internal static class Runner
         }
 
         await Task.WhenAll(tasks);
-        Console.WriteLine($"[{DateTime.UtcNow:O}] Processing completed.");
+        Console.WriteLine($"[{DateTime.Now:O}] Processing completed.");
     }
 
     private static async Task ProcessSingleAsync(IntegrationService svc, HttpClient http, MtrLoad load, int seq, string mtrsRoot, TimeSpan perRequestTimeout)
     {
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] HTTP GET → {load.Url}");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] HTTP GET → {load.Url}");
         var sw = System.Diagnostics.Stopwatch.StartNew();
         using var cts = new CancellationTokenSource(perRequestTimeout);
         HttpResponseMessage response;
@@ -131,13 +131,13 @@ internal static class Runner
         }
         catch (OperationCanceledException)
         {
-            Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] HTTP timeout after {perRequestTimeout.TotalSeconds:F0}s → {load.Url}");
+            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] HTTP timeout after {perRequestTimeout.TotalSeconds:F0}s → {load.Url}");
             throw;
         }
         response.EnsureSuccessStatusCode();
         var data = await response.Content.ReadAsByteArrayAsync();
         sw.Stop();
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] HTTP {((int)response.StatusCode)} in {sw.Elapsed.TotalSeconds:F1}s, {data.Length:N0} bytes");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] HTTP {((int)response.StatusCode)} in {sw.Elapsed.TotalSeconds:F1}s, {data.Length:N0} bytes");
 
         var parts = load.Url.Split('/');
         var dataInicial = parts[9].Split('-').Reverse().ToArray();
@@ -148,9 +148,9 @@ internal static class Runner
         Directory.CreateDirectory(destDir);
         var destPath = Path.Combine(destDir, filename);
         await File.WriteAllBytesAsync(destPath, data);
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Saved file: {destPath}");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Saved file: {destPath}");
 
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Parsing XLSX...");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Parsing XLSX...");
         var parseSw = System.Diagnostics.Stopwatch.StartNew();
         List<MtrRecord> mtrs;
         try
@@ -159,20 +159,20 @@ internal static class Runner
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] XLSX parse issue: {ex.Message}. Treating as 0 MTR(s).");
+            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] XLSX parse issue: {ex.Message}. Treating as 0 MTR(s).");
             mtrs = new List<MtrRecord>();
         }
         parseSw.Stop();
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Parsed {mtrs.Count} MTR(s) in {parseSw.Elapsed.TotalSeconds:F1}s");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Parsed {mtrs.Count} MTR(s) in {parseSw.Elapsed.TotalSeconds:F1}s");
         if (mtrs.Count == 0)
         {
-            Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] No MTRs found for {load.Url}");
+            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] No MTRs found for {load.Url}");
             return;
         }
 
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Upserting {mtrs.Count} MTR(s) into DB...");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Upserting {mtrs.Count} MTR(s) into DB...");
         await svc.UpsertMtrsAsync(mtrs, "system");
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Upsert completed");
+        Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Upsert completed");
 
         var distinct = new Dictionary<string, Stakeholder>();
         foreach (var m in mtrs)
@@ -188,11 +188,11 @@ internal static class Runner
             }
         }
 
-        Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Distinct stakeholders to insert: {distinct.Count}");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Distinct stakeholders to insert: {distinct.Count}");
         if (distinct.Count > 0)
         {
             await svc.InsertStakeholdersIgnoreAsync(distinct.Values.ToList(), "system");
-            Console.WriteLine($"[{DateTime.UtcNow:O}] [{seq}] Stakeholders insert-ignore completed");
+            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Stakeholders insert-ignore completed");
         }
     }
 }

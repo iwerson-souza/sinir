@@ -11,7 +11,7 @@ internal class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         var config = AppConfig.Load();
         var mtrsRoot = Paths.GetMtrsRoot();
-        Console.WriteLine($"[{DateTime.UtcNow:O}] Using MTRS directory: {mtrsRoot}");
+        // Console.WriteLine($"[{DateTime.Now:O}] Using MTRS directory: {mtrsRoot}");
         Directory.CreateDirectory(mtrsRoot);
 
         var cmd = args.FirstOrDefault()?.ToLowerInvariant() ?? "run";
@@ -33,4 +33,3 @@ internal class Program
         return 0;
     }
 }
-

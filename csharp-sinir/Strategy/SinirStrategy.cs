@@ -17,7 +17,7 @@ internal static class SinirStrategy
             : new DateTime(2020, 1, 1);
         startDate = startDate.Date;
 
-        var now = DateTime.UtcNow.Date;
+        var now = DateTime.Now.Date;
         var endDate = now.AddDays(-1);
 
         var periods = GetMonthlyPeriods(startDate, endDate);
@@ -83,4 +83,3 @@ internal record StrategySetup
     public DateTime EndDate { get; init; }
     public List<string> Urls { get; init; } = new();
 }
-

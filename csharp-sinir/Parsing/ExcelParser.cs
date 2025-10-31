@@ -13,7 +13,7 @@ internal static class ExcelParser
             .First();
         var chosenRows = ws.LastRowUsed()?.RowNumber() ?? 0;
         var chosenCols = ws.LastColumnUsed()?.ColumnNumber() ?? 0;
-        Console.WriteLine($"[ExcelParser] Using sheet '{ws.Name}' with {chosenRows} rows and {chosenCols} cols");
+        // Console.WriteLine($"[ExcelParser] Using sheet '{ws.Name}' with {chosenRows} rows and {chosenCols} cols");
         var rows = new List<MtrRecord>();
         var indexByNumero = new Dictionary<string, int>();
 
@@ -52,10 +52,10 @@ internal static class ExcelParser
             if (!string.IsNullOrWhiteSpace(key) && !cols.ContainsKey(key))
                 cols[key] = c;
         }
-        Console.WriteLine($"[ExcelParser] Header row chosen: {headerRowIndex}. Columns detected: {cols.Count}");
+        // Console.WriteLine($"[ExcelParser] Header row chosen: {headerRowIndex}. Columns detected: {cols.Count}");
         try
         {
-            Console.WriteLine("[ExcelParser] Header columns: " + string.Join(", ", cols.Keys.Take(40)) + (cols.Count > 40 ? ", ..." : string.Empty));
+            // Console.WriteLine("[ExcelParser] Header columns: " + string.Join(", ", cols.Keys.Take(40)) + (cols.Count > 40 ? ", ..." : string.Empty));
         }
         catch { }
 
@@ -97,7 +97,7 @@ internal static class ExcelParser
         int colTipo = Col("TipoManifesto", "Tipo de Manifesto", "Tipo");
         int colDataEmissao = Col("DataEmissao", "Data de Emissao", "Data de Emissão");
         int colSituacao = Col("Situacao", "Situação");
-        Console.WriteLine($"[ExcelParser] Cols -> Numero:{colNumero} Tipo:{colTipo} Emissao:{colDataEmissao} Situacao:{colSituacao}");
+        // Console.WriteLine($"[ExcelParser] Cols -> Numero:{colNumero} Tipo:{colTipo} Emissao:{colDataEmissao} Situacao:{colSituacao}");
 
         var dataStartRow = headerRowIndex + 1;
         int samples = 0;
@@ -107,7 +107,7 @@ internal static class ExcelParser
             var smp = S(colNumero);
             if (!string.IsNullOrWhiteSpace(smp) && samples < 3)
             {
-                Console.WriteLine($"[ExcelParser] Sample numero at row {r}: '{smp}'");
+                // Console.WriteLine($"[ExcelParser] Sample numero at row {r}: '{smp}'");
                 samples++;
             }
         }
