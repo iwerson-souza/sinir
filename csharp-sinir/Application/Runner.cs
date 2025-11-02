@@ -16,6 +16,11 @@ internal static class Runner
         var svc = new IntegrationService(config.ConnectionString);
 
         var stakeholders = await svc.ListStakeholdersAsync();
+        var total = stakeholders.Count;
+        var processed = 0;
+        var totalUrls = 0;
+
+        Console.WriteLine($"[Setup] Starting. Stakeholders to evaluate: {total}.");
         foreach (var sh in stakeholders)
         {
             var strat = SinirStrategy.BuildStrategy(sh.Unidade, sh.DataFinal);
@@ -23,24 +28,36 @@ internal static class Runner
             // Guard: if computed date window is invalid, skip updates
             if (strat.Summary.StartDate > strat.Summary.FinalDate)
             {
+                processed++;
+                if (processed % 25 == 0 || processed == total)
+                {
+                    Console.WriteLine($"[Setup] {processed}/{total} processed. Skipping {sh.Unidade}: invalid range {strat.Summary.StartDate:yyyy-MM-dd}..{strat.Summary.FinalDate:yyyy-MM-dd}.");
+                }
                 continue;
             }
 
             if (urls.Any())
             {
-                await svc.UpsertMtrLoadsAsync(urls.Select(u => new MtrLoad
+                var urlList = urls.ToList();
+                await svc.UpsertMtrLoadsAsync(urlList.Select(u => new MtrLoad
             {
                 Url = u,
                 Unidade = sh.Unidade,
                 CreatedBy = "system",
                 CreatedDt = DateTime.Now
             }));
+                totalUrls += urlList.Count;
             }
 
             await svc.UpdateStakeholderRangeAsync(sh.Unidade, sh.CpfCnpj, strat.Summary.StartDate, strat.Summary.FinalDate);
+            processed++;
+            if (processed % 10 == 0 || processed == total)
+            {
+                Console.WriteLine($"[Setup] {processed}/{total} processed. Unidade {sh.Unidade}: window {strat.Summary.StartDate:yyyy-MM-dd}..{strat.Summary.FinalDate:yyyy-MM-dd}. URLs ensured so far: {totalUrls}.");
+            }
         }
 
-        Console.WriteLine($"Setup complete. Generated/ensured loads for {stakeholders.Count} stakeholder(s).");
+        Console.WriteLine($"[Setup] Complete. Stakeholders: {total}. URLs ensured (total): {totalUrls}.");
     }
 
     public static async Task ProcessBatchAsync(AppConfig config, string mtrsRoot)

@@ -5,6 +5,8 @@ Param(
     [ValidateSet('Debug','Release')]
     [string]$Configuration = 'Release',
 
+    [int]$SetupInstances = 1,
+
     [int]$Instances = 1,
 
     [switch]$NoBuild
@@ -51,7 +53,58 @@ try {
     Write-Host "MTRS directory: $env:SINIR_MTRS_DIR" -ForegroundColor Cyan
 
     # Orquestração multi-instância (Setup único + N Process)
-    if ($Mode -eq 'run' -and $Instances -gt 1) {
+    if ($Mode -eq 'run' -and $SetupInstances -gt 1) {
+        # Setup orquestrado com múltiplas instâncias
+        Write-Host "Iniciando $SetupInstances instância(s) do setup em paralelo..." -ForegroundColor Green
+        $setupProcs = @()
+        for ($i = 1; $i -le $SetupInstances; $i++) {
+            $p = Start-Process -FilePath 'dotnet' -ArgumentList @($dll, 'setup') -PassThru -NoNewWindow
+            $setupProcs += $p
+            Write-Host ("[Setup #{0}] PID={1} iniciado" -f $i, $p.Id) -ForegroundColor Cyan
+        }
+        Wait-Process -Id ($setupProcs | ForEach-Object Id)
+        $failed = $false
+        foreach ($p in $setupProcs) {
+            $code = $null
+            try { $p.Refresh() | Out-Null; $code = $p.ExitCode } catch { $code = $null }
+            if ($null -eq $code) { $code = 0 }
+            if ($code -ne 0) {
+                Write-Host ("[Setup PID={0}] finalizou com erro (ExitCode={1})" -f $p.Id, $code) -ForegroundColor Red
+                $failed = $true
+            } else {
+                Write-Host ("[Setup PID={0}] finalizado com sucesso (ExitCode=0)" -f $p.Id) -ForegroundColor Green
+            }
+        }
+        if ($failed) { throw "Uma ou mais instâncias de setup falharam." }
+
+        # Processamento após setup paralelo
+        if ($Instances -gt 1) {
+            Write-Host "Iniciando $Instances instância(s) do process em paralelo..." -ForegroundColor Green
+            $procs = @()
+            for ($i = 1; $i -le $Instances; $i++) {
+                $p = Start-Process -FilePath 'dotnet' -ArgumentList @($dll, 'process') -PassThru -NoNewWindow
+                $procs += $p
+                Write-Host ("[Worker #{0}] PID={1} iniciado" -f $i, $p.Id) -ForegroundColor Cyan
+            }
+            Wait-Process -Id ($procs | ForEach-Object Id)
+            $failed = $false
+            foreach ($p in $procs) {
+                $code = $null
+                try { $p.Refresh() | Out-Null; $code = $p.ExitCode } catch { $code = $null }
+                if ($null -eq $code) { $code = 0 }
+                if ($code -ne 0) {
+                    Write-Host ("[Worker PID={0}] finalizou com erro (ExitCode={1})" -f $p.Id, $code) -ForegroundColor Red
+                    $failed = $true
+                } else {
+                    Write-Host ("[Worker PID={0}] finalizado com sucesso (ExitCode=0)" -f $p.Id) -ForegroundColor Green
+                }
+            }
+            if ($failed) { throw "Uma ou mais instâncias falharam." }
+        } else {
+            Write-Host "Executando process (1 instância)..." -ForegroundColor Green
+            dotnet $dll process
+        }
+    } elseif ($Mode -eq 'run' -and $Instances -gt 1) {
         Write-Host "Executando setup (única vez)..." -ForegroundColor Green
         dotnet $dll setup
 
@@ -80,6 +133,29 @@ try {
             }
         }
         if ($failed) { throw "Uma ou mais instâncias falharam." }
+    }
+    elseif ($Mode -eq 'setup' -and $SetupInstances -gt 1) {
+        Write-Host "Iniciando $SetupInstances instância(s) do setup em paralelo..." -ForegroundColor Green
+        $setupProcs = @()
+        for ($i = 1; $i -le $SetupInstances; $i++) {
+            $p = Start-Process -FilePath 'dotnet' -ArgumentList @($dll, 'setup') -PassThru -NoNewWindow
+            $setupProcs += $p
+            Write-Host ("[Setup #{0}] PID={1} iniciado" -f $i, $p.Id) -ForegroundColor Cyan
+        }
+        Wait-Process -Id ($setupProcs | ForEach-Object Id)
+        $failed = $false
+        foreach ($p in $setupProcs) {
+            $code = $null
+            try { $p.Refresh() | Out-Null; $code = $p.ExitCode } catch { $code = $null }
+            if ($null -eq $code) { $code = 0 }
+            if ($code -ne 0) {
+                Write-Host ("[Setup PID={0}] finalizou com erro (ExitCode={1})" -f $p.Id, $code) -ForegroundColor Red
+                $failed = $true
+            } else {
+                Write-Host ("[Setup PID={0}] finalizado com sucesso (ExitCode=0)" -f $p.Id) -ForegroundColor Green
+            }
+        }
+        if ($failed) { throw "Uma ou mais instâncias de setup falharam." }
     }
     elseif ($Mode -eq 'process' -and $Instances -gt 1) {
         Write-Host "Iniciando $Instances instância(s) do process em paralelo..." -ForegroundColor Green
