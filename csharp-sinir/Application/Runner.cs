@@ -20,13 +20,22 @@ internal static class Runner
         {
             var strat = SinirStrategy.BuildStrategy(sh.Unidade, sh.DataFinal);
             var urls = strat.Setup.SelectMany(x => x.Urls);
-            await svc.UpsertMtrLoadsAsync(urls.Select(u => new MtrLoad
+            // Guard: if computed date window is invalid, skip updates
+            if (strat.Summary.StartDate > strat.Summary.FinalDate)
+            {
+                continue;
+            }
+
+            if (urls.Any())
+            {
+                await svc.UpsertMtrLoadsAsync(urls.Select(u => new MtrLoad
             {
                 Url = u,
                 Unidade = sh.Unidade,
                 CreatedBy = "system",
                 CreatedDt = DateTime.Now
             }));
+            }
 
             await svc.UpdateStakeholderRangeAsync(sh.Unidade, sh.CpfCnpj, strat.Summary.StartDate, strat.Summary.FinalDate);
         }
@@ -166,13 +175,13 @@ internal static class Runner
         // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Parsed {mtrs.Count} MTR(s) in {parseSw.Elapsed.TotalSeconds:F1}s");
         if (mtrs.Count == 0)
         {
-            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] No MTRs found for {load.Url}");
+            // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] No MTRs found for {load.Url}");
             return;
         }
 
         // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Upserting {mtrs.Count} MTR(s) into DB...");
         await svc.UpsertMtrsAsync(mtrs, "system");
-        Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Upsert completed");
+        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Upsert completed");
 
         var distinct = new Dictionary<string, Stakeholder>();
         foreach (var m in mtrs)
@@ -192,7 +201,7 @@ internal static class Runner
         if (distinct.Count > 0)
         {
             await svc.InsertStakeholdersIgnoreAsync(distinct.Values.ToList(), "system");
-            Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Stakeholders insert-ignore completed");
+            // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Stakeholders insert-ignore completed");
         }
     }
 }

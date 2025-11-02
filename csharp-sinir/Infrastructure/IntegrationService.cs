@@ -59,7 +59,7 @@ internal sealed class IntegrationService
     {
         const string sql = @"UPDATE stakeholder
                              SET data_inicial=@di, data_final=@df, last_modified_by='system', last_modified_dt=NOW()
-                             WHERE unidade=@unidade AND cpf_cnpj=@cpf";
+                             WHERE unidade=@unidade AND cpf_cnpj=@cpf AND @di <= @df";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@di", start);
