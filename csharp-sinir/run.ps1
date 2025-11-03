@@ -5,14 +5,14 @@ Param(
     [ValidateSet('Debug','Release')]
     [string]$Configuration = 'Release',
 
-    [int]$SetupInstances = 1,
+    [int]$SetupInstances = 5,
 
-    [int]$Instances = 1,
+    [int]$Instances = 7,
 
     [switch]$NoBuild,
 
     [ValidateSet('disk','memory')]
-    [string]$MtrMode = 'disk'
+    [string]$MtrMode = 'memory'
 )
 
 $ErrorActionPreference = 'Stop'
