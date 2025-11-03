@@ -1,5 +1,6 @@
 using ClosedXML.Excel;
 using Sinir.Integration.Local.Domain;
+using System.IO;
 
 namespace Sinir.Integration.Local.Parsing;
 
@@ -11,6 +12,21 @@ internal static class ExcelParser
         var ws = wb.Worksheets
             .OrderByDescending(s => (s.LastRowUsed()?.RowNumber() ?? 0) * (s.LastColumnUsed()?.ColumnNumber() ?? 0))
             .First();
+        return ParseWorksheet(ws);
+    }
+
+    public static List<MtrRecord> ParseMTRs(byte[] data)
+    {
+        using var ms = new MemoryStream(data, writable: false);
+        using var wb = new XLWorkbook(ms);
+        var ws = wb.Worksheets
+            .OrderByDescending(s => (s.LastRowUsed()?.RowNumber() ?? 0) * (s.LastColumnUsed()?.ColumnNumber() ?? 0))
+            .First();
+        return ParseWorksheet(ws);
+    }
+
+    private static List<MtrRecord> ParseWorksheet(IXLWorksheet ws)
+    {
         var chosenRows = ws.LastRowUsed()?.RowNumber() ?? 0;
         var chosenCols = ws.LastColumnUsed()?.ColumnNumber() ?? 0;
         // Console.WriteLine($"[ExcelParser] Using sheet '{ws.Name}' with {chosenRows} rows and {chosenCols} cols");

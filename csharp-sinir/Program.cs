@@ -11,8 +11,14 @@ internal class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
         var config = AppConfig.Load();
         var mtrsRoot = Paths.GetMtrsRoot();
-        // Console.WriteLine($"[{DateTime.Now:O}] Using MTRS directory: {mtrsRoot}");
-        Directory.CreateDirectory(mtrsRoot);
+        var mode = (Environment.GetEnvironmentVariable("SINIR_PROCESS_MODE") ?? "disk").ToLowerInvariant();
+        var saveToDisk = mode != "memory";
+        // Console.WriteLine($"[{DateTime.Now:O}] Processing mode: {(saveToDisk ? "disk" : "memory")}");
+        if (saveToDisk)
+        {
+            // Console.WriteLine($"[{DateTime.Now:O}] Using MTRS directory: {mtrsRoot}");
+            Directory.CreateDirectory(mtrsRoot);
+        }
 
         var cmd = args.FirstOrDefault()?.ToLowerInvariant() ?? "run";
         switch (cmd)
@@ -21,12 +27,12 @@ internal class Program
                 await Runner.SetupAsync(config);
                 break;
             case "process":
-                await Runner.ProcessBatchAsync(config, mtrsRoot);
+                await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
                 break;
             case "run":
             default:
                 await Runner.SetupAsync(config);
-                await Runner.ProcessBatchAsync(config, mtrsRoot);
+                await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
                 break;
         }
 

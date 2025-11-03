@@ -11,6 +11,31 @@ namespace Sinir.Integration.Local.Application;
 
 internal static class Runner
 {
+    public static async Task ProcessUntilEmptyAsync(AppConfig config, string mtrsRoot, bool saveToDisk)
+    {
+        var svc = new IntegrationService(config.ConnectionString);
+        var rounds = 0;
+        while (true)
+        {
+            var peek = await svc.ListPendingMtrLoadsAsync(1);
+            if (peek.Count == 0)
+            {
+                if (rounds == 0)
+                {
+                    Console.WriteLine($"[{DateTime.Now:O}] No pending loads found.");
+                }
+                else
+                {
+                    Console.WriteLine($"[{DateTime.Now:O}] Queue drained after {rounds} round(s).");
+                }
+                break;
+            }
+            rounds++;
+            Console.WriteLine($"[{DateTime.Now:O}] Round {rounds}: processing up to {config.BatchSize} load(s)...");
+            await ProcessBatchAsync(config, mtrsRoot, saveToDisk);
+        }
+    }
+
     public static async Task SetupAsync(AppConfig config)
     {
         var svc = new IntegrationService(config.ConnectionString);
@@ -60,7 +85,7 @@ internal static class Runner
         Console.WriteLine($"[Setup] Complete. Stakeholders: {total}. URLs ensured (total): {totalUrls}.");
     }
 
-    public static async Task ProcessBatchAsync(AppConfig config, string mtrsRoot)
+    public static async Task ProcessBatchAsync(AppConfig config, string mtrsRoot, bool saveToDisk)
     {
         var svc = new IntegrationService(config.ConnectionString);
 
@@ -119,7 +144,7 @@ internal static class Runner
                     var localClaim = Interlocked.Increment(ref claimedCount);
                     // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Claimed OK by {workerId}. Processing...");
 
-                    await ProcessSingleAsync(svc, http, load, localStart, mtrsRoot, TimeSpan.FromSeconds(config.RequestTimeoutSeconds));
+                    await ProcessSingleAsync(svc, http, load, localStart, mtrsRoot, saveToDisk, TimeSpan.FromSeconds(config.RequestTimeoutSeconds));
                     // Console.WriteLine($"[{DateTime.Now:O}] [#{localStart}] Deleting load: {load.Url}");
                     await svc.DeleteMtrLoadAsync(load.Url);
                     var done = Interlocked.Increment(ref completed);
@@ -145,7 +170,7 @@ internal static class Runner
         Console.WriteLine($"[{DateTime.Now:O}] Processing completed.");
     }
 
-    private static async Task ProcessSingleAsync(IntegrationService svc, HttpClient http, MtrLoad load, int seq, string mtrsRoot, TimeSpan perRequestTimeout)
+    private static async Task ProcessSingleAsync(IntegrationService svc, HttpClient http, MtrLoad load, int seq, string mtrsRoot, bool saveToDisk, TimeSpan perRequestTimeout)
     {
         // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] HTTP GET → {load.Url}");
         var sw = System.Diagnostics.Stopwatch.StartNew();
@@ -170,18 +195,25 @@ internal static class Runner
         var dataFinal = parts[10].Split('-').Reverse().ToArray();
         var filename = $"{load.Unidade}_{string.Join("-", dataInicial)}_{string.Join("-", dataFinal)}_{parts[8]}.xlsx";
 
-        var destDir = Path.Combine(mtrsRoot, load.Unidade);
-        Directory.CreateDirectory(destDir);
-        var destPath = Path.Combine(destDir, filename);
-        await File.WriteAllBytesAsync(destPath, data);
-        // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Saved file: {destPath}");
+        // Decide processing mode (disk vs memory)
+        string? destPath = null;
+        if (saveToDisk)
+        {
+            var destDir = Path.Combine(mtrsRoot, load.Unidade);
+            Directory.CreateDirectory(destDir);
+            destPath = Path.Combine(destDir, filename);
+            await File.WriteAllBytesAsync(destPath, data);
+            // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Saved file: {destPath}");
+        }
 
         // Console.WriteLine($"[{DateTime.Now:O}] [{seq}] Parsing XLSX...");
         var parseSw = System.Diagnostics.Stopwatch.StartNew();
         List<MtrRecord> mtrs;
         try
         {
-            mtrs = ExcelParser.ParseMTRs(destPath);
+            mtrs = saveToDisk && destPath != null
+                ? ExcelParser.ParseMTRs(destPath)
+                : ExcelParser.ParseMTRs(data);
         }
         catch (Exception ex)
         {

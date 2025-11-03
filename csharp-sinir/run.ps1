@@ -9,7 +9,10 @@ Param(
 
     [int]$Instances = 1,
 
-    [switch]$NoBuild
+    [switch]$NoBuild,
+
+    [ValidateSet('disk','memory')]
+    [string]$MtrMode = 'disk'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -45,12 +48,19 @@ try {
         throw "Binário não encontrado: $dll. Execute sem -NoBuild para compilar."
     }
 
-    # Define diretório de saída dos MTRs na raiz da solução
+    # Define diretório de saída dos MTRs na raiz da solução e modo de processamento
     $solutionDir = Split-Path -Parent $scriptDir
     $env:SINIR_SOLUTION_ROOT = $solutionDir
-    $env:SINIR_MTRS_DIR = Join-Path $solutionDir 'mtrs'
-    New-Item -ItemType Directory -Path $env:SINIR_MTRS_DIR -Force | Out-Null
-    Write-Host "MTRS directory: $env:SINIR_MTRS_DIR" -ForegroundColor Cyan
+    $env:SINIR_PROCESS_MODE = $MtrMode
+    if ($MtrMode -eq 'disk') {
+        $env:SINIR_MTRS_DIR = Join-Path $solutionDir 'mtrs'
+        New-Item -ItemType Directory -Path $env:SINIR_MTRS_DIR -Force | Out-Null
+        Write-Host "MTRS directory: $env:SINIR_MTRS_DIR" -ForegroundColor Cyan
+    } else {
+        # Clear dir var to avoid accidental use in memory mode
+        $env:SINIR_MTRS_DIR = $null
+        Write-Host "MTR processing mode: memory (no disk writes)" -ForegroundColor Cyan
+    }
 
     # Orquestração multi-instância (Setup único + N Process)
     if ($Mode -eq 'run' -and $SetupInstances -gt 1) {

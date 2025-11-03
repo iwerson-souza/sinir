@@ -14,7 +14,7 @@ Banco e tabelas podem ser criados a partir de `csharp-sinir/ddl.sql`.
 
 - App C#: `csharp-sinir/` (entrypoint: `Program.cs`)
 - Script de orquestração: `csharp-sinir/run.ps1`
-- MTRs baixados: `mtrs/` (configurável via `SINIR_MTRS_DIR`)
+- MTRs baixados (modo `disk`): `mtrs/` (configurável via `SINIR_MTRS_DIR`)
 
 ## Configuração rápida
 
@@ -29,6 +29,18 @@ Banco e tabelas podem ser criados a partir de `csharp-sinir/ddl.sql`.
   - `csharp-sinir/run.ps1 -Mode setup`
 - Apenas processar loads pendentes:
   - `csharp-sinir/run.ps1 -Mode process`
+
+### Modos de processamento dos MTRs
+
+O processamento dos arquivos XLSX pode ocorrer de duas formas:
+- `disk` (padrão): salva o XLSX no disco e depois faz o parse
+- `memory`: faz o parse diretamente do conteúdo em memória, sem escrever no disco
+
+Selecione o modo via `-MtrMode` no `run.ps1` ou pela variável `SINIR_PROCESS_MODE`.
+
+Exemplos:
+- Modo padrão (disk): `csharp-sinir/run.ps1 -Mode run -MtrMode disk`
+- Modo em memória: `csharp-sinir/run.ps1 -Mode run -MtrMode memory`
 
 ## Paralelismo e orquestração
 
@@ -66,7 +78,8 @@ Parâmetros principais:
 ## Variáveis de ambiente
 
 - `SINIR_SOLUTION_ROOT`  Raiz da solução (auto-definida por `run.ps1`)
-- `SINIR_MTRS_DIR`       Diretório onde os XLSX são salvos (auto-definido para `<raiz>/mtrs`)
+- `SINIR_MTRS_DIR`       Diretório onde os XLSX são salvos (usado apenas no modo `disk`; auto-definido para `<raiz>/mtrs`)
+- `SINIR_PROCESS_MODE`   Modo de processamento dos MTRs: `disk` ou `memory` (padrão `disk`)
 
 ## Caminhos úteis
 
