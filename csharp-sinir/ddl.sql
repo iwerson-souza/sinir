@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS stakeholder (
 CREATE TABLE IF NOT EXISTS mtr_load (
   url           VARCHAR(256) NOT NULL,
   unidade       VARCHAR(32)   NOT NULL,
-  status        ENUM('PENDING','PROCESSING','DONE','ERROR') NOT NULL DEFAULT 'PENDING',
+  status        ENUM('PENDING','PROCESSING','DONE','ERROR', 'SPLITTING') NOT NULL DEFAULT 'PENDING',
   created_by    VARCHAR(64)   NOT NULL,
   created_dt    DATETIME      NOT NULL,
   locked_by     VARCHAR(128)  NULL,
@@ -115,3 +115,148 @@ null,
 'iwerson',
 now());
 
+//---------------------  
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_split_mtr_load_drain`(IN p_batch INT)
+BEGIN
+DECLARE v_moved INT DEFAULT 0;
+IF p_batch IS NULL OR p_batch < 1 THEN SET p_batch = 500; END IF;
+
+-- Phase 1: move all eligible PENDING to PROCESSING in batches
+REPEAT
+UPDATE sinir.mtr_load
+SET status = 'SPLITTING'
+WHERE status = 'ERROR'
+AND YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -6), '/', 1), '%d-%m-%Y'))
+= YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -5), '/', 1), '%d-%m-%Y'))
+AND MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -6), '/', 1), '%d-%m-%Y'))
+= MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -5), '/', 1), '%d-%m-%Y'))
+ORDER BY created_dt
+LIMIT p_batch;
+SET v_moved = ROW_COUNT();
+UNTIL v_moved = 0 END REPEAT;
+
+-- Phase 2: feed batches back to PENDING and split
+REPEAT
+UPDATE sinir.mtr_load
+SET status = 'ERROR'
+WHERE status = 'SPLITTING'
+AND YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -6), '/', 1), '%d-%m-%Y'))
+= YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -5), '/', 1), '%d-%m-%Y'))
+AND MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -6), '/', 1), '%d-%m-%Y'))
+= MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', -5), '/', 1), '%d-%m-%Y'))
+ORDER BY created_dt
+LIMIT p_batch;
+
+SET v_moved = ROW_COUNT();
+
+IF v_moved > 0 THEN
+  CALL sinir.sp_split_mtr_load_into_thirds();
+END IF;
+UNTIL v_moved = 0 END REPEAT;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_split_mtr_load_into_thirds`()
+BEGIN
+START TRANSACTION;
+
+DROP TEMPORARY TABLE IF EXISTS tmp_mtr_split;
+
+CREATE TEMPORARY TABLE tmp_mtr_split AS
+SELECT
+m.url,
+m.unidade,
+m.created_by,
+STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -6), '/', 1), '%d-%m-%Y') AS start_dt,
+STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -5), '/', 1), '%d-%m-%Y') AS end_dt,
+SUBSTRING_INDEX(m.url,
+CONCAT('/', SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -6), '/', 1), '/'),
+1) AS prefix_part,
+SUBSTRING_INDEX(m.url,
+CONCAT('/', SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -5), '/', 1), '/'),
+-1) AS suffix_part
+FROM sinir.mtr_load m
+WHERE m.status = 'ERROR'
+AND YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -6), '/', 1), '%d-%m-%Y'))
+= YEAR(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -5), '/', 1), '%d-%m-%Y'))
+AND MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -6), '/', 1), '%d-%m-%Y'))
+= MONTH(STR_TO_DATE(SUBSTRING_INDEX(SUBSTRING_INDEX(m.url, '/', -5), '/', 1), '%d-%m-%Y'));
+
+-- Window 1: [start .. min(end, start+8)]
+INSERT INTO sinir.mtr_load (url, unidade, status, created_by, created_dt)
+SELECT
+CONCAT(prefix_part, '/',
+DATE_FORMAT(start_dt, '%d-%m-%Y'), '/',
+DATE_FORMAT(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY)), '%d-%m-%Y'),
+'/', suffix_part),
+unidade,
+'PENDING',
+created_by,
+NOW()
+FROM tmp_mtr_split t
+WHERE start_dt <= LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY))
+AND NOT EXISTS (
+SELECT 1 FROM sinir.mtr_load m
+WHERE m.url = CONCAT(prefix_part, '/',
+DATE_FORMAT(start_dt, '%d-%m-%Y'), '/',
+DATE_FORMAT(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY)), '%d-%m-%Y'),
+'/', suffix_part)
+);
+
+-- Window 2: [min(end, start+8)+1 .. min(end, start+18)]
+INSERT INTO sinir.mtr_load (url, unidade, status, created_by, created_dt)
+SELECT
+CONCAT(prefix_part, '/',
+DATE_FORMAT(DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY)), INTERVAL 1 DAY), '%d-%m-%Y'), '/',
+DATE_FORMAT(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY)), '%d-%m-%Y'),
+'/', suffix_part),
+unidade,
+'PENDING',
+created_by,
+NOW()
+FROM tmp_mtr_split t
+WHERE DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY)), INTERVAL 1 DAY)
+<= LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY))
+AND NOT EXISTS (
+SELECT 1 FROM sinir.mtr_load m
+WHERE m.url = CONCAT(prefix_part, '/',
+DATE_FORMAT(DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 8 DAY)), INTERVAL 1 DAY), '%d-%m-%Y'), '/',
+DATE_FORMAT(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY)), '%d-%m-%Y'),
+'/', suffix_part)
+);
+
+-- Window 3: [min(end, start+18)+1 .. end]
+INSERT INTO sinir.mtr_load (url, unidade, status, created_by, created_dt)
+SELECT
+CONCAT(prefix_part, '/',
+DATE_FORMAT(DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY)), INTERVAL 1 DAY), '%d-%m-%Y'), '/',
+DATE_FORMAT(end_dt, '%d-%m-%Y'),
+'/', suffix_part),
+unidade,
+'PENDING',
+created_by,
+NOW()
+FROM tmp_mtr_split t
+WHERE DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY)), INTERVAL 1 DAY) <= end_dt
+AND NOT EXISTS (
+SELECT 1 FROM sinir.mtr_load m
+WHERE m.url = CONCAT(prefix_part, '/',
+DATE_FORMAT(DATE_ADD(LEAST(end_dt, DATE_ADD(start_dt, INTERVAL 18 DAY)), INTERVAL 1 DAY), '%d-%m-%Y'), '/',
+DATE_FORMAT(end_dt, '%d-%m-%Y'),
+'/', suffix_part)
+);
+
+-- Delete originals that were split
+DELETE m
+FROM sinir.mtr_load m
+INNER JOIN tmp_mtr_split t
+ON t.url = m.url;
+
+DROP TEMPORARY TABLE IF EXISTS tmp_mtr_split;
+
+COMMIT;
+END$$
+DELIMITER ;

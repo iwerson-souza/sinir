@@ -30,9 +30,10 @@ internal class Program
                 await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
                 break;
             case "run":
-            default:
                 await Runner.SetupAsync(config);
-                await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
+                await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);                            
+                break;
+            default:
                 break;
         }
 
