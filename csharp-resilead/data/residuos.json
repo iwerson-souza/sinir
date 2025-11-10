@@ -1,0 +1,3582 @@
+[
+  {
+    "resCodigoIbama": "150202(*)",
+    "resDescricao": "Absorventes, materiais filtrantes (incluindo filtros de óleo não anteriormente especificados), panos de limpeza e vestuário de proteção, contaminados por substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "150203",
+    "resDescricao": "Absorventes, materiais filtrantes, panos de limpeza e vestuário de proteção não abrangidos em 15 02 02 (*)"
+  },
+  {
+    "resCodigoIbama": "070209(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados"
+  },
+  {
+    "resCodigoIbama": "070409(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados"
+  },
+  {
+    "resCodigoIbama": "070109(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados"
+  },
+  {
+    "resCodigoIbama": "070309(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados"
+  },
+  {
+    "resCodigoIbama": "070709(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados e halogenados"
+  },
+  {
+    "resCodigoIbama": "070609(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados e halogenados"
+  },
+  {
+    "resCodigoIbama": "070510(*)",
+    "resDescricao": "Absorventes usados e tortas de filtro halogenados e não halogenados"
+  },
+  {
+    "resCodigoIbama": "060102(*)",
+    "resDescricao": "Acido clorídrico"
+  },
+  {
+    "resCodigoIbama": "060103(*)",
+    "resDescricao": "Acido fluorídrico"
+  },
+  {
+    "resCodigoIbama": "060104(*)",
+    "resDescricao": "Acido fosfórico e acido fosforoso"
+  },
+  {
+    "resCodigoIbama": "060105(*)",
+    "resDescricao": "Acido nítrico e acido nitroso"
+  },
+  {
+    "resCodigoIbama": "200114(*)",
+    "resDescricao": "Ácidos"
+  },
+  {
+    "resCodigoIbama": "110105(*)",
+    "resDescricao": "Ácidos de decapagem"
+  },
+  {
+    "resCodigoIbama": "110106(*)",
+    "resDescricao": "Ácidos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100109(*)",
+    "resDescricao": "Ácido sulfúrico e ácido sulfuroso"
+  },
+  {
+    "resCodigoIbama": "060101(*)",
+    "resDescricao": "Ácido sulfúrico e ácido sulfuroso"
+  },
+  {
+    "resCodigoIbama": "030299",
+    "resDescricao": "Agentes de preservação da madeira não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "030204(*)",
+    "resDescricao": "Agentes inorgânicos de preservação da madeira"
+  },
+  {
+    "resCodigoIbama": "030202(*)",
+    "resDescricao": "Agentes organoclorados de preservação da madeira"
+  },
+  {
+    "resCodigoIbama": "030203(*)",
+    "resDescricao": "Agentes organometálicos de preservação da madeira"
+  },
+  {
+    "resCodigoIbama": "130507(*)",
+    "resDescricao": "Água com óleo proveniente dos separadores óleo/água"
+  },
+  {
+    "resCodigoIbama": "160406(*)",
+    "resDescricao": "Água rosa/vermelha proveniente das operações de TNT"
+  },
+  {
+    "resCodigoIbama": "050107(*)",
+    "resDescricao": "Alcatrões ácidos"
+  },
+  {
+    "resCodigoIbama": "050601(*)",
+    "resDescricao": "Alcatrões ácidos"
+  },
+  {
+    "resCodigoIbama": "170402",
+    "resDescricao": "Alumínio (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "120105",
+    "resDescricao": "Aparas de matérias plásticas"
+  },
+  {
+    "resCodigoIbama": "120101",
+    "resDescricao": "Aparas e limalhas de metais ferrosos"
+  },
+  {
+    "resCodigoIbama": "120103",
+    "resDescricao": "Aparas e limalhas de metais não ferrosos"
+  },
+  {
+    "resCodigoIbama": "040108",
+    "resDescricao": "Aparas, serragem e pós de couro provenientes de couros curtidos ao cromo"
+  },
+  {
+    "resCodigoIbama": "100124",
+    "resDescricao": "Areias de leitos fluidizados"
+  },
+  {
+    "resCodigoIbama": "190119",
+    "resDescricao": "Areias de leitos fluidizados"
+  },
+  {
+    "resCodigoIbama": "010409",
+    "resDescricao": "Areias e Argilas"
+  },
+  {
+    "resCodigoIbama": "050115(*)",
+    "resDescricao": "Argilas de filtração usadas"
+  },
+  {
+    "resCodigoIbama": "191101(*)",
+    "resDescricao": "Argilas de filtração usadas"
+  },
+  {
+    "resCodigoIbama": "100403(*)",
+    "resDescricao": "Arseniato de cálcio"
+  },
+  {
+    "resCodigoIbama": "170303(*)",
+    "resDescricao": "Asfalto e produtos de alcatrão (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "020405",
+    "resDescricao": "Bagaço de Cana de Açúcar"
+  },
+  {
+    "resCodigoIbama": "110104(*)",
+    "resDescricao": "Banho de decapagem exaurido proveniente das operações de acabamento do aço"
+  },
+  {
+    "resCodigoIbama": "090105(*)",
+    "resDescricao": "Banhos de branqueamento e de fixadores de branqueamento"
+  },
+  {
+    "resCodigoIbama": "090104(*)",
+    "resDescricao": "Banhos de fixação"
+  },
+  {
+    "resCodigoIbama": "090103(*)",
+    "resDescricao": "Banhos de revelação à base de solventes"
+  },
+  {
+    "resCodigoIbama": "090102(*)",
+    "resDescricao": "Banhos de revelação de chapas litográficas de impressão de base aquosa"
+  },
+  {
+    "resCodigoIbama": "090101(*)",
+    "resDescricao": "Banhos de revelação e ativação de base aquosa"
+  },
+  {
+    "resCodigoIbama": "110107(*)",
+    "resDescricao": "Bases de decapagem"
+  },
+  {
+    "resCodigoIbama": "160601(*)",
+    "resDescricao": "Bateria e acumuladores elétricos à base de chumbo e seus resíduos, incluindo os plásticos provenientes da carcaça externa da bateria "
+  },
+  {
+    "resCodigoIbama": "160602(*)",
+    "resDescricao": "Bateria e acumuladores elétricos de niquel cádmio e seus resíduos"
+  },
+  {
+    "resCodigoIbama": "050117",
+    "resDescricao": "Betumes"
+  },
+  {
+    "resCodigoIbama": "180103(*)",
+    "resDescricao": "Bolsa transfusionais contendo sangue ou hemocomponentes rejeitadas por contaminação ou por má conservação ou com prazo de validade vencido, e aquelas oriundas de coleta incompleta (Grupo A1 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "180114(*)",
+    "resDescricao": "Bolsa transfusionais vazias ou com volume residual pós-transfusão (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "191211",
+    "resDescricao": "Borrachas"
+  },
+  {
+    "resCodigoIbama": "191102(*)",
+    "resDescricao": "Borras ácidas"
+  },
+  {
+    "resCodigoIbama": "170508",
+    "resDescricao": "Britas de linhas de ferroviárias não abrangidas em 17 05 07 (*)  (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170507(*)",
+    "resDescricao": "Britas de linhas ferroviárias contendo substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170410(*)",
+    "resDescricao": "Cabos contendo hidrocarbonetos, alcatrão ou outras substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "170411",
+    "resDescricao": "Cabos não abrangidos em 17 04 10 (*) - (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "180113(*)",
+    "resDescricao": "Carcaças, peças anatômicas, vísceras e outros resíduos provenientes de animais não submetidos a processos de experimentação com inoculação de micro-organismos, bem como suas forrações (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "180105(*)",
+    "resDescricao": "Carcaças, peças anatômicas, vísceras e outros resíduos provenientes de animais submetidos a processos de experimentação com inoculação de micro-organismos, bem como suas forrações, e os cadáveres de animais suspeitos de serem portadores de micro-organismos  de relevância epidemiológica e com risco de disseminação, que foram submetidos ou não a estudo anatomopatológico ou confirmação diagnóstica (Grupo A2 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "190904",
+    "resDescricao": "Carvão ativado usado"
+  },
+  {
+    "resCodigoIbama": "061302(*)",
+    "resDescricao": "Carvão ativado usado - exceto 06 07 02 (*)"
+  },
+  {
+    "resCodigoIbama": "190110(*)",
+    "resDescricao": "Carvão ativado usado proveniente do tratamento de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "070509(*)",
+    "resDescricao": "Carvão ativo usado proveniente da etapa de descoloração da produção de compostos arseniacais ou organoarseniacais"
+  },
+  {
+    "resCodigoIbama": "160405(*)",
+    "resDescricao": "Carvão usado proveniente do tratamento de efluentes líquidos que contenham explosivos"
+  },
+  {
+    "resCodigoIbama": "010408",
+    "resDescricao": "Cascalhos e fragmentos de rocha não abrangidos em 01 04 07 (*)"
+  },
+  {
+    "resCodigoIbama": "160802(*)",
+    "resDescricao": "Catalisadores usados contendo metais de transição (4) ou compostos de metais de transição perigosos"
+  },
+  {
+    "resCodigoIbama": "160803",
+    "resDescricao": "Catalisadores usados contendo metais de transição ou compostos de metais não especificados de outra forma"
+  },
+  {
+    "resCodigoIbama": "160801",
+    "resDescricao": "Catalisadores usados contendo ouro, prata, rênio, ródio, paládio, irídio ou platina, exceto 16 08 07 (*)"
+  },
+  {
+    "resCodigoIbama": "160804",
+    "resDescricao": "Catalisadores usados de cracking catalítico em leito fluidizado, exceto 16 08 99 (*)"
+  },
+  {
+    "resCodigoIbama": "160807(*)",
+    "resDescricao": "Catalisadores usados provenientes do reator de hidrocloração utilizado na produção de 1,1,1-tricloroetano"
+  },
+  {
+    "resCodigoIbama": "160805(*)",
+    "resDescricao": "Catalizadores usados contendo ácido fosfórico"
+  },
+  {
+    "resCodigoIbama": "160808(*)",
+    "resDescricao": "Catalizador gasto proveniente do hidrotratamento das operações de refino de petróleo, incluindo leitos usados para dessulfurizar as alimentações para outros reatores catalíticos (este código não inclui o meio de suporte inerte)"
+  },
+  {
+    "resCodigoIbama": "100303(*)",
+    "resDescricao": "Cátodos usados provenientes da redução de alumínio primário"
+  },
+  {
+    "resCodigoIbama": "120112(*)",
+    "resDescricao": "Ceras e gorduras usadas"
+  },
+  {
+    "resCodigoIbama": "170403",
+    "resDescricao": "Chumbo (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "190115(*)",
+    "resDescricao": "Cinzas de caldeiras contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "190116",
+    "resDescricao": "Cinzas de caldeiras não abrangidas em 19 01 15 (*)"
+  },
+  {
+    "resCodigoIbama": "110502(*)",
+    "resDescricao": "Cinzas de zinco contendo cádmio ou chumbo"
+  },
+  {
+    "resCodigoIbama": "190111(*)",
+    "resDescricao": "Cinzas e escórias contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "190112",
+    "resDescricao": "Cinzas e escórias não abrangidas em 19 01 11 (*)"
+  },
+  {
+    "resCodigoIbama": "100114(*)",
+    "resDescricao": "cinzas, escórias e poeiras de caldeiras de co-incineração contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100115",
+    "resDescricao": "Cinzas, escórias e poeiras de caldeiras de co-incineração não abrangidas em 10 01 14 (*)"
+  },
+  {
+    "resCodigoIbama": "100101",
+    "resDescricao": "Cinzas, escórias e poeiras de caldeiras (excluídas as poeiras de caldeiras abrangidas em 10 01 04 (*)"
+  },
+  {
+    "resCodigoIbama": "190113(*)",
+    "resDescricao": "Cinzas voláteis contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "100102",
+    "resDescricao": "Cinzas voláteis da combustão de carvão"
+  },
+  {
+    "resCodigoIbama": "100113(*)",
+    "resDescricao": "Cinzas voláteis da combustão de hidrocarbonetos emulsionados, utilizados como combustível"
+  },
+  {
+    "resCodigoIbama": "100103",
+    "resDescricao": "Cinzas voláteis da combustão de turfa ou madeira não tratada"
+  },
+  {
+    "resCodigoIbama": "100116(*)",
+    "resDescricao": "Cinzas voláteis de co-incineração contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100117",
+    "resDescricao": "Cinzas voláteis de co-incineração não abrangidas em 10 01 16 (*)"
+  },
+  {
+    "resCodigoIbama": "190402(*)",
+    "resDescricao": "Cinzas voláteis e outros resíduos do tratamento de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "100104(*)",
+    "resDescricao": "Cinzas voláteis e poeiras de caldeiras da combustão de hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "190114",
+    "resDescricao": "Cinzas voláteis não abrangidas em 19 01 13 (*)"
+  },
+  {
+    "resCodigoIbama": "140601(*)",
+    "resDescricao": "Clorofluorcarbonetos (CFC), HCFC, HFC"
+  },
+  {
+    "resCodigoIbama": "170401",
+    "resDescricao": "Cobre, bronze e latão (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "160108(*)",
+    "resDescricao": "Componentes e peças contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "160109(*)",
+    "resDescricao": "Componentes e peças contendo PCB"
+  },
+  {
+    "resCodigoIbama": "160110(*)",
+    "resDescricao": "Componentes explosivos, por exemplo, almofadas de ar (air bags)"
+  },
+  {
+    "resCodigoIbama": "160122",
+    "resDescricao": "Componentes não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "160121(*)",
+    "resDescricao": "Componentes perigosos não abrangentes em 16 01 07 (*) a 16 01 11 (*), 16 01 13 (*) e 16 01 14 (*)"
+  },
+  {
+    "resCodigoIbama": "160215(*)",
+    "resDescricao": "Componentes perigosos retirados de equipamento fora de uso"
+  },
+  {
+    "resCodigoIbama": "160216",
+    "resDescricao": "Componentes retirados de equipamento fora de uso não abrangidos em 16 02 15 (*)"
+  },
+  {
+    "resCodigoIbama": "190503",
+    "resDescricao": "Composto fora de especificação"
+  },
+  {
+    "resCodigoIbama": "161003(*)",
+    "resDescricao": "Concentrados aquosos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "161004",
+    "resDescricao": "Concentrados aquosos não abrangidos em 16 10 03 (*)"
+  },
+  {
+    "resCodigoIbama": "040216(*)",
+    "resDescricao": "Corantes e pigmentos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "040217",
+    "resDescricao": "Corantes e pigmentos não abrangidos em 04 02 16 (*)"
+  },
+  {
+    "resCodigoIbama": "160902(*)",
+    "resDescricao": "Cromatos, por exemplo, cromato de potássio, dicromato de potássio ou de sódio"
+  },
+  {
+    "resCodigoIbama": "180101(*)",
+    "resDescricao": "Culturas e estoques de micro-organismos; resíduos de fabricação de produtos biológicos, exceto os hemoderivados; descarte de vacinas de micro-organismos vivos ou atenuados; meios de cultura e instrumentos utilizados para transferência, inoculação ou mistura de culturas; resíduos de laboratório de manipulação genética  (Grupo A1 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "050105(*)",
+    "resDescricao": "Derrames de hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "200129(*)",
+    "resDescricao": "Detergentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "200130",
+    "resDescricao": "Detergentes não abrangidos em 20 01 29 (*)"
+  },
+  {
+    "resCodigoIbama": "180203(*)",
+    "resDescricao": "Efluentes de processadores de imagem (reveladores e fixadores) (Grupo B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "180204(*)",
+    "resDescricao": "Efluentes dos equipamentos automatizados utilizados em análises clínicas (Grupo B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "030208(*)",
+    "resDescricao": "Efluentes líquidos e resíduos originados no processo de preservação da madeira, provenientes de plantas que utilizam conservantes inorgânicos contendo arsênio ou cromo, com exceção dos efluentes líquidos dos processos de preservação de madeira que usam creosoto e/ou pentaclorofenol"
+  },
+  {
+    "resCodigoIbama": "030206(*)",
+    "resDescricao": "Efluentes líquidos e resíduos originados no processo de preservação da madeira, provenientes de plantas que utilizam formulações que contem creosoto, com exceção dos efluentes líquidos dos processos de preservação da madeira que usam creosoto e/ou pentaclorofenol"
+  },
+  {
+    "resCodigoIbama": "030207(*)",
+    "resDescricao": "Efluentes líquidos e resíduos originados no processo de preservação da madeira, provenientes de plantas que utilizam ou tenham utilizado formulações clorofenólicas, com exceção dos efluentes líquidos dos processos de preservação da madeira que usam creosoto e/ou pentaclorofenol"
+  },
+  {
+    "resCodigoIbama": "160606(*)",
+    "resDescricao": "Eletrólitos de pilhas e acumuladores recolhidos separadamente"
+  },
+  {
+    "resCodigoIbama": "110115(*)",
+    "resDescricao": "Eluatos e lodos de sistema de membranas ou de permuta iônica contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "150103",
+    "resDescricao": "Embalagens de madeira"
+  },
+  {
+    "resCodigoIbama": "150104",
+    "resDescricao": "Embalagens de metal"
+  },
+  {
+    "resCodigoIbama": "150111(*)",
+    "resDescricao": "Embalagens de metal, incluindo recipientes vazios sob pressão, com uma matriz porosa sólida perigosa (por exemplo amianto)"
+  },
+  {
+    "resCodigoIbama": "150101",
+    "resDescricao": "Embalagens de papel e cartão"
+  },
+  {
+    "resCodigoIbama": "150102",
+    "resDescricao": "Embalagens de plástico"
+  },
+  {
+    "resCodigoIbama": "150110(*)",
+    "resDescricao": "Embalagens de qualquer um dos tipos acima descritos contendo ou contaminadas por resíduos de substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "150107",
+    "resDescricao": "Embalagens de vidro"
+  },
+  {
+    "resCodigoIbama": "150105",
+    "resDescricao": "Embalagens longa-vida"
+  },
+  {
+    "resCodigoIbama": "150109",
+    "resDescricao": "Embalagens têxteis"
+  },
+  {
+    "resCodigoIbama": "130104(*)",
+    "resDescricao": "Emulsões coloidais "
+  },
+  {
+    "resCodigoIbama": "120108(*)",
+    "resDescricao": "Emulsões, misturas e soluções de corte e usinagem com halogênios"
+  },
+  {
+    "resCodigoIbama": "120109(*)",
+    "resDescricao": "Emulsões, misturas e soluções de corte e usinagem sem halogênios"
+  },
+  {
+    "resCodigoIbama": "130105(*)",
+    "resDescricao": "Emulsões não coloidais"
+  },
+  {
+    "resCodigoIbama": "160212(*)",
+    "resDescricao": "Equipamento fora de uso contendo amianto livre"
+  },
+  {
+    "resCodigoIbama": "160211(*)",
+    "resDescricao": "Equipamento fora de uso contendo clorofluorcarbonetos, HCFC, HFC"
+  },
+  {
+    "resCodigoIbama": "160213(*)",
+    "resDescricao": "Equipamento fora de uso contendo componentes perigosos não abrangidos em 16 02 09 (*) a 16 02 12 (*)"
+  },
+  {
+    "resCodigoIbama": "160210(*)",
+    "resDescricao": "Equipamento fora de uso contendo ou contaminado por PCB não abrangido em 16 02 09 (*)"
+  },
+  {
+    "resCodigoIbama": "160214",
+    "resDescricao": "Equipamento fora de uso não abrangidos em 16 02 09 (*) a 16 02 13 (*)"
+  },
+  {
+    "resCodigoIbama": "100210",
+    "resDescricao": "Escamas de laminagem"
+  },
+  {
+    "resCodigoIbama": "100201",
+    "resDescricao": "Escória e outros desperdícios da fabricação do ferro e do aço"
+  },
+  {
+    "resCodigoIbama": "060902",
+    "resDescricao": "Escórias com fósforo"
+  },
+  {
+    "resCodigoIbama": "100304(*)",
+    "resDescricao": "Escórias da produção primária"
+  },
+  {
+    "resCodigoIbama": "100601",
+    "resDescricao": "Escórias da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100401(*)",
+    "resDescricao": "Escórias da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100501",
+    "resDescricao": "Escórias da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100701",
+    "resDescricao": "Escórias da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100202",
+    "resDescricao": "Escórias de alto-fornos granulada (areia de escória) provenientes da fabricação de ferro e do aço"
+  },
+  {
+    "resCodigoIbama": "100903",
+    "resDescricao": "Escórias do forno"
+  },
+  {
+    "resCodigoIbama": "101003",
+    "resDescricao": "Escórias do forno"
+  },
+  {
+    "resCodigoIbama": "110501",
+    "resDescricao": "Escórias e cinzas de zinco não perigosas"
+  },
+  {
+    "resCodigoIbama": "100808(*)",
+    "resDescricao": "Escórias salinas da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100308(*)",
+    "resDescricao": "Escórias salinas da produção secundária"
+  },
+  {
+    "resCodigoIbama": "100315(*)",
+    "resDescricao": "Escumas inflamáveis ou que, em contato com a água, libertam gases inflamáveis em quantidades perigosas"
+  },
+  {
+    "resCodigoIbama": "100316",
+    "resDescricao": "Escumas não abrangidas em 10 03 15 (*)"
+  },
+  {
+    "resCodigoIbama": "170406",
+    "resDescricao": "Estanho (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "010104",
+    "resDescricao": "Estéril"
+  },
+  {
+    "resCodigoIbama": "190403(*)",
+    "resDescricao": "Fase sólida não vitrificada"
+  },
+  {
+    "resCodigoIbama": "170405",
+    "resDescricao": "Ferro e aço (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "020106",
+    "resDescricao": "Fezes, urina e estrume de animais (incluindo palha suja), efluentes recolhidos separadamente e tratados noutro local"
+  },
+  {
+    "resCodigoIbama": "180108(*)",
+    "resDescricao": "Filtros de ar e gases de área contaminada; membrana filtrante de equipamento médico hospitalar e de pesquisa, entre outros similares (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "160107(*)",
+    "resDescricao": "Filtros de óleo automotivos"
+  },
+  {
+    "resCodigoIbama": "160114(*)",
+    "resDescricao": "Fluidos anticongelantes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "160115",
+    "resDescricao": "Fluídos anticongelantes não abrangidos em 16 01 14 (*)"
+  },
+  {
+    "resCodigoIbama": "160113(*)",
+    "resDescricao": "Fluidos de freio"
+  },
+  {
+    "resCodigoIbama": "110504(*)",
+    "resDescricao": "Fluxantes usados"
+  },
+  {
+    "resCodigoIbama": "190502",
+    "resDescricao": "Fração não compostada de resíduos animais e vegetais"
+  },
+  {
+    "resCodigoIbama": "190501",
+    "resDescricao": "Fração não compostada de resíduos urbanos e equiparados"
+  },
+  {
+    "resCodigoIbama": "191003(*)",
+    "resDescricao": "Frações leves e poeiras contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191004",
+    "resDescricao": "Frações leves e poeiras não abrangidas em 19 10 03 (*)"
+  },
+  {
+    "resCodigoIbama": "130701(*)",
+    "resDescricao": "Fuelóleo e óleo diesel"
+  },
+  {
+    "resCodigoIbama": "061305(*)",
+    "resDescricao": "Fuligem"
+  },
+  {
+    "resCodigoIbama": "160504(*)",
+    "resDescricao": "Gases em recipientes sob pressão (incluindo freons e halons) contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "160505",
+    "resDescricao": "Gases em recipientes sob pressão não abrangidos em 13 05 04 (*)"
+  },
+  {
+    "resCodigoIbama": "130702(*)",
+    "resDescricao": "Gasolina"
+  },
+  {
+    "resCodigoIbama": "050112(*)",
+    "resDescricao": "Hidrocarbonetos contendo ácidos"
+  },
+  {
+    "resCodigoIbama": "060203(*)",
+    "resDescricao": "Hidróxido de amônio"
+  },
+  {
+    "resCodigoIbama": "060201(*)",
+    "resDescricao": "Hidróxido de cálcio"
+  },
+  {
+    "resCodigoIbama": "060204(*)",
+    "resDescricao": "Hidróxidos de sódio e de potássio"
+  },
+  {
+    "resCodigoIbama": "100702",
+    "resDescricao": "Impurezas e escumas da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100402(*)",
+    "resDescricao": "Impurezas e escumas da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100602",
+    "resDescricao": "Impurezas e escumas da produção primária e secundária"
+  },
+  {
+    "resCodigoIbama": "100510(*)",
+    "resDescricao": "Impurezas e escumas inflamáveis ou que, em contato com a água, libertam gases inflamáveis em quantidades perigosas"
+  },
+  {
+    "resCodigoIbama": "100810(*)",
+    "resDescricao": "Impurezas e escumas inflamáveis ou que, em contato com a água, libertam gases inflamáveis em quantidades perigosas"
+  },
+  {
+    "resCodigoIbama": "100511",
+    "resDescricao": "Impurezas e escumas não abrangidas em 10 05 10 (*)"
+  },
+  {
+    "resCodigoIbama": "100811",
+    "resDescricao": "Impurezas e escumas não abrangidas em 10 08 10 (*)"
+  },
+  {
+    "resCodigoIbama": "100309(*)",
+    "resDescricao": "Impurezas negras da produção secundária"
+  },
+  {
+    "resCodigoIbama": "180107(*)",
+    "resDescricao": "Kits de linhas arteriais, endovenosas e dialisadores, quando descartados (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "170103",
+    "resDescricao": "Ladrilhos, telhas e materiais cerâmicos  (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "190606",
+    "resDescricao": "Lama e lodos de digestores de tratamento anaeróbico de resíduos animais e vegetais"
+  },
+  {
+    "resCodigoIbama": "190604",
+    "resDescricao": "Lamas e lodos de digestores de tratamento anaeróbico de resíduos urbanos e equiparados"
+  },
+  {
+    "resCodigoIbama": "010309",
+    "resDescricao": "Lamas vermelhas da produção de alumina não abrangidas em 01 03 07"
+  },
+  {
+    "resCodigoIbama": "200121(*)",
+    "resDescricao": "Lâmpadas fluorescentes, de vapor de sódio e mercúrio e de luz mista"
+  },
+  {
+    "resCodigoIbama": "040104",
+    "resDescricao": "Licores de curtimento contendo cromo"
+  },
+  {
+    "resCodigoIbama": "040105",
+    "resDescricao": "Licores de curtimento sem cromo"
+  },
+  {
+    "resCodigoIbama": "120301(*)",
+    "resDescricao": "Líquidos de lavagem aquosos"
+  },
+  {
+    "resCodigoIbama": "110112",
+    "resDescricao": "Líquidos de lavagem aquosos não abrangidos em 11 01 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070201(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070101(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070301(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070401(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070501(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070701(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "070601(*)",
+    "resDescricao": "Líquidos de lavagem e efluentes orgânicos aquosos"
+  },
+  {
+    "resCodigoIbama": "160806(*)",
+    "resDescricao": "Líquidos usados utilizados como catalisadores"
+  },
+  {
+    "resCodigoIbama": "190702(*)",
+    "resDescricao": "Lixiviados ou líquidos percolados de aterros contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "190703",
+    "resDescricao": "Lixiviados ou líquidos percolados de aterros não abrangidos em 19 07 02 (*)"
+  },
+  {
+    "resCodigoIbama": "050608(*)",
+    "resDescricao": "Lodo calcário da destilação da amônia proveniente das operações de coqueificação"
+  },
+  {
+    "resCodigoIbama": "190605",
+    "resDescricao": "Lodo de tratamento anaeróbico de resíduos animais e vegetais"
+  },
+  {
+    "resCodigoIbama": "061104(*)",
+    "resDescricao": "Lodo de tratamento de efluentes líquidos originados na produção dos seguintes pigmentos: laranja e amarelo de cromo, laranja de molibdato, amarelo de zinco, verde de cromo, verde de óxido de cromo,(anidro e hidratado) e azul de ferro"
+  },
+  {
+    "resCodigoIbama": "040110",
+    "resDescricao": "Lodo do caleiro"
+  },
+  {
+    "resCodigoIbama": "190603",
+    "resDescricao": "Lodo do tratamento anaeróbico de resíduos urbanos e equiparados"
+  },
+  {
+    "resCodigoIbama": "130503(*)",
+    "resDescricao": "Lodo proveniente do interceptor"
+  },
+  {
+    "resCodigoIbama": "130502(*)",
+    "resDescricao": "Lodo proveniente dos separadores óleo/água"
+  },
+  {
+    "resCodigoIbama": "050104(*)",
+    "resDescricao": "Lodos alquílicos ácidos"
+  },
+  {
+    "resCodigoIbama": "080202",
+    "resDescricao": "Lodos aquosas contendo materiais cerâmicos"
+  },
+  {
+    "resCodigoIbama": "080307",
+    "resDescricao": "Lodos aquosas contendo tintas de impressão"
+  },
+  {
+    "resCodigoIbama": "080116",
+    "resDescricao": "Lodos aquosas contendo tintas e vernizes não abrangidas em 08 01 15 (*)"
+  },
+  {
+    "resCodigoIbama": "080115(*)",
+    "resDescricao": "Lodos aquosas contendo tintas e vernizes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080413(*)",
+    "resDescricao": "Lodos aquosos contendo colas ou vedantes com solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080414",
+    "resDescricao": "Lodos aquosos contendo colas ou vedantes não abrangidos em 08 04 13 (*)"
+  },
+  {
+    "resCodigoIbama": "100122(*)",
+    "resDescricao": "Lodos aquosos provenientes da limpeza de caldeiras contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100123",
+    "resDescricao": "Lodos aquosos provenientes da limpeza de caldeiras não abrangidos em 10 01 22 (*)"
+  },
+  {
+    "resCodigoIbama": "100502(*)",
+    "resDescricao": "Lodos calcários de anodos eletrolíticos originados na produção de zinco primário"
+  },
+  {
+    "resCodigoIbama": "050106(*)",
+    "resDescricao": "Lodos contendo hidrocarbonetos provenientes de operações de manutenção das instalações ou equipamentos, inclusive lodos provenientes de separadores e da limpeza dos tubos dos trocadores de calor"
+  },
+  {
+    "resCodigoIbama": "191305(*)",
+    "resDescricao": "Lodos da descontaminação de águas freáticas contendo substancias perigosas "
+  },
+  {
+    "resCodigoIbama": "191306",
+    "resDescricao": "Lodos da descontaminação de águas freáticas não abrangidas em 19 13 05 (*)"
+  },
+  {
+    "resCodigoIbama": "191303(*)",
+    "resDescricao": "Lodos da descontaminação de solos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191304",
+    "resDescricao": "Lodos da descontaminação de solos não abrangidos em 19 13 03 (*)"
+  },
+  {
+    "resCodigoIbama": "110202(*)",
+    "resDescricao": "Lodos da hidrometalurgia do zinco"
+  },
+  {
+    "resCodigoIbama": "120114(*)",
+    "resDescricao": "Lodos da usinagem contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "030305",
+    "resDescricao": "Lodos de branqueamento, provenientes da reciclagem de papel"
+  },
+  {
+    "resCodigoIbama": "190902",
+    "resDescricao": "Lodos de clarificação da água"
+  },
+  {
+    "resCodigoIbama": "080411(*)",
+    "resDescricao": "Lodos de colas ou vedantes contendo solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080412",
+    "resDescricao": "Lodos de colas ou vedantes não abrangidas em 08 04 11 (*)"
+  },
+  {
+    "resCodigoIbama": "190903",
+    "resDescricao": "Lodos de descarbonatação"
+  },
+  {
+    "resCodigoIbama": "050102(*)",
+    "resDescricao": "Lodos de dessalinização"
+  },
+  {
+    "resCodigoIbama": "170505(*)",
+    "resDescricao": "Lodos de dragagem contendo substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170506",
+    "resDescricao": "Lodos de dragagem não abrangidos em 17 05 05 (*)  - (Classe C conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "110108(*)",
+    "resDescricao": "Lodos de fosfatização"
+  },
+  {
+    "resCodigoIbama": "200304",
+    "resDescricao": "Lodos de fossas sépticas"
+  },
+  {
+    "resCodigoIbama": "020301",
+    "resDescricao": "Lodos de lavagem, limpeza, descasque, centrifugação e separação"
+  },
+  {
+    "resCodigoIbama": "030302",
+    "resDescricao": "Lodos de lixívia verde (provenientes da valorização da lixívia de cozimento ou licor negro)"
+  },
+  {
+    "resCodigoIbama": "190813(*)",
+    "resDescricao": "Lodos de outros tratamentos de efluentes industriais contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "190814",
+    "resDescricao": "Lodos de outros tratamentos de efluentes industriais não abrangidos em 19 08 13 (*)"
+  },
+  {
+    "resCodigoIbama": "101113(*)",
+    "resDescricao": "Lodos de polimento e retificação de vidro contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101114",
+    "resDescricao": "Lodos de polimento e retificação de vidro não abrangidos em 10 11 13 (*)"
+  },
+  {
+    "resCodigoIbama": "060705(*)",
+    "resDescricao": "Lodos de purificação de salmoura e lodos provenientes do tratamento de efluentes líquidos originados no processo de produção de cloro em células de mercúrio"
+  },
+  {
+    "resCodigoIbama": "060703(*)",
+    "resDescricao": "Lodos de sulfato de bário contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "080314(*)",
+    "resDescricao": "Lodos de tintas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080315",
+    "resDescricao": "Lodos de tintas de impressão não abrangidas em 08 03 14 (*)"
+  },
+  {
+    "resCodigoIbama": "080113(*)",
+    "resDescricao": "Lodos de tintas e vernizes contendo solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080114",
+    "resDescricao": "Lodos de tintas e vernizes não abrangias em 08 01 13 (*)"
+  },
+  {
+    "resCodigoIbama": "190811(*)",
+    "resDescricao": "Lodos de tratamento biológico de efluentes industriais contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "190812",
+    "resDescricao": "Lodos de tratamento biológico de efluentes industriais não abrangidos em 19 08 11 (*)"
+  },
+  {
+    "resCodigoIbama": "050113",
+    "resDescricao": "Lodos de tratamento de água para abastecimento de caldeiras"
+  },
+  {
+    "resCodigoIbama": "070611(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070711(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070511(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070411(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070311(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070211(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070111(*)",
+    "resDescricao": "Lodos de tratamento de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "190805",
+    "resDescricao": "Lodos de tratamento de efluentes urbanos"
+  },
+  {
+    "resCodigoIbama": "190205(*)",
+    "resDescricao": "Lodos de tratamento físico-químico contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "190206",
+    "resDescricao": "Lodos de tratamento físico-químico não abrangidos em 19 02 05 (*)"
+  },
+  {
+    "resCodigoIbama": "101213",
+    "resDescricao": "Lodos de tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "100120(*)",
+    "resDescricao": "Lodos de tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "060502(*)",
+    "resDescricao": "Lodos de tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "060503",
+    "resDescricao": "Lodos de tratamento local de efluentes não abrangidos em 06 05 02 (*)"
+  },
+  {
+    "resCodigoIbama": "191106",
+    "resDescricao": "Lodos de tratamento local de efluentes não abrangidos em 19 11 05 (*)"
+  },
+  {
+    "resCodigoIbama": "100121",
+    "resDescricao": "Lodos de tratamento não abrangidos em 10 01 20 (*)"
+  },
+  {
+    "resCodigoIbama": "120115",
+    "resDescricao": "Lodos de usinagem não abrangidas em 10 01 14 (*)"
+  },
+  {
+    "resCodigoIbama": "040220",
+    "resDescricao": "Lodos do tratamento local de efluente não abrangidos em 04 02 19 (*)"
+  },
+  {
+    "resCodigoIbama": "020204",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "020305",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "020502",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "020403",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "020603",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "020705",
+    "resDescricao": "Lodos do Tratamento local de efluentes"
+  },
+  {
+    "resCodigoIbama": "050109(*)",
+    "resDescricao": "Lodos do tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191105(*)",
+    "resDescricao": "Lodos do tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "040219(*)",
+    "resDescricao": "Lodos do tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070112",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 01 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070212",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 02 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070312",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 02 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070412",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 04 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070512",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 05 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070612",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 06 11 (*)"
+  },
+  {
+    "resCodigoIbama": "070712",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidas em 07 07 11 (*)"
+  },
+  {
+    "resCodigoIbama": "030311",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidos em 03 03 10"
+  },
+  {
+    "resCodigoIbama": "050110",
+    "resDescricao": "Lodos do tratamento local de efluentes não abrangidos em 05 01 09 (*)"
+  },
+  {
+    "resCodigoIbama": "040106",
+    "resDescricao": "Lodos, em especial do tratamento de efluentes, contendo cromo"
+  },
+  {
+    "resCodigoIbama": "040107",
+    "resDescricao": "Lodos, em especial do tratamento de efluentes, sem cromo"
+  },
+  {
+    "resCodigoIbama": "010504",
+    "resDescricao": "Lodos e outros resíduos de perfuração contendo água doce"
+  },
+  {
+    "resCodigoIbama": "010508",
+    "resDescricao": "Lodos e outros resíduos de perfuração contendo cloretos não abrangidos em 01 05 05 (*) e 01 05 06 (*)"
+  },
+  {
+    "resCodigoIbama": "010505(*)",
+    "resDescricao": "Lodos e outros resíduos de perfuração contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "010507",
+    "resDescricao": "Lodos e outros resíduos de perfuração contendo sais de bário não abrangidos em 01 05 05 (*) e 01 05 06 (*)"
+  },
+  {
+    "resCodigoIbama": "010506(*)",
+    "resDescricao": "Lodos e outros resíduos de perfuração contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110109(*)",
+    "resDescricao": "Lodos e tortas de filtro contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100213(*)",
+    "resDescricao": "Lodos e tortas de filtro de tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100214",
+    "resDescricao": "Lodos e tortas de filtro de tratamento de gases não abrangidos em 10 02 13 (*)"
+  },
+  {
+    "resCodigoIbama": "101307",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100506(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100407(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100607(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "101205",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100705",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100325(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101117(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases de combustão contendo substancias perigosas "
+  },
+  {
+    "resCodigoIbama": "100817(*)",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases de combustão contendo substancias perigosas "
+  },
+  {
+    "resCodigoIbama": "101118",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases de combustão não abrangidas em 10 11 17 (*)"
+  },
+  {
+    "resCodigoIbama": "100818",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases de combustão não abrangidos em 10 08 17 (*)"
+  },
+  {
+    "resCodigoIbama": "100326",
+    "resDescricao": "Lodos e tortas de filtro do tratamento de gases não abrangidos em 10 03 25 (*)"
+  },
+  {
+    "resCodigoIbama": "110110",
+    "resDescricao": "Lodos e tortas de filtro não abrangidas em 11 01 09 (*)"
+  },
+  {
+    "resCodigoIbama": "100404(*)",
+    "resDescricao": "Lodos, lixivias ou poeiras provenientes de sistema de controle de emissão de gases empregado na produção primária e secundária do chumbo"
+  },
+  {
+    "resCodigoIbama": "120118(*)",
+    "resDescricao": "Lodos metálicos (lodos de retificação, superacabamento e lixamento) contendo óleo"
+  },
+  {
+    "resCodigoIbama": "110303(*)",
+    "resDescricao": "Lodos originados no tratamento de efluentes líquidos provenientes dos banhos de têmpera das operações de tratamento térmico de metais nos quais são utilizados cianetos"
+  },
+  {
+    "resCodigoIbama": "130801(*)",
+    "resDescricao": "Lodos ou emulsões de dessalinização"
+  },
+  {
+    "resCodigoIbama": "100203(*)",
+    "resDescricao": "Lodos ou poeiras provenientes do sistema de controle de emissão da gases na produção de aço primário em fornos elétricos"
+  },
+  {
+    "resCodigoIbama": "080122(*)",
+    "resDescricao": "Lodos ou poeiras provenientes do sistema de controle de emissão de gases empregado na produção de tintas"
+  },
+  {
+    "resCodigoIbama": "140605(*)",
+    "resDescricao": "Lodos ou resíduos sólidos contendo outros solventes"
+  },
+  {
+    "resCodigoIbama": "140604(*)",
+    "resDescricao": "Lodos ou resíduos sólidos contendo solventes halogenados"
+  },
+  {
+    "resCodigoIbama": "020101",
+    "resDescricao": "Lodos provenientes da lavagem e limpeza"
+  },
+  {
+    "resCodigoIbama": "020201",
+    "resDescricao": "Lodos provenientes da lavagem e limpeza"
+  },
+  {
+    "resCodigoIbama": "040111(*)",
+    "resDescricao": "Lodos provenientes do tratamento de efluentes líquidos originados no processo de curtimento de couros ao cromo"
+  },
+  {
+    "resCodigoIbama": "070505(*)",
+    "resDescricao": "Lodos provenientes do tratamento de efluentes líquidos originados no processo de produção de compostos arsênicas ou organoarseniacais"
+  },
+  {
+    "resCodigoIbama": "061102(*)",
+    "resDescricao": "Lodos provenientes do tratamento  de efluentes líquidos originados no processo de produção do pigmento branco de dióxido de titânio, por meio do método de cloretos, a partir de minérios que contenham cromo"
+  },
+  {
+    "resCodigoIbama": "160403(*)",
+    "resDescricao": "Lodos provenientes do tratamento de efluentes líquidos  originados no processo e produção de explosivos"
+  },
+  {
+    "resCodigoIbama": "170201",
+    "resDescricao": "Madeira (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "200137(*)",
+    "resDescricao": "Madeira contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191206(*)",
+    "resDescricao": "Madeira contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "200138",
+    "resDescricao": "Madeira não abrangida em 20 01 37 (*)"
+  },
+  {
+    "resCodigoIbama": "191207",
+    "resDescricao": "Madeira não abrangidas em 19 12 06 (*)"
+  },
+  {
+    "resCodigoIbama": "170412",
+    "resDescricao": "Magnésio (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170801(*)",
+    "resDescricao": "Materiais de construção à base de gesso contaminados com substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170802",
+    "resDescricao": "Materiais de construção à base de gesso não abrangidos em 17 08 01 (*) - (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170605(*)",
+    "resDescricao": "Materiais de construção contendo amianto (por exemplo, telhas, tubos, etc.) (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170601(*)",
+    "resDescricao": "Materiais de isolamento contendo amianto (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170604",
+    "resDescricao": "Materiais de isolamento não abrangidos em 17 06 01 (*) e 17 06 03 (*)  - (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "190102",
+    "resDescricao": "Materiais ferrosos removidos das cinzas"
+  },
+  {
+    "resCodigoIbama": "020601",
+    "resDescricao": "Materiais impróprios para consumo ou processamento"
+  },
+  {
+    "resCodigoIbama": "020304",
+    "resDescricao": "Materiais impróprios para consumo ou processamento"
+  },
+  {
+    "resCodigoIbama": "020704",
+    "resDescricao": "Materiais impróprios para consumo ou processamento"
+  },
+  {
+    "resCodigoIbama": "020203",
+    "resDescricao": "Materiais impróprios para consumo ou processamento"
+  },
+  {
+    "resCodigoIbama": "020501",
+    "resDescricao": "Materiais impróprios para consumo ou processamento"
+  },
+  {
+    "resCodigoIbama": "Grupo E",
+    "resDescricao": "Materiais perfurocortantes ou escarificantes, tais como: lâminas de barbear, agulhas, escalpes, ampolas de vidro, brocas, limas endodônticas, pontas diamantadas, lâminas de bisturi, lancetas, tubos capilares;  micropipetas; lâminas e lamínulas; espátulas; e todos os utensílios de vidro quebrados no laboratório (pipetas, tubos de coleta sanguínea e placas de Petri) e outras similares, classificados como Grupo E conforme ANVISA RDC 222/2018 - Contempla o resíduo código 180401(*) conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "180401(*)",
+    "resDescricao": "Materiais perfurocortantes ou escarificantes, tais como: lâminas de barbear, agulhas, escalpes, ampolas de vidro, brocas, limas endodônticas, pontas diamantadas, lâminas de bisturi, lancetas, tubos capilares; micropipetas; lâminas e lamínulas; espátulas; e todos os utensílios de vidro quebrados no laboratório (pipetas, tubos de coleta sanguínea e placas de Petri) e outras similares (Grupo E conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "Grupo C",
+    "resDescricao": "Materiais resultantes de laboratórios de pesquisa e ensino na área de saúde, laboratórios de análises clínicas e serviços de medicina nuclear e radioterapia que contenha radionuclídeos em quantidade superior  aos limites de eliminação (CNEN-6.05), classificados como Grupo C conforme ANVISA RDC 222/2018 - Contempla o resíduo código 180301(*) conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "180301(*)",
+    "resDescricao": "Materiais resultantes de laboratórios de pesquisa e ensino na área de saúde, laboratórios de análises clínicas e serviços de medicina nuclear e radioterapia que contenha radionuclídeos em quantidade superior aos limites de eliminação - CNEN-6.05 (Grupo C conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "040210",
+    "resDescricao": "Matéria orgânica de produtos naturais (por exemplo gordura, cera)"
+  },
+  {
+    "resCodigoIbama": "200131(*)",
+    "resDescricao": "Medicamentos citotóxicos e  citostáticos  (B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "200132",
+    "resDescricao": "Medicamentos não abrangidos em 20 01 31 (*) - (B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "200140",
+    "resDescricao": "Metais"
+  },
+  {
+    "resCodigoIbama": "191202",
+    "resDescricao": "Metais ferrosos"
+  },
+  {
+    "resCodigoIbama": "191203",
+    "resDescricao": "Metais não ferrosos"
+  },
+  {
+    "resCodigoIbama": "150106",
+    "resDescricao": "Mistura de embalagens"
+  },
+  {
+    "resCodigoIbama": "170904",
+    "resDescricao": "Mistura de resíduos de construção e demolição não abrangidos em 17 09 01 (*), 17 09 02 (*) e 17 09 03 (*) - (Classe A conf. Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170407",
+    "resDescricao": "Mistura de sucatas (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170301(*)",
+    "resDescricao": "Misturas betuminosas contendo alcatrão (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170302",
+    "resDescricao": "Misturas betuminosas não abrangidas em 17 03 01 (*)  -  (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170107",
+    "resDescricao": "Misturas de cimento, tijolos, ladrilhos, telhas e materiais cerâmicos não abrangidos em 17 01 06 (*)  (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "190809",
+    "resDescricao": "Misturas de gorduras e óleos, da separação água/óleo, contendo apenas óleos e gorduras alimentares"
+  },
+  {
+    "resCodigoIbama": "190810(*)",
+    "resDescricao": "Misturas de gorduras e óleos, da separação água/óleo, não abrangidas em 19 08 09"
+  },
+  {
+    "resCodigoIbama": "190203",
+    "resDescricao": "Misturas de resíduos contendo apenas resíduos não perigosos"
+  },
+  {
+    "resCodigoIbama": "190204(*)",
+    "resDescricao": "Misturas de resíduos contendo, pelo menos, um resíduos perigoso"
+  },
+  {
+    "resCodigoIbama": "130508(*)",
+    "resDescricao": "Misturas de resíduos provenientes de desarenadores e de separadores"
+  },
+  {
+    "resCodigoIbama": "170106(*)",
+    "resDescricao": "Misturas ou frações separadas de cimento, tijolos, ladrilhos, telhas e materiais cerâmicos contendo substancias perigosas  (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "100905(*)",
+    "resDescricao": "Moldes e modelos e moldes de fundição não vazados contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101005(*)",
+    "resDescricao": "Moldes e modelos e moldes de fundição não vazados contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100906",
+    "resDescricao": "Moldes e modelos e moldes de fundição não vazados não abrangidos em 10 09 05 (*)"
+  },
+  {
+    "resCodigoIbama": "101006",
+    "resDescricao": "Moldes e modelos e moldes de fundição não vazados não abrangidos em 10 10 05 (*)"
+  },
+  {
+    "resCodigoIbama": "101007(*)",
+    "resDescricao": "Moldes e modelos e moldes de fundição vazados contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100907(*)",
+    "resDescricao": "Moldes e modelos e moldes de fundição vazados contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100908",
+    "resDescricao": "Moldes e modelos e moldes de fundição vazados não abrangidos em 10 09 07 (*)"
+  },
+  {
+    "resCodigoIbama": "101008",
+    "resDescricao": "Moldes e modelos e moldes de fundição vazados não abrangidos em 10 10 07 (*)"
+  },
+  {
+    "resCodigoIbama": "101206",
+    "resDescricao": "Moldes fora de uso"
+  },
+  {
+    "resCodigoIbama": "120120(*)",
+    "resDescricao": "Mós e materiais de retificação usados contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "120121",
+    "resDescricao": "Mós e materiais de retificação usados não abrangidos em 12 01 20 (*)"
+  },
+  {
+    "resCodigoIbama": "061303",
+    "resDescricao": "Negro de fumo"
+  },
+  {
+    "resCodigoIbama": "170413",
+    "resDescricao": "Níquel (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "080417(*)",
+    "resDescricao": "Óleo de resina"
+  },
+  {
+    "resCodigoIbama": "130401(*)",
+    "resDescricao": "Óleos bunker de navios de navegação interior"
+  },
+  {
+    "resCodigoIbama": "130403(*)",
+    "resDescricao": "Óleos bunker de outros tipos de navios"
+  },
+  {
+    "resCodigoIbama": "130402(*)",
+    "resDescricao": "Óleos bunker provenientes das canalizações dos cais"
+  },
+  {
+    "resCodigoIbama": "080319(*)",
+    "resDescricao": "Óleos de dispersão"
+  },
+  {
+    "resCodigoIbama": "130301(*)",
+    "resDescricao": "Óleos de isolamento térmico, de refrigeração e de transmissão de calor usados, fluidos dielétricos e resíduos contaminados com bifenilas policloradas (PCB)"
+  },
+  {
+    "resCodigoIbama": "130201(*)",
+    "resDescricao": "Óleos de motores, transmissões e lubrificação usados ou contaminados"
+  },
+  {
+    "resCodigoIbama": "120119(*)",
+    "resDescricao": "Óleos de usinagem facilmente biodegradáveis"
+  },
+  {
+    "resCodigoIbama": "190207(*)",
+    "resDescricao": "Óleos e concentrados da separação"
+  },
+  {
+    "resCodigoIbama": "200126(*)",
+    "resDescricao": "Óleos e gorduras não abrangidas em 20 01 25"
+  },
+  {
+    "resCodigoIbama": "200125",
+    "resDescricao": "Óleos e gorduras vegetais alimentares"
+  },
+  {
+    "resCodigoIbama": "130309(*)",
+    "resDescricao": "Óleos facilmente biodegradáveis isolantes, de refrigeração e de transmissão de calor"
+  },
+  {
+    "resCodigoIbama": "130101(*)",
+    "resDescricao": "Óleos hidraúlicos contendo PCB (1)"
+  },
+  {
+    "resCodigoIbama": "130112(*)",
+    "resDescricao": "Óleos hidráulicos facilmente biodegradáveis"
+  },
+  {
+    "resCodigoIbama": "130109(*)",
+    "resDescricao": "Óleos hidráulicos minerais clorados"
+  },
+  {
+    "resCodigoIbama": "130110(*)",
+    "resDescricao": "Óleos hidráulicos minerais não clorados"
+  },
+  {
+    "resCodigoIbama": "130111(*)",
+    "resDescricao": "Óleos hidráulicos sintéticos"
+  },
+  {
+    "resCodigoIbama": "120106(*)",
+    "resDescricao": "Óleos minerais de corte e usinagem com halogênios (exceto emulsões, misturas e soluções)"
+  },
+  {
+    "resCodigoIbama": "120107(*)",
+    "resDescricao": "Óleos minerais de corte e usinagem sem halogênios (exceto emulsões, misturas e soluções)"
+  },
+  {
+    "resCodigoIbama": "130306(*)",
+    "resDescricao": "Óleos minerais isolantes , de refrigeração e de transmissão de calor clorados, não abrangidos em 13 03 01 (*)"
+  },
+  {
+    "resCodigoIbama": "130307(*)",
+    "resDescricao": "Óleos minerais isolantes , de refrigeração e de transmissão de calor não clorados"
+  },
+  {
+    "resCodigoIbama": "130506(*)",
+    "resDescricao": "Óleos provenientes dos separadores óleo/água"
+  },
+  {
+    "resCodigoIbama": "120110(*)",
+    "resDescricao": "Óleos sintéticos de corte e usinagem"
+  },
+  {
+    "resCodigoIbama": "130308(*)",
+    "resDescricao": "Óleos sintéticos isolantes, de refrigeração e de transmissão de calor"
+  },
+  {
+    "resCodigoIbama": "180115(*)",
+    "resDescricao": "Órgãos, tecidos, fluidos orgânicos, materiais perfurocortantes ou escarificantes e demais materiais resultantes da atenção à saúde de indivíduos ou animais, com suspeita ou certeza de contaminação com príons (Grupo A5 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "060205(*)",
+    "resDescricao": "Outras bases"
+  },
+  {
+    "resCodigoIbama": "130802(*)",
+    "resDescricao": "Outras emulsões e misturas"
+  },
+  {
+    "resCodigoIbama": "100809",
+    "resDescricao": "Outras escórias"
+  },
+  {
+    "resCodigoIbama": "191005(*)",
+    "resDescricao": "Outras frações contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191006",
+    "resDescricao": "Outras frações não abrangidas em 19 10 05 (*)"
+  },
+  {
+    "resCodigoIbama": "200199",
+    "resDescricao": "Outras frações não anteriormente especificadas"
+  },
+  {
+    "resCodigoIbama": "101011(*)",
+    "resDescricao": "Outras partículas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100911(*)",
+    "resDescricao": "Outras partículas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100405(*)",
+    "resDescricao": "Outras partículas e poeiras"
+  },
+  {
+    "resCodigoIbama": "100321(*)",
+    "resDescricao": "Outras partículas e poeiras (incluindo poeiras da trituração de escórias) contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "100322",
+    "resDescricao": "Outras partículas e poeiras (incluindo poeiras da trituração de escórias) não abrangidas em 10 03 21 (*)"
+  },
+  {
+    "resCodigoIbama": "100504",
+    "resDescricao": "Outras partículas e poeiras não perigosas"
+  },
+  {
+    "resCodigoIbama": "100604",
+    "resDescricao": "Outras partículas e poeiras não perigosas"
+  },
+  {
+    "resCodigoIbama": "100704",
+    "resDescricao": "Outras partículas e poeiras não perigosas"
+  },
+  {
+    "resCodigoIbama": "100912",
+    "resDescricao": "Outras partículas não abrangidas em 10 09 11 (*)"
+  },
+  {
+    "resCodigoIbama": "101012",
+    "resDescricao": "Outras partículas não abrangidas em 10 10 11 (*)"
+  },
+  {
+    "resCodigoIbama": "160605",
+    "resDescricao": "Outras pilhas, baterias e acumuladores"
+  },
+  {
+    "resCodigoIbama": "070310(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "070610(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "070410(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "070210(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "070710(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "070110(*)",
+    "resDescricao": "Outros absorventes usados e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "060106(*)",
+    "resDescricao": "Outros ácidos"
+  },
+  {
+    "resCodigoIbama": "030205(*)",
+    "resDescricao": "Outros agentes de preservação da madeira contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "050108(*)",
+    "resDescricao": "Outros alcatrões"
+  },
+  {
+    "resCodigoIbama": "050603(*)",
+    "resDescricao": "Outros alcatrões"
+  },
+  {
+    "resCodigoIbama": "160899(*)",
+    "resDescricao": "Outros catalizadores usados contaminados com substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "130703(*)",
+    "resDescricao": "Outros combustíveis (incluindo misturas)"
+  },
+  {
+    "resCodigoIbama": "100215",
+    "resDescricao": "Outros lodos e tortas de filtro"
+  },
+  {
+    "resCodigoIbama": "170603(*)",
+    "resDescricao": "Outros materiais de isolamento contendo ou constituídos por substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "130299(*)",
+    "resDescricao": "Outros óleos de motores, transmissão e lubrificação"
+  },
+  {
+    "resCodigoIbama": "130113(*)",
+    "resDescricao": "Outros óleos hidráulicos"
+  },
+  {
+    "resCodigoIbama": "130310(*)",
+    "resDescricao": "Outros óleos isolantes, de refrigeração e de transmissão de calor"
+  },
+  {
+    "resCodigoIbama": "180205(*)",
+    "resDescricao": "Outros produtos considerados perigosos (Grupo B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "010305(*)",
+    "resDescricao": "Outros rejeitados contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110302(*)",
+    "resDescricao": "Outros resíduos"
+  },
+  {
+    "resCodigoIbama": "190211(*)",
+    "resDescricao": "Outros resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110198(*)",
+    "resDescricao": "Outros resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110207(*)",
+    "resDescricao": "Outros resíduos contendo substancias perigosas "
+  },
+  {
+    "resCodigoIbama": "010307(*)",
+    "resDescricao": "Outros resíduos contendo substancias perigosas, resultantes da transformação física e química de minérios metálicos"
+  },
+  {
+    "resCodigoIbama": "170903(*)",
+    "resDescricao": "Outros resíduos de construção e demolição (incluindo misturas de resíduos) contendo substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "070708(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070508(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070208(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070308(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070608(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070108(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "070408(*)",
+    "resDescricao": "Outros resíduos de destilação e resíduos de reação"
+  },
+  {
+    "resCodigoIbama": "160499(*)",
+    "resDescricao": "Outros resíduos de explosivos"
+  },
+  {
+    "resCodigoIbama": "200203",
+    "resDescricao": "Outros resíduos de varrição,  limpeza de logradouros e vias públicas e outros serviços de limpeza urbana não biodegradáveis"
+  },
+  {
+    "resCodigoIbama": "191212(*)",
+    "resDescricao": "Outros resíduos (incluindo misturas de materiais) do tratamento mecânico de resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191213",
+    "resDescricao": "Outros resíduos (incluindo misturas de materiais) do tratamento mecânico de resíduos não abrangidos em 19 12 12 (*)"
+  },
+  {
+    "resCodigoIbama": "070499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "040199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "030199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "101299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "010499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "061399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "010399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "080199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "130899(*)",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "101399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "160199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "110599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "040299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "080299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "080399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "101199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100899",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "110299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "191199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020299",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060999",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "060699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "080499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "050199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190999",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "020199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190899",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "050699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "160799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "090199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "120199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "110199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "050799",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "061099",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190699",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "010599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190599",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "070199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "010105",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "101099",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100499",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "030399",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "061199",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "100999",
+    "resDescricao": "Outros resíduos não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "200301",
+    "resDescricao": "Outros resíduos urbanos e equiparados, incluindo misturas de resíduos"
+  },
+  {
+    "resCodigoIbama": "161104",
+    "resDescricao": "Outros revestimentos de fornos e refratários não abrangidos em 16 11 03 (*)"
+  },
+  {
+    "resCodigoIbama": "161103(*)",
+    "resDescricao": "Outros revestimentos de fornos e refratários provenientes de processos metalúrgicos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "140603(*)",
+    "resDescricao": "Outros solventes e misturas de solventes"
+  },
+  {
+    "resCodigoIbama": "140602(*)",
+    "resDescricao": "Outros solventes e misturas de solventes halogenados"
+  },
+  {
+    "resCodigoIbama": "070304(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070604(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070504(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070204(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070704(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070104(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "070404(*)",
+    "resDescricao": "Outros solventes, líquidos de lavagem e efluentes orgânicos"
+  },
+  {
+    "resCodigoIbama": "060315(*)",
+    "resDescricao": "Óxidos metálicos contendo metais pesados"
+  },
+  {
+    "resCodigoIbama": "060316",
+    "resDescricao": "Óxidos metálicos não abrangidos em 06 03 15 (*)"
+  },
+  {
+    "resCodigoIbama": "200101",
+    "resDescricao": "Papel e cartão"
+  },
+  {
+    "resCodigoIbama": "191201",
+    "resDescricao": "Papel e cartão"
+  },
+  {
+    "resCodigoIbama": "101203",
+    "resDescricao": "Partículas e poeiras"
+  },
+  {
+    "resCodigoIbama": "101105",
+    "resDescricao": "Partículas e poeiras"
+  },
+  {
+    "resCodigoIbama": "101306",
+    "resDescricao": "Partículas e poeiras exceto 10 13 12  (*) e 10 13 13"
+  },
+  {
+    "resCodigoIbama": "100804",
+    "resDescricao": "Partículas e poeiras não perigosas"
+  },
+  {
+    "resCodigoIbama": "160111(*)",
+    "resDescricao": "Pastilhas de freio contendo amianto"
+  },
+  {
+    "resCodigoIbama": "160112",
+    "resDescricao": "Pastilhas de freio não abrangidas em 16 01 11 (*)"
+  },
+  {
+    "resCodigoIbama": "180106(*)",
+    "resDescricao": "Peças anatômicas (membros) do ser humano; produto de fecundação sem sinais vitais, com peso menor que 500 gramas ou estatura menor que 25 cm ou idade gestacional menor que 20 semanas , que não tenham valor científico ou legal e não tenha havido requisição pelo paciente ou familiares  (Grupo A3 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "180112(*)",
+    "resDescricao": "Peças anatômicas (órgãos e tecidos) e outros resíduos provenientes de procedimentos cirúrgicos ou de estudo anátomo-patológicos ou de confirmação diagnóstica (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "090107",
+    "resDescricao": "Película e papel fotográfico com prata ou compostos de prata"
+  },
+  {
+    "resCodigoIbama": "090108",
+    "resDescricao": "Película e papel fotográfico sem prata ou compostos de prata"
+  },
+  {
+    "resCodigoIbama": "160901(*)",
+    "resDescricao": "Permanganatos, por exemplo, permanganato de potássio"
+  },
+  {
+    "resCodigoIbama": "160903(*)",
+    "resDescricao": "Peróxidos , por exemplo, água oxigenada"
+  },
+  {
+    "resCodigoIbama": "200119(*)",
+    "resDescricao": "Pesticidas"
+  },
+  {
+    "resCodigoIbama": "160604",
+    "resDescricao": "Pilhas alcalinas - exceto 16 06 03 (*)"
+  },
+  {
+    "resCodigoIbama": "160603(*)",
+    "resDescricao": "Pilhas contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "200133(*)",
+    "resDescricao": "Pilhas e acumuladores abrangidos em 16 06 01 (*) ou 16 06 03 (*) e pilhas e acumuladores não separados contendo essas pilhas ou acumuladores"
+  },
+  {
+    "resCodigoIbama": "200134",
+    "resDescricao": "Pilhas e acumuladores não abrangidos em 20 01 33 (*)"
+  },
+  {
+    "resCodigoIbama": "160119",
+    "resDescricao": "Plástico"
+  },
+  {
+    "resCodigoIbama": "170203",
+    "resDescricao": "Plástico (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "200139",
+    "resDescricao": "Plásticos"
+  },
+  {
+    "resCodigoIbama": "191204",
+    "resDescricao": "Plásticos"
+  },
+  {
+    "resCodigoIbama": "160123",
+    "resDescricao": "Pneus inservíveis/usados aeronáuticos"
+  },
+  {
+    "resCodigoIbama": "160124",
+    "resDescricao": "Pneus inservíveis/usados de automóveis"
+  },
+  {
+    "resCodigoIbama": "160125",
+    "resDescricao": "Pneus inservíveis/usados de bicicletas"
+  },
+  {
+    "resCodigoIbama": "160126",
+    "resDescricao": "Pneus inservíveis/usados de caminhões e ônibus"
+  },
+  {
+    "resCodigoIbama": "160127",
+    "resDescricao": "Pneus inservíveis/usados de motocicletas"
+  },
+  {
+    "resCodigoIbama": "160128",
+    "resDescricao": "Pneus inservíveis/usados de tratores"
+  },
+  {
+    "resCodigoIbama": "160129",
+    "resDescricao": "Pneus inservíveis/usados outras aplicações"
+  },
+  {
+    "resCodigoIbama": "100815(*)",
+    "resDescricao": "Poeiras da gases de combustão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100503(*)",
+    "resDescricao": "Poeiras de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "100603(*)",
+    "resDescricao": "Poeiras de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "100319(*)",
+    "resDescricao": "Poeiras de gases de combustão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101009(*)",
+    "resDescricao": "Poeiras de gases de combustão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100909(*)",
+    "resDescricao": "Poeiras de gases de combustão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101010",
+    "resDescricao": "Poeiras de gases de combustão não abrangidas em 10 10 09 (*)"
+  },
+  {
+    "resCodigoIbama": "100320",
+    "resDescricao": "Poeiras de gases de combustão não abrangidos em 10 03 19 (*)"
+  },
+  {
+    "resCodigoIbama": "100910",
+    "resDescricao": "Poeiras de gases de combustão não abrangidos em 10 09 09 (*)"
+  },
+  {
+    "resCodigoIbama": "100816",
+    "resDescricao": "Poeiras de gases não abrangidos em 10 08 15 (*)"
+  },
+  {
+    "resCodigoIbama": "120102",
+    "resDescricao": "Poeiras e partículas de metais ferrosos"
+  },
+  {
+    "resCodigoIbama": "120104",
+    "resDescricao": "Poeiras e partículas de metais não ferrosos"
+  },
+  {
+    "resCodigoIbama": "010308",
+    "resDescricao": "Poeiras e pós não abrangidos em 01 03 07 (*)"
+  },
+  {
+    "resCodigoIbama": "010410",
+    "resDescricao": "Poeiras e pós não abrangidos em 01 04 07 (*)"
+  },
+  {
+    "resCodigoIbama": "100216(*)",
+    "resDescricao": "Poeiras provenientes do sistema de controle de emissão de gases empregado nos fornos Cubilot empregados na fundição de ferro"
+  },
+  {
+    "resCodigoIbama": "200136",
+    "resDescricao": "Produtos eletroeletrônicos e seus componentes fora de uso não abrangido em 20 01 21 (*), 20 01 23 (*) ou 20 01 35 (*)"
+  },
+  {
+    "resCodigoIbama": "200135(*)",
+    "resDescricao": "Produtos eletroeletrônicos e seus componentes fora de uso não abrangido em 20 01 21 (*) ou 20 01 23 (*) contendo componentes perigosos (6)"
+  },
+  {
+    "resCodigoIbama": "200123(*)",
+    "resDescricao": "Produtos eletroeletrônicos fora de uso contendo clorofluorcarbonetos"
+  },
+  {
+    "resCodigoIbama": "180201(*)",
+    "resDescricao": "Produtos hormonais e produtos antimicrobianos; citostáticos; antineoplásicos - imunossupressores; digitálicos; imunomoduladores; anti-retrovirais, quando descartados por serviço de saúde, farmácias, drogarias e distribuidores de medicamentos ou apreendidos e os resíduos e insumos farmacêuticos dos medicamentos sujeitos a controle especial (Grupo B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "061301(*)",
+    "resDescricao": "Produtos inorgânicos de proteção das plantas, agentes de preservação da madeira e outros biocidas"
+  },
+  {
+    "resCodigoIbama": "030201(*)",
+    "resDescricao": "Produtos orgânicos não halogenados de preservação da madeira"
+  },
+  {
+    "resCodigoIbama": "160506(*)",
+    "resDescricao": "Produtos químicos de laboratório contendo ou compostos por substâncias perigosas, incluindo misturas de produtos químicos de laboratório"
+  },
+  {
+    "resCodigoIbama": "160509",
+    "resDescricao": "Produtos químicos fora de uso não abrangidos em 16 05 06 (*), 16 05 07 (*) ou 16 05 08 (*)"
+  },
+  {
+    "resCodigoIbama": "160507(*)",
+    "resDescricao": "Produtos químicos inorgânicos de laboratório contendo ou compostos por substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "160508(*)",
+    "resDescricao": "Produtos químicos orgânicos fora de uso contendo ou compostos por substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "200117(*)",
+    "resDescricao": "Produtos químicos para fotografia"
+  },
+  {
+    "resCodigoIbama": "180111(*)",
+    "resDescricao": "Recipientes e materiais resultantes do processo de assistência à saúde, que não contenha sangue ou líquidos corpóreos na forma livre (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "160116",
+    "resDescricao": "Recipientes para gás liquefeito sob pressão"
+  },
+  {
+    "resCodigoIbama": "010412",
+    "resDescricao": "Rejeitados e outros resíduos, resultantes da lavagem de minérios, não abrangidos em 01 04 07 (*)"
+  },
+  {
+    "resCodigoIbama": "010304(*)",
+    "resDescricao": "Rejeitados geradores de ácidos, resultantes da transformação de sulfuretos"
+  },
+  {
+    "resCodigoIbama": "010306",
+    "resDescricao": "Rejeitados não abrangidos em 01 03 04 (*) e 01 03 05 (*)"
+  },
+  {
+    "resCodigoIbama": "010103",
+    "resDescricao": "Rejeito do beneficiamento do minério"
+  },
+  {
+    "resCodigoIbama": "030310",
+    "resDescricao": "Rejeitos de fibras e lodos de fibras, fillers, e revestimentos, provenientes da separação mecânica"
+  },
+  {
+    "resCodigoIbama": "030307",
+    "resDescricao": "Rejeitos mecanicamente separados da fabricação de pasta a partir de papel e papelão usado"
+  },
+  {
+    "resCodigoIbama": "160106(*)",
+    "resDescricao": "Resíduo proveniente da trituração de veículos em fim de vida (Ash Schredder Residue)"
+  },
+  {
+    "resCodigoIbama": "020108(*)",
+    "resDescricao": "Resíduos agrotóxicos e afins (agroquímicos) contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "020109",
+    "resDescricao": "Resíduos agrotóxicos e afins (agroquímicos) não abrangidos em 02 01 08 (*)"
+  },
+  {
+    "resCodigoIbama": "200115(*)",
+    "resDescricao": "Resíduos alcalinos"
+  },
+  {
+    "resCodigoIbama": "190304(*)",
+    "resDescricao": "Resíduos assinalados como perigosos, parcialmente estabilizados "
+  },
+  {
+    "resCodigoIbama": "190306(*)",
+    "resDescricao": "Resíduos assinalados como perigosos, solidificados"
+  },
+  {
+    "resCodigoIbama": "200108",
+    "resDescricao": "Resíduos biodegradáveis de cozinha e cantinas"
+  },
+  {
+    "resCodigoIbama": "060903(*)",
+    "resDescricao": "Resíduos cálcicos de reação contendo ou contaminados com substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "061101",
+    "resDescricao": "Resíduos cálcicos de reação da produção de dióxido de titânio"
+  },
+  {
+    "resCodigoIbama": "100107",
+    "resDescricao": "Resíduos cálcicos de reação, na forma de lodos, provenientes da dessulfuração de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "100105",
+    "resDescricao": "Resíduos cálcicos de reação, na forma sólida, provenientes da dessulfuração de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "060904",
+    "resDescricao": "Resíduos cálcicos de reação não abrangidos em 06 09 03 (*)"
+  },
+  {
+    "resCodigoIbama": "191210",
+    "resDescricao": "Resíduos combustíveis (combustíveis derivados de resíduos)"
+  },
+  {
+    "resCodigoIbama": "190208(*)",
+    "resDescricao": "Resíduos combustíveis líquidos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "190210",
+    "resDescricao": "Resíduos combustíveis não abrangidos em 19 02 08 (*) e 19 02 09 (*)"
+  },
+  {
+    "resCodigoIbama": "190209(*)",
+    "resDescricao": "Resíduos combustíveis sólidos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "060403(*)",
+    "resDescricao": "Resíduos contendo arsênio"
+  },
+  {
+    "resCodigoIbama": "110301(*)",
+    "resDescricao": "Resíduos contendo cianetos"
+  },
+  {
+    "resCodigoIbama": "050116",
+    "resDescricao": "Resíduos contendo enxofre de dessulfurização de petróleo"
+  },
+  {
+    "resCodigoIbama": "050702",
+    "resDescricao": "Resíduos contendo enxofre de dessulfurização de petróleo"
+  },
+  {
+    "resCodigoIbama": "160708(*)",
+    "resDescricao": "Resíduos contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "050701(*)",
+    "resDescricao": "Resíduos contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "060404(*)",
+    "resDescricao": "Resíduos contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "160709(*)",
+    "resDescricao": "Resíduos contendo outras substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "060405(*)",
+    "resDescricao": "Resíduos contendo outros metais pesados"
+  },
+  {
+    "resCodigoIbama": "090106(*)",
+    "resDescricao": "Resíduos contendo prata do tratamento local de resíduos fotográficos"
+  },
+  {
+    "resCodigoIbama": "070216(*)",
+    "resDescricao": "Resíduos contendo silicones perigosos"
+  },
+  {
+    "resCodigoIbama": "070217",
+    "resDescricao": "Resíduos contendo silicones que não os mencionados na rubrica 07 02 16 (*)"
+  },
+  {
+    "resCodigoIbama": "010407(*)",
+    "resDescricao": "Resíduos contendo substancia perigosas, resultantes da transformação física e química de minérios não metálicos"
+  },
+  {
+    "resCodigoIbama": "070513(*)",
+    "resDescricao": "Resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "070413(*)",
+    "resDescricao": "Resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "061002(*)",
+    "resDescricao": "Resíduos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "060603",
+    "resDescricao": "Resíduos contendo sulfuretos não abrangidos em 06 06 02 (*)"
+  },
+  {
+    "resCodigoIbama": "060602(*)",
+    "resDescricao": "Resíduos contendo sulfuretos perigosos"
+  },
+  {
+    "resCodigoIbama": "101304",
+    "resDescricao": "Resíduos da calcinação e hidratação da cal"
+  },
+  {
+    "resCodigoIbama": "040109",
+    "resDescricao": "Resíduos da confecção e acabamentos"
+  },
+  {
+    "resCodigoIbama": "191301(*)",
+    "resDescricao": "Resíduos da descontaminação de solos contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191302",
+    "resDescricao": "Resíduos da descontaminação de solos não abrangidos em 19 13 01 (*)"
+  },
+  {
+    "resCodigoIbama": "020702",
+    "resDescricao": "Resíduos da destilação de álcool"
+  },
+  {
+    "resCodigoIbama": "010101",
+    "resDescricao": "Resíduos da Extração de Minérios Metálicos"
+  },
+  {
+    "resCodigoIbama": "010102",
+    "resDescricao": "Resíduos da Extração de Minérios Não Metálicos"
+  },
+  {
+    "resCodigoIbama": "020303",
+    "resDescricao": "Resíduos da extração por solventes"
+  },
+  {
+    "resCodigoIbama": "100812(*)",
+    "resDescricao": "Resíduos da fabricação de anodos contendo alcatrão"
+  },
+  {
+    "resCodigoIbama": "100317(*)",
+    "resDescricao": "Resíduos da fabricação de ânodos contendo alcatrão"
+  },
+  {
+    "resCodigoIbama": "100318",
+    "resDescricao": "Resíduos da fabricação de ânodos contendo carbono, não abrangidos em 10 03 17 (*)"
+  },
+  {
+    "resCodigoIbama": "100813",
+    "resDescricao": "Resíduos da fabricação de anodos contendo carbono não abrangidos em 10 08 12 (*)"
+  },
+  {
+    "resCodigoIbama": "101309(*)",
+    "resDescricao": "Resíduos da fabricação de fibrocimento contendo amianto"
+  },
+  {
+    "resCodigoIbama": "101310",
+    "resDescricao": "Resíduos da fabricação de fibrocimento não abrangidos em 10 13 09 (*)"
+  },
+  {
+    "resCodigoIbama": "061103(*)",
+    "resDescricao": "Resíduos da fabricação e de locais de armazenamento de cloreto férrico a partir de ácidos formados durante a produção do dióxido de titânio utilizando o processo de ilmenitecloreto "
+  },
+  {
+    "resCodigoIbama": "200141",
+    "resDescricao": "Resíduos da limpeza de chaminés"
+  },
+  {
+    "resCodigoIbama": "200303",
+    "resDescricao": "Resíduos da limpeza de ruas e de galerias de drenagem pluvial"
+  },
+  {
+    "resCodigoIbama": "040102",
+    "resDescricao": "Resíduos da operação de calagem"
+  },
+  {
+    "resCodigoIbama": "101109(*)",
+    "resDescricao": "Resíduos da preparação da mistura (antes do processo térmico) contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101110",
+    "resDescricao": "Resíduos da preparação da mistura (antes do processo térmico) não abrangidas em 10 11 09 (*)"
+  },
+  {
+    "resCodigoIbama": "101201",
+    "resDescricao": "Resíduos da preparação da mistura (antes do tratamento térmico)"
+  },
+  {
+    "resCodigoIbama": "110203",
+    "resDescricao": "Resíduos da produção de ânodos dos processos eletrolíticos aquosos"
+  },
+  {
+    "resCodigoIbama": "080117(*)",
+    "resDescricao": "Resíduos da remoção de tintas e vernizes contendo solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080118",
+    "resDescricao": "Resíduos da remoção de tintas e vernizes não abrangidos em 08 01 17 (*)"
+  },
+  {
+    "resCodigoIbama": "040101",
+    "resDescricao": "Resíduos das operações de descarna e divisão de tripa."
+  },
+  {
+    "resCodigoIbama": "070214(*)",
+    "resDescricao": "Resíduos de aditivos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "070215",
+    "resDescricao": "Resíduos de aditivos não abrangidos em 07 02 14 (*)"
+  },
+  {
+    "resCodigoIbama": "020302",
+    "resDescricao": "Resíduos de agentes conservantes"
+  },
+  {
+    "resCodigoIbama": "020602",
+    "resDescricao": "Resíduos de agentes conservantes"
+  },
+  {
+    "resCodigoIbama": "101015(*)",
+    "resDescricao": "Resíduos de agentes indicadores de fendas e trincas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100915(*)",
+    "resDescricao": "Resíduos de agentes indicadores de fendas e trincas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100916",
+    "resDescricao": "Resíduos de agentes indicadores de fendas e trincas não abrangidos em 10 09 15 (*)"
+  },
+  {
+    "resCodigoIbama": "101016",
+    "resDescricao": "Resíduos de agentes indicadores de fendas e trincas não abrangidos em 10 10 15 (*)"
+  },
+  {
+    "resCodigoIbama": "101013(*)",
+    "resDescricao": "Resíduos de aglutinantes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100913(*)",
+    "resDescricao": "Resíduos de aglutinantes contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "100914",
+    "resDescricao": "Resíduos de aglutinantes não abrangidos em 10 09 13 (*)"
+  },
+  {
+    "resCodigoIbama": "101014",
+    "resDescricao": "Resíduos de aglutinantes não abrangidos em 10 10 13 (*)"
+  },
+  {
+    "resCodigoIbama": "100306",
+    "resDescricao": "Resíduos de alumina"
+  },
+  {
+    "resCodigoIbama": "100814",
+    "resDescricao": "Resíduos de anodos"
+  },
+  {
+    "resCodigoIbama": "100302",
+    "resDescricao": "Resíduos de ânodos"
+  },
+  {
+    "resCodigoIbama": "060702(*)",
+    "resDescricao": "Resíduos de carvão ativado utilizado na produção de cloro"
+  },
+  {
+    "resCodigoIbama": "170101",
+    "resDescricao": "Resíduos de cimento"
+  },
+  {
+    "resCodigoIbama": "101314",
+    "resDescricao": "Resíduos de cimento e de lodos de cimento"
+  },
+  {
+    "resCodigoIbama": "080409(*)",
+    "resDescricao": "Resíduos de colas ou vedantes contendo solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080410",
+    "resDescricao": "Resíduos de colas ou vedantes não abrangidos em 08 04 09 (*)"
+  },
+  {
+    "resCodigoIbama": "050604",
+    "resDescricao": "Resíduos de colunas de arrefecimento"
+  },
+  {
+    "resCodigoIbama": "050114",
+    "resDescricao": "Resíduos de colunas de arrefecimento"
+  },
+  {
+    "resCodigoIbama": "170901(*)",
+    "resDescricao": "Resíduos de construção e demolição contendo mercúrio (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170902(*)",
+    "resDescricao": "Resíduos de construção e demolição contendo PCB (por exemplo vedantes com PCB, revestimentos de piso à base de resinas com PCB, condensadores de uso doméstico com PCB) (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "010413",
+    "resDescricao": "Resíduos de corte e serragem de pedra não abrangidos em 01 04 07 (*)"
+  },
+  {
+    "resCodigoIbama": "190802",
+    "resDescricao": "Resíduos de desarenamento"
+  },
+  {
+    "resCodigoIbama": "120302(*)",
+    "resDescricao": "Resíduos de desengorduramento a vapor"
+  },
+  {
+    "resCodigoIbama": "040103(*)",
+    "resDescricao": "Resíduos de desengorduramento contendo solventes sem fase aquosa"
+  },
+  {
+    "resCodigoIbama": "110113(*)",
+    "resDescricao": "Resíduos de desengorduramento contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110114",
+    "resDescricao": "Resíduos de desengorduramento não abrangidas em 11 01 13 (*)"
+  },
+  {
+    "resCodigoIbama": "070407(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070507(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070107(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070307(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070207(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070607(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "070707(*)",
+    "resDescricao": "Resíduos de destilação e resíduos de reação halogenados"
+  },
+  {
+    "resCodigoIbama": "060701(*)",
+    "resDescricao": "Resíduos de eletrolise contendo amianto"
+  },
+  {
+    "resCodigoIbama": "101208",
+    "resDescricao": "Resíduos de fabricação de peças cerâmicas, tijolos, ladrilhos, telhas e produtos de construção (após o processo térmico)"
+  },
+  {
+    "resCodigoIbama": "191001",
+    "resDescricao": "Resíduos de ferro ou aço"
+  },
+  {
+    "resCodigoIbama": "040221",
+    "resDescricao": "Resíduos de fibras têxteis não processadas"
+  },
+  {
+    "resCodigoIbama": "040222",
+    "resDescricao": "Resíduos de fibras têxteis processadas"
+  },
+  {
+    "resCodigoIbama": "160402(*)",
+    "resDescricao": "Resíduos de fogo de artifício"
+  },
+  {
+    "resCodigoIbama": "070506(*)",
+    "resDescricao": "Resíduos de fundo de destilação originados na etapa de destilação de compostos anilínicos empregados na produção de compostos arseniacais  ou compostos organoarseniacais"
+  },
+  {
+    "resCodigoIbama": "080501(*)",
+    "resDescricao": "resíduos de isocianatos"
+  },
+  {
+    "resCodigoIbama": "100118(*)",
+    "resDescricao": "Resíduos de lavagem de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100119",
+    "resDescricao": "Resíduos de lavagem de gases não abrangidos em 10 01 05, 10 01 07 e 10 01 18 (*)"
+  },
+  {
+    "resCodigoIbama": "020701",
+    "resDescricao": "Resíduos de lavagem, limpeza e redução mecânica das matérias primas"
+  },
+  {
+    "resCodigoIbama": "191104(*)",
+    "resDescricao": "Resíduos de limpeza de combustíveis com bases"
+  },
+  {
+    "resCodigoIbama": "050111(*)",
+    "resDescricao": "Resíduos de limpeza de combustíveis com bases"
+  },
+  {
+    "resCodigoIbama": "200306",
+    "resDescricao": "Resíduos de limpeza de esgotos, bueiros e bocas de lobo"
+  },
+  {
+    "resCodigoIbama": "101401(*)",
+    "resDescricao": "Resíduos de limpeza de gases contendo mercúrio"
+  },
+  {
+    "resCodigoIbama": "191107(*)",
+    "resDescricao": "Resíduos de limpeza de gases de combustão"
+  },
+  {
+    "resCodigoIbama": "030309",
+    "resDescricao": "Resíduos de lodo de cal"
+  },
+  {
+    "resCodigoIbama": "101311",
+    "resDescricao": "Resíduos de materiais compósitos à base de cimento não abrangidos em 10 13 09 (*) e 10 13 10"
+  },
+  {
+    "resCodigoIbama": "120116(*)",
+    "resDescricao": "Resíduos de materiais de polimento contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "120117",
+    "resDescricao": "Resíduos de materiais de polimento não abrangidos em 12 01 16 (*)"
+  },
+  {
+    "resCodigoIbama": "101103",
+    "resDescricao": "Resíduos de materiais fibrosos à base de vidro"
+  },
+  {
+    "resCodigoIbama": "040209",
+    "resDescricao": "Resíduos de materiais têxteis (têxteis impregnados, elastômeros, plastômeros)"
+  },
+  {
+    "resCodigoIbama": "200302",
+    "resDescricao": "Resíduos de mercados públicos e feiras"
+  },
+  {
+    "resCodigoIbama": "160401(*)",
+    "resDescricao": "Resíduos de munições"
+  },
+  {
+    "resCodigoIbama": "190117(*)",
+    "resDescricao": "Resíduos de pirólise contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "190118",
+    "resDescricao": "Resíduos de pirólise não abrangidos em 19 01 17 (*)"
+  },
+  {
+    "resCodigoIbama": "020104",
+    "resDescricao": "Resíduos de plásticos (excluindo embalagens)"
+  },
+  {
+    "resCodigoIbama": "101301",
+    "resDescricao": "Resíduos de preparação da mistura antes do processo térmico"
+  },
+  {
+    "resCodigoIbama": "061304(*)",
+    "resDescricao": "Resíduos de processamento do amianto, incluindo pós e fibras"
+  },
+  {
+    "resCodigoIbama": "110205(*)",
+    "resDescricao": "Resíduos de processos hidrometalurgicos do cobre contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "110206",
+    "resDescricao": "Resíduos de processos hidrometalurgicos do cobre não abrangidos em 11 02 05 (*)"
+  },
+  {
+    "resCodigoIbama": "080121(*)",
+    "resDescricao": "Resíduos de produtos de remoção de tintas e vernizes"
+  },
+  {
+    "resCodigoIbama": "080204(*)",
+    "resDescricao": "Resíduos de revestimentos contendo amianto"
+  },
+  {
+    "resCodigoIbama": "080201",
+    "resDescricao": "Resíduos de revestimentos na forma pulvurulenta"
+  },
+  {
+    "resCodigoIbama": "180202(*)",
+    "resDescricao": "Resíduos de saneantes, desinfetantes, desinfestantes; resíduos contendo metais pesados; reagentes para laboratório, inclusive os recipientes contaminados por estes (Grupo B conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "Grupo A1",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo A1, conforme ANVISA RDC 222/18 - Contempla os resíduos códigos 180101(*), 180102(*),180103(*) e 180104(*) conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "Grupo A2",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo  A2, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180105(*)  conforme IBAMA 13/2012."
+  },
+  {
+    "resCodigoIbama": "Grupo A3",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo  A3, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180106(*)  conforme IBAMA 13/2012."
+  },
+  {
+    "resCodigoIbama": "Grupo A4",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo A4, conforme ANVISA RDC 222/18 - Contempla os resíduos códigos 180107(*), 180108(*), 180109(*), 180110(*), 180111(*), 180112(*), 180113(*) e 180114(*) conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "Grupo A5",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo  A5, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180115(*)  conforme IBAMA 13/2012."
+  },
+  {
+    "resCodigoIbama": "Grupo B",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupo B, conforme ANVISA RDC 222/2018 - Contempla os resíduos códigos 180201(*), 180202(*), 180203(*), 180204(*), 180205(*), 200131(*)  e 200132 conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "Grupo A",
+    "resDescricao": "Resíduos de Serviços de Saúde classificados como Grupos A1, A2, A3, A4 ou A5, conforme ANVISA RDC 222/2018 - Contempla os resíduos códigos 180101(*), 180102(*), 180103(*), 180104(*), 180105(*),  180106(*), 180107(*), 180108(*), 180109(*), 180110(*), 180111(*), 180112(*), 180113(*), 180114(*) e 180115(*) conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "190808(*)",
+    "resDescricao": "Resíduos de sistema de membranas contendo metais pesados"
+  },
+  {
+    "resCodigoIbama": "120113",
+    "resDescricao": "Resíduos de soldadura"
+  },
+  {
+    "resCodigoIbama": "080316",
+    "resDescricao": "Resíduos de solução de água régia"
+  },
+  {
+    "resCodigoIbama": "180110(*)",
+    "resDescricao": "Resíduos de tecido adiposo proveniente de lipoaspiração, lipoescultura ou outro procedimento de cirurgia plástica que gere este tipo de resíduo (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "020102",
+    "resDescricao": "Resíduos de tecidos animais"
+  },
+  {
+    "resCodigoIbama": "020202",
+    "resDescricao": "Resíduos de tecidos animais e orgânico de processo (sebo, soro, ossos, sangue, etc.)"
+  },
+  {
+    "resCodigoIbama": "020103",
+    "resDescricao": "Resíduos de tecidos vegetais"
+  },
+  {
+    "resCodigoIbama": "080312(*)",
+    "resDescricao": "Resíduos de tintas de impressão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080111(*)",
+    "resDescricao": "Resíduos de tintas e vernizes contendo solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080112",
+    "resDescricao": "Resíduos de tintas e vernizes não abrangidos em 08 01 11 (*)"
+  },
+  {
+    "resCodigoIbama": "080313",
+    "resDescricao": "Resíduos de tintas não abrangidos em 08  03 12 (*)"
+  },
+  {
+    "resCodigoIbama": "080317(*)",
+    "resDescricao": "Resíduos de toner de impressão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080318",
+    "resDescricao": "Resíduos de toner de impressão não abrangidos em 08 03 17 (*)"
+  },
+  {
+    "resCodigoIbama": "100410",
+    "resDescricao": "Resíduos de tratamento de água de arrefecimento não abrangidos em 10 04 09 (*)"
+  },
+  {
+    "resCodigoIbama": "020703",
+    "resDescricao": "Resíduos de tratamentos químicos"
+  },
+  {
+    "resCodigoIbama": "030308",
+    "resDescricao": "Resíduos de triagem de papel e papelão destinado a reciclagem"
+  },
+  {
+    "resCodigoIbama": "200201",
+    "resDescricao": "Resíduos de varrição,  limpeza de logradouros e vias públicas e outros serviços de limpeza urbana biodegradáveis"
+  },
+  {
+    "resCodigoIbama": "101111(*)",
+    "resDescricao": "Resíduos de vidro em pequenas partículas e em pó de vidro contendo metais pesados (por exemplo, tubos catódicos)"
+  },
+  {
+    "resCodigoIbama": "101112",
+    "resDescricao": "Resíduos de vidros não abrangidos em 10 11 11 (*)"
+  },
+  {
+    "resCodigoIbama": "101211(*)",
+    "resDescricao": "Resíduos de vitrificação contendo metais pesados"
+  },
+  {
+    "resCodigoIbama": "101212",
+    "resDescricao": "Resíduos de vitrificação não abrangidos em 10 12 11 (*)"
+  },
+  {
+    "resCodigoIbama": "100125",
+    "resDescricao": "Resíduos do armazenamento de combustíveis e da preparação de centrais elétricas a carvão"
+  },
+  {
+    "resCodigoIbama": "030101",
+    "resDescricao": "Resíduos do descasque da madeira"
+  },
+  {
+    "resCodigoIbama": "030301",
+    "resDescricao": "Resíduos do descasque da madeira e resíduos de madeira"
+  },
+  {
+    "resCodigoIbama": "040214(*)",
+    "resDescricao": "Resíduos dos acabamentos, contendo solventes orgânicos ou contaminados"
+  },
+  {
+    "resCodigoIbama": "040215",
+    "resDescricao": "Resíduos dos acabamentos não abrangidos em 04 02 14 (*)"
+  },
+  {
+    "resCodigoIbama": "100409(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100508(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100819(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100327(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100707(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100609(*)",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento contendo hidrocarbonetos , incluindo lamas e lodos do adensamento da purga ácida do processo de produção de cobre primário"
+  },
+  {
+    "resCodigoIbama": "100328",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento não abrangidos em 10 03 27 (*)"
+  },
+  {
+    "resCodigoIbama": "100509",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento não abrangidos em 10 05 08 (*)"
+  },
+  {
+    "resCodigoIbama": "100610",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento não abrangidos em 10 06 09 (*)"
+  },
+  {
+    "resCodigoIbama": "100708",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento não abrangidos em 10 07 07 (*)"
+  },
+  {
+    "resCodigoIbama": "100820",
+    "resDescricao": "Resíduos do tratamento da água de arrefecimento não abrangidos em 10 08 19 (*)"
+  },
+  {
+    "resCodigoIbama": "100126",
+    "resDescricao": "Resíduos do tratamento de água de arrefecimento"
+  },
+  {
+    "resCodigoIbama": "100211(*)",
+    "resDescricao": "Resíduos do tratamento de agua de arrefecimento contendo hidrocarbonetos"
+  },
+  {
+    "resCodigoIbama": "100212",
+    "resDescricao": "Resíduos do tratamento de agua de arrefecimento não abrangidos em 10 02 11 (*)"
+  },
+  {
+    "resCodigoIbama": "100329(*)",
+    "resDescricao": "Resíduos do tratamento de escórias salinas e do tratamento das impurezas negras contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100330",
+    "resDescricao": "Resíduos do tratamento de escórias salinas e do tratamento das impurezas negras não abrangidos em 10 03 29 (*)"
+  },
+  {
+    "resCodigoIbama": "070213",
+    "resDescricao": "Resíduos e refugos de plásticos"
+  },
+  {
+    "resCodigoIbama": "190305",
+    "resDescricao": "Resíduos estabilizados não abrangidos em 19 03 04 (*)"
+  },
+  {
+    "resCodigoIbama": "160303(*)",
+    "resDescricao": "Resíduos inorgânicos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "160304",
+    "resDescricao": "Resíduos inorgânicos não abrangidos em 16 03 03 (*)"
+  },
+  {
+    "resCodigoIbama": "191103(*)",
+    "resDescricao": "Resíduos líquidos aquosos"
+  },
+  {
+    "resCodigoIbama": "080415(*)",
+    "resDescricao": "Resíduos líquidos aquosos contendo colas ou vedantes com solventes orgânicos ou substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "080416",
+    "resDescricao": "Resíduos líquidos aquosos contendo colas ou vedantes não abrangidos em 08 04 15 (*)"
+  },
+  {
+    "resCodigoIbama": "161001(*)",
+    "resDescricao": "Resíduos líquidos aquosos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "080308",
+    "resDescricao": "Resíduos líquidos aquosos contendo tintas de impressão"
+  },
+  {
+    "resCodigoIbama": "090113(*)",
+    "resDescricao": "Resíduos líquidos aquosos da recuperação local de prata não abrangidos em 09 01 06 (*)"
+  },
+  {
+    "resCodigoIbama": "190404",
+    "resDescricao": "Resíduos líquidos aquosos da tempera de resíduos vitrificados"
+  },
+  {
+    "resCodigoIbama": "191307(*)",
+    "resDescricao": "Resíduos líquidos aquosos e concentrados aquosos da descontaminação de águas freáticas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "191308",
+    "resDescricao": "Resíduos líquidos aquosos e concentrados aquosos da descontaminação de águas freáticas não abrangidas em 19 13 07 (*)"
+  },
+  {
+    "resCodigoIbama": "161002",
+    "resDescricao": "Resíduos líquidos aquosos não abrangidos em 16 10 01 (*)"
+  },
+  {
+    "resCodigoIbama": "190106(*)",
+    "resDescricao": "Resíduos líquidos aquosos provenientes do tratamento de gases e outros resíduos líquidos aquosos "
+  },
+  {
+    "resCodigoIbama": "020110",
+    "resDescricao": "Resíduos metálicos, como por exemplo, estruturas metálicas, sucatas metálicas, varas e cabos utilizados em campo"
+  },
+  {
+    "resCodigoIbama": "170409(*)",
+    "resDescricao": "Resíduos metálicos contaminados com substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "191002",
+    "resDescricao": "Resíduos não ferrosos"
+  },
+  {
+    "resCodigoIbama": "160305(*)",
+    "resDescricao": "Resíduos orgânicos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "160306",
+    "resDescricao": "Resíduos orgânicos não abrangidos em 16 03 05 (*)"
+  },
+  {
+    "resCodigoIbama": "Classe C",
+    "resDescricao": "Resíduos para os quais não foram desenvolvidas tecnologias ou aplicações economicamente viáveis que permitam a sua reciclagem ou recuperação, Classe C conforme Resolução CONAMA 307/02"
+  },
+  {
+    "resCodigoIbama": "Classe D",
+    "resDescricao": "Resíduos perigosos oriundos do processo de construção, tais como tintas, solventes, óleos e outros ou aqueles contaminados ou prejudiciais à saúde oriundos de demolições, reformas e reparos de clínicas radiológicas, instalações industriais e outros, bem como telhas e demais objetos e materiais que contenham amianto ou outros produtos nocivos à saúde. Classe D conforme Resolução CONAMA 307/02 Contempla os resíduos códigos 170106(*), 170204(*), 170301(*), 170303(*), 170409(*), 170410(*), 170502(*), 170503(*), 170505(*), 170507(*), 170509(*), 170601(*), 170603(*), 170605(*), 170801(*), 170901(*), 170902(*) e 170903(*) conforme IBAMA 13/2012."
+  },
+  {
+    "resCodigoIbama": "050606(*)",
+    "resDescricao": "Resíduos provenientes da recuperação e destilação de subprodutos do coque produzidos a partir do carvão"
+  },
+  {
+    "resCodigoIbama": "100507(*)",
+    "resDescricao": "Resíduos provenientes da unidade cádmio (óxido de ferro) do processo de produção de zinco primário"
+  },
+  {
+    "resCodigoIbama": "050103(*)",
+    "resDescricao": "Resíduos provenientes de fundos de tanques empregados na indústria de refino de petróleo, inclusive do tanque de armazenamento de óleo crú"
+  },
+  {
+    "resCodigoIbama": "100305(*)",
+    "resDescricao": "Resíduos provenientes do desmonte das cubas de redução empregadas na produção de alumínio primário"
+  },
+  {
+    "resCodigoIbama": "050607(*)",
+    "resDescricao": "Resíduos provenientes dos sistemas de tratamento de gases dos processos de coqueificação da carvão e da obtenção de subprodutos de coque produzidos a partir  do carvão"
+  },
+  {
+    "resCodigoIbama": "050605(*)",
+    "resDescricao": "Resíduos provenientes dos tanques e lagoas de produção do coque, incluindo resíduos da coqueificação do carvão"
+  },
+  {
+    "resCodigoIbama": "Grupo D",
+    "resDescricao": "Resíduos que não apresentam risco biológico, químico ou radiológico à saúde ou ao meio ambiente, podendo ser equiparados aos resíduos domiciliares, classificados como Grupo D conforme RDC ANVISA 222/2018."
+  },
+  {
+    "resCodigoIbama": "Classe B",
+    "resDescricao": "Resíduos recicláveis para outras destinações tais como plásticos, papel, papelão, metais, vidros, madeiras, embalagens vazias de tintas imobiliárias e gesso. Classe B conforme Resolução CONAMA 307/02 - Contempla os resíduos códigos 170201, 170202, 170203, 170401, 170402, 170403, 170404, 170405, 170406, 170407, 170411, 170412, 170413 e 170802, conforme IBAMA 13/2012"
+  },
+  {
+    "resCodigoIbama": "180102(*)",
+    "resDescricao": "Resíduos resultantes da atenção da saúde de indivíduos ou animais, com suspeita ou certeza de contaminação biológica por agentes com elevado risco individual e elevado risco para a comunidade, micro-organismos com relevância epidemiológica e risco de disseminação ou causador de doença emergente que se torne epidemiologicamente importante ou cujo mecanismo de transmissão seja desconhecido (Grupo A1 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "170509(*)",
+    "resDescricao": "Resíduos resultantes da incineração ou tratamento de solos contaminados por substâncias orgânicas perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "190901",
+    "resDescricao": "Resíduos retirados da fase de gradeamento"
+  },
+  {
+    "resCodigoIbama": "190801",
+    "resDescricao": "Resíduos retirados da fase de gradeamento"
+  },
+  {
+    "resCodigoIbama": "Classe A",
+    "resDescricao": "Resíduos reutilizáveis ou recicláveis como agregados, tais como: a) de construção, demolição, reformas e reparos de pavimentação e de outras obras de infraestrutura, inclusive solos provenientes de terraplanagem; b) de construção, demolição, reformas e reparos de edificações: componentes cerâmicos (tijolos, blocos, telhas, placas de revestimento etc.), argamassa e concreto; c) de processo de fabricação e/ou demolição de peças pré-moldadas em concreto (blocos, tubos, meio-fios etc.) produzidas nos canteiros de obras. Classe A conforme Resolução CONAMA 307/02 - Contempla os resíduos códigos 170101, 170102, 170103, 170107, 170302, 170504, 170508, 170604 e 170904, conforme IBAMA 13/2012."
+  },
+  {
+    "resCodigoIbama": "020107",
+    "resDescricao": "Resíduos Silvícolas"
+  },
+  {
+    "resCodigoIbama": "190307",
+    "resDescricao": "Resíduos solidificados não abrangidos em 19 03 06 (*)"
+  },
+  {
+    "resCodigoIbama": "101115(*)",
+    "resDescricao": "Resíduos sólidos de tratamento de gases de combustão contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101116",
+    "resDescricao": "Resíduos sólidos de tratamento de gases de combustão não abrangidos em 10 11 15 (*)"
+  },
+  {
+    "resCodigoIbama": "100505(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100703",
+    "resDescricao": "Resíduos sólidos do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100406(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "100606(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "110503(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases  "
+  },
+  {
+    "resCodigoIbama": "100323(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101312(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101209(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100207(*)",
+    "resDescricao": "Resíduos sólidos do tratamento de gases contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "100208",
+    "resDescricao": "Resíduos sólidos do tratamento de gases não abrangidos em 10 02 07 (*)"
+  },
+  {
+    "resCodigoIbama": "100324",
+    "resDescricao": "Resíduos sólidos do tratamento de gases não abrangidos em 10 03 23 (*)"
+  },
+  {
+    "resCodigoIbama": "101210",
+    "resDescricao": "Resíduos sólidos do tratamento de gases não abrangidos em 10 12 09 (*)"
+  },
+  {
+    "resCodigoIbama": "101313",
+    "resDescricao": "Resíduos sólidos do tratamento de gases não abrangidos em 10 13 12 (*)"
+  },
+  {
+    "resCodigoIbama": "101119(*)",
+    "resDescricao": "Resíduos sólidos do tratamento local de efluentes contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "101120",
+    "resDescricao": "Resíduos sólidos do tratamento local de efluentes não abrangidas em 10 11 19 (*)"
+  },
+  {
+    "resCodigoIbama": "070514",
+    "resDescricao": "Resíduos sólidos não abrangidos em 07 05 13 (*)"
+  },
+  {
+    "resCodigoIbama": "130501(*)",
+    "resDescricao": "Resíduos sólidos provenientes de desarenadores e de separadores óleo/água"
+  },
+  {
+    "resCodigoIbama": "190107(*)",
+    "resDescricao": "Resíduos sólidos provenientes do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "200399",
+    "resDescricao": "Resíduos urbanos e equiparados não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "190401",
+    "resDescricao": "Resíduos vitrificados"
+  },
+  {
+    "resCodigoIbama": "110116(*)",
+    "resDescricao": "Resinas de permuta iônica saturadas ou usadas"
+  },
+  {
+    "resCodigoIbama": "190806(*)",
+    "resDescricao": "Resinas de troca iônica, saturadas ou usadas"
+  },
+  {
+    "resCodigoIbama": "190905",
+    "resDescricao": "Resinas de troca iônica, saturadas ou usadas"
+  },
+  {
+    "resCodigoIbama": "161102",
+    "resDescricao": "Revestimentos de fornos e refratários à base de carbono não abrangidos em 16 11 01 (*)"
+  },
+  {
+    "resCodigoIbama": "161101(*)",
+    "resDescricao": "Revestimentos de fornos e refratários à base de carbono provenientes de processos metalúrgicos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "161105(*)",
+    "resDescricao": "Revestimentos de fornos e refratários provenientes de processos não metalúrgicos contendo substâncias perigosas"
+  },
+  {
+    "resCodigoIbama": "161106",
+    "resDescricao": "Revestimentos de fornos e refratários provenientes de processos não metalúrgicos não abrangidos em 16 11 05 (*)"
+  },
+  {
+    "resCodigoIbama": "200110",
+    "resDescricao": "Roupas"
+  },
+  {
+    "resCodigoIbama": "060311(*)",
+    "resDescricao": "Sais no estado sólido e em soluções contendo cianetos"
+  },
+  {
+    "resCodigoIbama": "060313(*)",
+    "resDescricao": "Sais no estado sólido e em soluções contendo metais pesados"
+  },
+  {
+    "resCodigoIbama": "060314",
+    "resDescricao": "Sais no estado sólido e não abrangidos em 06 03 11 (*) e 03 03 13 (*)"
+  },
+  {
+    "resCodigoIbama": "030104(*)",
+    "resDescricao": "Serragem, aparas, fitas de aplainamento, madeira, aglomerados e folheados, contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "030105",
+    "resDescricao": "Serragem, aparas, fitas de aplainamento, madeira, aglomerados e folheados não abrangidos em 03 01 04 (*)"
+  },
+  {
+    "resCodigoIbama": "180104(*)",
+    "resDescricao": "Sobras de amostras de laboratório contendo sangue ou líquidos corpóreos, recipientes e materiais resultantes do processo de assistência à saúde, contendo sangue ou líquidos corpóreos na forma livre (Grupo A1 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "180109(*)",
+    "resDescricao": "Sobras de amostras de laboratório e seus recipientes contendo fezes, urina e secreções, provenientes de pacientes que não contenham e nem sejam suspeitos de conter agentes com elevado risco individual e elevado risco à comunidade, e nem apresentem relevância epidemiológica  e risco de disseminação, ou micro-organismo causador de doença emergente que se torne epidemiologicamente importante ou cujo mecanismo de transmissão seja desconhecido ou com suspeita de contaminação com príons (Grupo A4 conforme ANVISA RDC 222/2018)"
+  },
+  {
+    "resCodigoIbama": "050118(*)",
+    "resDescricao": "Sólidos provenientes da emulsão residual oleosa, inclusive o sobrenadante proveniente de separadores tipo DAF (Dissolved Air Flotation)"
+  },
+  {
+    "resCodigoIbama": "170502(*)",
+    "resDescricao": "Solos e rochas contendo contaminados com bifenilas policloradas (PCB) (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170503(*)",
+    "resDescricao": "Solos e rochas contendo outras substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170504",
+    "resDescricao": "Solos e rochas não abrangidos em 17 05 03 (*)  - (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "060704(*)",
+    "resDescricao": "Soluções e ácidos, por exemplo, ácido de contato"
+  },
+  {
+    "resCodigoIbama": "190807(*)",
+    "resDescricao": "Soluções e lodos da regeneração de colunas de permuta iônica"
+  },
+  {
+    "resCodigoIbama": "190906",
+    "resDescricao": "Soluções  e lodos da regeneração de colunas de troca iônica"
+  },
+  {
+    "resCodigoIbama": "110111(*)",
+    "resDescricao": "Soluções exauridas, lodos e líquidos de lavagem aquosos contendo cianeto e/ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "200113(*)",
+    "resDescricao": "Solventes"
+  },
+  {
+    "resCodigoIbama": "070103(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070203(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070303(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070503(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070703(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070403(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "070603(*)",
+    "resDescricao": "Solventes, líquidos de lavagem e efluentes orgânicos halogenados"
+  },
+  {
+    "resCodigoIbama": "191209",
+    "resDescricao": "Substancias minerais (por exemplo, areia, rochas)"
+  },
+  {
+    "resCodigoIbama": "160904(*)",
+    "resDescricao": "Substâncias oxidantes não anteriormente especificados"
+  },
+  {
+    "resCodigoIbama": "160117",
+    "resDescricao": "Sucatas metálicas ferrosas"
+  },
+  {
+    "resCodigoIbama": "160118",
+    "resDescricao": "Sucatas metálicas não ferrosas"
+  },
+  {
+    "resCodigoIbama": "080203",
+    "resDescricao": "Suspensões aquosas contendo materiais cerâmicos"
+  },
+  {
+    "resCodigoIbama": "080120",
+    "resDescricao": "Suspensões aquosas contendo tintas e vernizes não abrangidas em 08 01 19 (*)"
+  },
+  {
+    "resCodigoIbama": "080119(*)",
+    "resDescricao": "Suspensões aquosas contendo tintas ou vernizes com solventes orgânicos ou outras substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "200202",
+    "resDescricao": "Terras e pedras"
+  },
+  {
+    "resCodigoIbama": "191208",
+    "resDescricao": "Têxteis"
+  },
+  {
+    "resCodigoIbama": "200111",
+    "resDescricao": "Têxteis"
+  },
+  {
+    "resCodigoIbama": "170102",
+    "resDescricao": "Tijolos  (Classe A conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "200127(*)",
+    "resDescricao": "Tintas, produtos adesivos, colas e resinas contendo substancias perigosas"
+  },
+  {
+    "resCodigoIbama": "200128",
+    "resDescricao": "Tintas, produtos adesivos, colas e resinas não abrangidas em 20 01 27 (*)"
+  },
+  {
+    "resCodigoIbama": "190105(*)",
+    "resDescricao": "Tortas de filtro provenientes do tratamento de gases"
+  },
+  {
+    "resCodigoIbama": "160209(*)",
+    "resDescricao": "Transformadores, capacitores e demais equipamentos elétricos contendo PCB"
+  },
+  {
+    "resCodigoIbama": "160103(*)",
+    "resDescricao": "Veículos em fim de vida "
+  },
+  {
+    "resCodigoIbama": "160104",
+    "resDescricao": "Veículos em fim de vida esvaziados de líquidos e outros componentes perigosos"
+  },
+  {
+    "resCodigoIbama": "191205",
+    "resDescricao": "Vidro"
+  },
+  {
+    "resCodigoIbama": "160120",
+    "resDescricao": "Vidro"
+  },
+  {
+    "resCodigoIbama": "200102",
+    "resDescricao": "Vidro"
+  },
+  {
+    "resCodigoIbama": "170202",
+    "resDescricao": "Vidro (Classe B conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "170204(*)",
+    "resDescricao": "Vidro, plástico e madeira, misturados ou não, contendo ou contaminados com substâncias perigosas (Classe D conforme Resolução CONAMA 307/02)"
+  },
+  {
+    "resCodigoIbama": "020404",
+    "resDescricao": "Vinhaça"
+  },
+  {
+    "resCodigoIbama": "170404",
+    "resDescricao": "Zinco (Classe B conforme Resolução CONAMA 307/02)"
+  }
+]

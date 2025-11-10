@@ -1,0 +1,27 @@
+[
+  {
+    "uniCodigo": 21,
+    "uniDescricao": "Litro",
+    "uniSigla": "Lt"
+  },
+  {
+    "uniCodigo": 20,
+    "uniDescricao": "M³",
+    "uniSigla": "M³"
+  },
+  {
+    "uniCodigo": 2,
+    "uniDescricao": "Quilograma",
+    "uniSigla": "KG"
+  },
+  {
+    "uniCodigo": 3,
+    "uniDescricao": "Tonelada",
+    "uniSigla": "TON"
+  },
+  {
+    "uniCodigo": 1,
+    "uniDescricao": "Unidade",
+    "uniSigla": "UN"
+  }
+]

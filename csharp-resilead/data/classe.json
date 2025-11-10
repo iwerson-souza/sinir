@@ -1,0 +1,92 @@
+[
+  {
+    "claCodigo": 1,
+    "claDescricao": "CLASSE I",
+    "claResolucao": "NBR 10.004"
+  },
+  {
+    "claCodigo": 43,
+    "claDescricao": "CLASSE II A",
+    "claResolucao": "NBR 10.004"
+  },
+  {
+    "claCodigo": 42,
+    "claDescricao": "CLASSE II B",
+    "claResolucao": "NBR 10.004"
+  },
+  {
+    "claCodigo": 2,
+    "claDescricao": "OUTROS",
+    "claResolucao": "NBR 10.004"
+  },
+  {
+    "claCodigo": 11,
+    "claDescricao": "CLASSE A (RCC)",
+    "claResolucao": "Resíduos Construção Civil (RCC)"
+  },
+  {
+    "claCodigo": 12,
+    "claDescricao": "CLASSE B (RCC)",
+    "claResolucao": "Resíduos Construção Civil (RCC)"
+  },
+  {
+    "claCodigo": 13,
+    "claDescricao": "CLASSE C (RCC)",
+    "claResolucao": "Resíduos Construção Civil (RCC)"
+  },
+  {
+    "claCodigo": 14,
+    "claDescricao": "CLASSE D (RCC)",
+    "claResolucao": "Resíduos Construção Civil (RCC)"
+  },
+  {
+    "claCodigo": 21,
+    "claDescricao": "GRUPO A1 (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 22,
+    "claDescricao": "GRUPO A2 (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 23,
+    "claDescricao": "GRUPO A3 (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 24,
+    "claDescricao": "GRUPO A4 (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 25,
+    "claDescricao": "GRUPO A5 (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 41,
+    "claDescricao": "GRUPO A (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 32,
+    "claDescricao": "GRUPO B (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 33,
+    "claDescricao": "GRUPO C (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 34,
+    "claDescricao": "GRUPO D (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  },
+  {
+    "claCodigo": 35,
+    "claDescricao": "GRUPO E (RSS)",
+    "claResolucao": "Resíduos Serviços de Saúde (RSS)"
+  }
+]
