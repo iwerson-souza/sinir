@@ -78,6 +78,39 @@ CREATE OR REPLACE VIEW vw_pending_loads AS
   GROUP BY unidade
   ORDER BY qty DESC;
 
+CREATE TABLE sinir.`mtr_history` (
+  `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `numero` varchar(64) NOT NULL,
+  `tipo_manifesto` varchar(64) NOT NULL,
+  `responsavel_emissao` varchar(255) NOT NULL,
+  `tem_mtr_complementar` varchar(64) DEFAULT NULL,
+  `numero_mtr_provisorio` varchar(64) DEFAULT NULL,
+  `data_emissao` varchar(16) NOT NULL,
+  `data_recebimento` varchar(16) NOT NULL,
+  `situacao` varchar(64) NOT NULL,
+  `responsavel_recebimento` varchar(255) DEFAULT NULL,
+  `justificativa` text,
+  `tratamento` varchar(255) NOT NULL,
+  `numero_cdf` varchar(64) DEFAULT NULL,
+  `residuos` json NOT NULL,
+  `residuos_codigo` varchar(2048) NOT NULL,
+  `residuos_classe` varchar(2048) NOT NULL,
+  `gerador` json NOT NULL,
+  `transportador` json NOT NULL,
+  `destinador` json NOT NULL,
+  `gerador_cpf_cnpj` varchar(32) NOT NULL,
+  `transportador_cpf_cnpj` varchar(32) NOT NULL,
+  `destinador_cpf_cnpj` varchar(32) NOT NULL,
+  `cpfs_cnpjs` varchar(256) NOT NULL,
+  `created_by` varchar(64) NOT NULL,
+  `created_dt` datetime NOT NULL,
+  `history_dt` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  KEY `idx_mtr_gerador` (`gerador_cpf_cnpj`),
+  KEY `idx_mtr_transportador` (`transportador_cpf_cnpj`),
+  KEY `idx_mtr_destinador` (`destinador_cpf_cnpj`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 //---------------------  
 
 delete from error;
