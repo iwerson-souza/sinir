@@ -24,6 +24,8 @@ internal sealed class AppConfig
 
     public sealed class ProcessingSection
     {
+        public int MaxDegreeOfParallelism { get; init; } = 10;
+        public int BatchSize { get; init; } = 100;
         public string UserAgent { get; init; } = "ResileadLocal/1.0";
         public HttpSection Http { get; init; } = new();
         public sealed class HttpSection
@@ -73,9 +75,10 @@ internal sealed class AppConfig
                     RequestTimeoutSeconds = processing.GetProperty("Http").GetProperty("RequestTimeoutSeconds").GetInt32(),
                     MaxConnectionsPerServer = processing.GetProperty("Http").GetProperty("MaxConnectionsPerServer").GetInt32(),
                     UseHttp2 = processing.GetProperty("Http").GetProperty("UseHttp2").GetBoolean()
-                }
+                },
+                MaxDegreeOfParallelism = processing.TryGetProperty("MaxDegreeOfParallelism", out var dop) ? dop.GetInt32() : 10,
+                BatchSize = processing.TryGetProperty("BatchSize", out var bs) ? bs.GetInt32() : 100
             }
         };
     }
 }
-

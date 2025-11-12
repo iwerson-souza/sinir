@@ -16,28 +16,47 @@ internal sealed class MtrEtl
 
     public async Task RunAsync()
     {
-        var processed = 0;
+        Console.WriteLine($"[{DateTime.Now:O}] [mtr] Starting. BatchSize={_cfg.Mtr.BatchSize}, Drain={_cfg.Mtr.Drain}");
+        var processed = 0; var errors = 0; var rounds = 0;
         do
         {
             var batch = await ReadMtrBatchAsync(_cfg.Mtr.BatchSize);
             if (batch.Count == 0)
             {
-                if (processed == 0) Console.WriteLine("[mtr] No pending MTRs to normalize.");
+                if (processed == 0) Console.WriteLine($"[{DateTime.Now:O}] [mtr] No pending MTRs to normalize.");
                 break;
             }
-
+            rounds++;
+            Console.WriteLine($"[{DateTime.Now:O}] [mtr] Round {rounds}: fetched {batch.Count} record(s).");
+            var totalInBatch = batch.Count; var pi = 0;
             foreach (var m in batch)
             {
-                var ok = await NormalizeOneAsync(m);
-                if (ok)
+                try
                 {
-                    await MoveToHistoryAndDeleteAsync(m);
-                    processed++;
+                    var ok = await NormalizeOneAsync(m);
+                    if (ok)
+                    {
+                        await MoveToHistoryAndDeleteAsync(m);
+                        processed++;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    errors++;
+                    Console.WriteLine($"[{DateTime.Now:O}] [mtr] ERROR {m.Numero}: {ex.Message}");
+                }
+                finally
+                {
+                    pi++;
+                    if (pi % 10 == 0 || pi == totalInBatch)
+                    {
+                        Console.WriteLine($"[{DateTime.Now:O}] [mtr] Progress {pi}/{totalInBatch} this round; total processed={processed}, errors={errors}.");
+                    }
                 }
             }
         } while (_cfg.Mtr.Drain);
 
-        Console.WriteLine($"[mtr] Completed. Processed: {processed}.");
+        Console.WriteLine($"[{DateTime.Now:O}] [mtr] Completed. ok={processed}, errors={errors}, rounds={rounds}.");
     }
 
     private async Task<List<MtrRow>> ReadMtrBatchAsync(int limit)
@@ -490,4 +509,3 @@ internal sealed class MtrEtl
         public DateTime CreatedDt { get; set; } = DateTime.Now;
     }
 }
-

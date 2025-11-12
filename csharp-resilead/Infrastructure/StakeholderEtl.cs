@@ -18,39 +18,59 @@ internal sealed class StakeholderEtl
 
     public async Task RunAsync()
     {
-        Console.WriteLine($"[stakeholder] Starting. BatchSize={_cfg.Stakeholder.BatchSize}, Drain={_cfg.Stakeholder.Drain}");
+        Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] Starting. BatchSize={_cfg.Stakeholder.BatchSize}, Drain={_cfg.Stakeholder.Drain}, DOP={_cfg.Processing.MaxDegreeOfParallelism}");
         var processed = 0;
         var pf = 0; var pj = 0; var apiHits = 0; var inserted = 0; var updated = 0; var errors = 0;
         do
         {
-            var batch = await ReadSourceBatchAsync(_cfg.Stakeholder.BatchSize);
+            // Use global processing batch size if larger
+            var batchSize = Math.Max(_cfg.Stakeholder.BatchSize, _cfg.Processing.BatchSize);
+            var batch = await ReadSourceBatchAsync(batchSize);
             if (batch.Count == 0)
             {
-                if (processed == 0) Console.WriteLine("[stakeholder] No pending stakeholders to normalize.");
+                if (processed == 0) Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] No pending stakeholders to normalize.");
                 break;
             }
-            Console.WriteLine($"[stakeholder] Fetched {batch.Count} record(s) to process...");
-            foreach (var s in batch)
+            Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] Fetched {batch.Count} record(s); processing in parallel...");
+
+            var dop = Math.Max(1, _cfg.Processing.MaxDegreeOfParallelism);
+            var lockObj = new object();
+            var totalInBatch = batch.Count;
+            var processedInBatch = 0;
+
+            await Parallel.ForEachAsync(batch, new ParallelOptions { MaxDegreeOfParallelism = dop }, async (s, ct) =>
             {
                 try
                 {
+                    if (processed > 0 && processed % 20 == 0)
+                    {
+                        //sleep for 2 seconds to avoid hitting API rate limits
+                        Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] Processed {processed} records so far, pausing briefly to avoid API rate limits...");
+                        await Task.Delay(3000, ct);
+                    }
+
                     var res = await UpsertEntidadeAsync(s);
-                    processed++;
-                    if (res.IsPf) pf++; else pj++;
-                    if (res.ApiHit) apiHits++;
-                    if (res.Inserted) inserted++; else updated++;
-                    Console.WriteLine($"[stakeholder] {(res.IsPf ? "PF" : "PJ")} {(res.ApiHit ? "+API" : "-API")} {(res.Inserted ? "insert" : "update")} - {s.CpfCnpj} {s.Nome}");
+                    lock (lockObj)
+                    {
+                        processed++;
+                        if (res.IsPf) pf++; else pj++;
+                        if (res.ApiHit) apiHits++;
+                        if (res.Inserted) inserted++; else updated++;
+                    }
+                    var pi = Interlocked.Increment(ref processedInBatch);
+                    Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] {pi}/{totalInBatch} {(res.IsPf ? "PF" : "PJ")} {(res.ApiHit ? "+API" : "-API")} {(res.Inserted ? "insert" : "update")} - {s.CpfCnpj} {s.Nome}");
                 }
                 catch (Exception ex)
                 {
-                    errors++;
-                    Console.WriteLine($"[stakeholder] ERROR {s.CpfCnpj} {s.Nome}: {ex.Message}");
+                    lock (lockObj) { errors++; }
+                    var pi = Interlocked.Increment(ref processedInBatch);
+                    Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] {pi}/{totalInBatch} ERROR {s.CpfCnpj} {s.Nome}: {ex.Message}");
                 }
-            }
+            });
 
         } while (_cfg.Stakeholder.Drain);
 
-        Console.WriteLine($"[stakeholder] Completed. ok={processed-errors}, errors={errors}, pf={pf}, pj={pj}, apiHits={apiHits}, inserted={inserted}, updated={updated}.");
+        Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] Completed. ok={processed - errors}, errors={errors}, pf={pf}, pj={pj}, apiHits={apiHits}, inserted={inserted}, updated={updated}.");
     }
 
     private async Task<List<StakeholderRow>> ReadSourceBatchAsync(int limit)
@@ -96,27 +116,33 @@ internal sealed class StakeholderEtl
         {
             var cnpj = cpfCnpj;
             var dto = await _br.TryGetCnpjAsync(cnpj, CancellationToken.None);
-            if (dto is not null)
+            if (dto is null)
             {
-                apiHit = true;
-                uf = NullIfEmpty(Normalization.Clean(dto.uf));
-                municipio = NullIfEmpty(Normalization.Clean(dto.municipio));
-                cep = NullIfEmpty(Normalization.Clean(dto.cep));
-                logradouro = NullIfEmpty(Normalization.Clean(dto.logradouro));
-                numero = NullIfEmpty(Normalization.Clean(dto.numero));
-                complemento = NullIfEmpty(Normalization.Clean(dto.complemento));
-                bairro = NullIfEmpty(Normalization.Clean(dto.bairro));
-                porte = NullIfEmpty(Normalization.Clean(dto.porte));
-                cnae = dto.cnae_fiscal;
-                cnaeDesc = NullIfEmpty(Normalization.Clean(dto.cnae_fiscal_descricao));
-                codIbge = dto.codigo_municipio_ibge;
-                if (DateTime.TryParse(dto.data_inicio_atividade, out var dt)) inicioAtiv = dt;
-                // Prefer API-provided names if present
-                if (!string.IsNullOrWhiteSpace(dto.razao_social))
-                {
-                    var rz = Normalization.Clean(dto.razao_social);
-                    if (!string.IsNullOrWhiteSpace(rz)) nome = rz;
-                }
+                // avoid hammering API on repeated failures
+                await Task.Delay(5000);
+
+                // For PJ, BrasilAPI data is mandatory. Do not persist; signal error to caller.
+                throw new InvalidOperationException("BrasilAPI CNPJ required for PJ but unavailable or failed.");
+
+            }
+            apiHit = true;
+            uf = NullIfEmpty(Normalization.Clean(dto.uf));
+            municipio = NullIfEmpty(Normalization.Clean(dto.municipio));
+            cep = NullIfEmpty(Normalization.Clean(dto.cep));
+            logradouro = NullIfEmpty(Normalization.Clean(dto.logradouro));
+            numero = NullIfEmpty(Normalization.Clean(dto.numero));
+            complemento = NullIfEmpty(Normalization.Clean(dto.complemento));
+            bairro = NullIfEmpty(Normalization.Clean(dto.bairro));
+            porte = NullIfEmpty(Normalization.Clean(dto.porte));
+            cnae = dto.cnae_fiscal;
+            cnaeDesc = NullIfEmpty(Normalization.Clean(dto.cnae_fiscal_descricao));
+            codIbge = dto.codigo_municipio_ibge;
+            if (DateTime.TryParse(dto.data_inicio_atividade, out var dt)) inicioAtiv = dt;
+            // Prefer API-provided names if present
+            if (!string.IsNullOrWhiteSpace(dto.razao_social))
+            {
+                var rz = Normalization.Clean(dto.razao_social);
+                if (!string.IsNullOrWhiteSpace(rz)) nome = rz;
             }
         }
 

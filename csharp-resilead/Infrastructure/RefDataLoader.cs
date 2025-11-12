@@ -17,56 +17,64 @@ internal sealed class RefDataLoader
     public async Task RunAsync()
     {
         var baseDir = Path.IsPathRooted(_cfg.DataDir) ? _cfg.DataDir : Path.Combine(AppContext.BaseDirectory, _cfg.DataDir);
-        await EnsureSituacaoAsync(baseDir);
-        await EnsureTipoManifestoAsync(baseDir);
-        await EnsureTratamentoAsync(baseDir);
-        await EnsureUnidadeAsync(baseDir);
-        await EnsureClasseAsync(baseDir);
-        await EnsureResiduoAsync(baseDir);
-        Console.WriteLine("[ref-load] Completed.");
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] Using data dir: {baseDir}");
+        var s = await EnsureSituacaoAsync(baseDir);
+        var tm = await EnsureTipoManifestoAsync(baseDir);
+        var tr = await EnsureTratamentoAsync(baseDir);
+        var u = await EnsureUnidadeAsync(baseDir);
+        var c = await EnsureClasseAsync(baseDir);
+        var r = await EnsureResiduoAsync(baseDir);
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] Completed. situacao+={s}, tipo_manifesto+={tm}, tratamento+={tr}, unidade+={u}, classe+={c}, residuo+={r}.");
     }
 
-    private async Task EnsureSituacaoAsync(string baseDir)
+    private async Task<int> EnsureSituacaoAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "situacao.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         var arr = JsonSerializer.Deserialize<string[]>(await File.ReadAllTextAsync(path)) ?? Array.Empty<string>();
         const string sql = "INSERT IGNORE INTO resilead.situacao(descricao) VALUES (@d)";
         using var conn = await _db.OpenAsync();
+        var inserted = 0;
         foreach (var raw in arr)
         {
             var d = Normalization.Clean(raw);
             if (d.Length == 0) continue;
             using var cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@d", d);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] situacao: {arr.Length} items, inserted={inserted}");
+        return inserted;
     }
 
-    private async Task EnsureTipoManifestoAsync(string baseDir)
+    private async Task<int> EnsureTipoManifestoAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "tipoManifesto.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         var arr = JsonSerializer.Deserialize<string[]>(await File.ReadAllTextAsync(path)) ?? Array.Empty<string>();
         const string sql = "INSERT IGNORE INTO resilead.tipo_manifesto(descricao) VALUES (@d)";
         using var conn = await _db.OpenAsync();
+        var inserted = 0;
         foreach (var raw in arr)
         {
             var d = Normalization.Clean(raw);
             if (d.Length == 0) continue;
             using var cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@d", d);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] tipo_manifesto: {arr.Length} items, inserted={inserted}");
+        return inserted;
     }
 
-    private async Task EnsureTratamentoAsync(string baseDir)
+    private async Task<int> EnsureTratamentoAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "tratamento.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         var arr = JsonSerializer.Deserialize<string[]>(await File.ReadAllTextAsync(path)) ?? Array.Empty<string>();
         const string sql = "INSERT IGNORE INTO resilead.tratamento(descricao) VALUES (@d)";
         using var conn = await _db.OpenAsync();
+        var inserted = 0;
         foreach (var raw in arr)
         {
             var d = Normalization.Clean(raw);
@@ -74,19 +82,23 @@ internal sealed class RefDataLoader
             if (d.Length == 0) continue;
             using var cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@d", d);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] tratamento: {arr.Length} items, inserted={inserted}");
+        return inserted;
     }
 
-    private async Task EnsureUnidadeAsync(string baseDir)
+    private async Task<int> EnsureUnidadeAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "unidade.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(path));
         const string sql = "INSERT IGNORE INTO resilead.unidade(codigo_unidade, descricao, sigla) VALUES (@c, @d, @s)";
         using var conn = await _db.OpenAsync();
+        var inserted = 0; var total = 0;
         foreach (var el in doc.RootElement.EnumerateArray())
         {
+            total++;
             var c = el.GetProperty("uniCodigo").GetInt32();
             var d = Normalization.Clean(el.GetProperty("uniDescricao").GetString());
             var s = Normalization.Clean(el.GetProperty("uniSigla").GetString());
@@ -94,19 +106,23 @@ internal sealed class RefDataLoader
             cmd.Parameters.AddWithValue("@c", c);
             cmd.Parameters.AddWithValue("@d", d);
             cmd.Parameters.AddWithValue("@s", s);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] unidade: {total} items, inserted={inserted}");
+        return inserted;
     }
 
-    private async Task EnsureClasseAsync(string baseDir)
+    private async Task<int> EnsureClasseAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "classe.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(path));
         const string sql = "INSERT IGNORE INTO resilead.classe(codigo_classe, descricao, resolucao) VALUES (@c, @d, @r)";
         using var conn = await _db.OpenAsync();
+        var inserted = 0; var total = 0;
         foreach (var el in doc.RootElement.EnumerateArray())
         {
+            total++;
             var c = el.GetProperty("claCodigo").GetInt32();
             var d = Normalization.Clean(el.GetProperty("claDescricao").GetString());
             var r = Normalization.Clean(el.GetProperty("claResolucao").GetString());
@@ -114,14 +130,16 @@ internal sealed class RefDataLoader
             cmd.Parameters.AddWithValue("@c", c);
             cmd.Parameters.AddWithValue("@d", d);
             cmd.Parameters.AddWithValue("@r", r);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] classe: {total} items, inserted={inserted}");
+        return inserted;
     }
 
-    private async Task EnsureResiduoAsync(string baseDir)
+    private async Task<int> EnsureResiduoAsync(string baseDir)
     {
         var path = Path.Combine(baseDir, "residuos.json");
-        if (!File.Exists(path)) return;
+        if (!File.Exists(path)) return 0;
         using var doc = JsonDocument.Parse(await File.ReadAllTextAsync(path));
         const string sql = "INSERT IGNORE INTO resilead.residuo(codigo_residuo, descricao, perigoso, codigo_unidade_padrao) VALUES (@c, @d, @p, @u)";
         using var conn = await _db.OpenAsync();
@@ -143,8 +161,10 @@ internal sealed class RefDataLoader
             }
         }
 
+        var inserted = 0; var total = 0;
         foreach (var el in doc.RootElement.EnumerateArray())
         {
+            total++;
             var code = Normalization.Clean(el.GetProperty("codigo_residuo").GetString());
             if (code.Length == 0) continue;
             var desc = Normalization.Clean(el.GetProperty("descricao").GetString());
@@ -165,7 +185,9 @@ internal sealed class RefDataLoader
             cmd.Parameters.AddWithValue("@d", desc);
             cmd.Parameters.AddWithValue("@p", perigoso);
             cmd.Parameters.AddWithValue("@u", (object?)codigoUnidade ?? DBNull.Value);
-            await cmd.ExecuteNonQueryAsync();
+            inserted += await cmd.ExecuteNonQueryAsync();
         }
+        Console.WriteLine($"[{DateTime.Now:O}] [ref-load] residuo: {total} items, inserted={inserted}");
+        return inserted;
     }
 }
