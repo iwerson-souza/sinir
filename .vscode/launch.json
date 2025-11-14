@@ -1,0 +1,31 @@
+﻿{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Resilead (.NET)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-resilead",
+      "program": "${workspaceFolder}/csharp-resilead/bin/Debug/net8.0/Resilead.Integration.Local.dll",
+      "args": [
+        "${input:resileadCommand}"
+      ],
+      "cwd": "${workspaceFolder}/csharp-resilead",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "resileadCommand",
+      "type": "pickString",
+      "description": "Selecionar comando Resilead",
+      "options": [
+        { "label": "ref-load", "value": "ref-load" },
+        { "label": "stakeholder", "value": "stakeholder" },
+        { "label": "mtr", "value": "mtr" }
+      ],
+      "default": "ref-load"
+    }
+  ]
+}

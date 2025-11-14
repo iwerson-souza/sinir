@@ -1,0 +1,22 @@
+﻿{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-resilead",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/csharp-resilead/Resilead.Integration.Local.csproj",
+        "-c",
+        "Debug"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

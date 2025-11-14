@@ -61,7 +61,7 @@ internal sealed class MtrEtl
 
     private async Task<List<MtrRow>> ReadMtrBatchAsync(int limit)
     {
-        const string sql = @"SELECT id, numero, tipo_manifesto, responsavel_emissao, tem_mtr_complementar, numero_mtr_provisorio,
+        const string sql = @"SELECT numero, tipo_manifesto, responsavel_emissao, tem_mtr_complementar, numero_mtr_provisorio,
                                      data_emissao, data_recebimento, situacao, responsavel_recebimento, justificativa, tratamento,
                                      numero_cdf, residuos, residuos_codigo, residuos_classe, gerador, transportador, destinador,
                                      gerador_cpf_cnpj, transportador_cpf_cnpj, destinador_cpf_cnpj, created_by, created_dt
@@ -77,7 +77,6 @@ internal sealed class MtrEtl
         {
             var r = new MtrRow
             {
-                Id = rdr.GetInt64(0),
                 Numero = rdr.GetString(1),
                 TipoManifesto = rdr.GetString(2),
                 ResponsavelEmissao = rdr.GetString(3),
@@ -483,7 +482,6 @@ internal sealed class MtrEtl
 
     private sealed class MtrRow
     {
-        public long Id { get; set; }
         public string Numero { get; set; } = string.Empty;
         public string TipoManifesto { get; set; } = string.Empty;
         public string ResponsavelEmissao { get; set; } = string.Empty;
