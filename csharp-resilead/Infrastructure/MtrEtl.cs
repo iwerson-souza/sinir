@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using MySql.Data.MySqlClient;
 using Resilead.Integration.Local.Configuration;
@@ -6,6 +7,19 @@ namespace Resilead.Integration.Local.Infrastructure;
 
 internal sealed class MtrEtl
 {
+    private static readonly CultureInfo PtBrCulture = CultureInfo.GetCultureInfo("pt-BR");
+    private static readonly string[] SupportedDateFormats = new[]
+    {
+        "dd/MM/yyyy",
+        "d/M/yyyy",
+        "dd/MM/yyyy HH:mm:ss",
+        "d/M/yyyy HH:mm:ss",
+        "yyyy-MM-dd",
+        "yyyy-MM-dd HH:mm:ss",
+        "yyyy-MM-ddTHH:mm:ss",
+        "yyyy-MM-ddTHH:mm:ssZ"
+    };
+
     private readonly AppConfig _cfg;
     private readonly Db _db;
     public MtrEtl(AppConfig cfg)
@@ -44,6 +58,14 @@ internal sealed class MtrEtl
                 {
                     errors++;
                     Console.WriteLine($"[{DateTime.Now:O}] [mtr] ERROR {m.Numero}: {ex.Message}");
+                    try
+                    {
+                        await MoveToErrorBucketAsync(m, ex);
+                    }
+                    catch (Exception errorBucketEx)
+                    {
+                        Console.WriteLine($"[{DateTime.Now:O}] [mtr] FAILED to persist error for {m.Numero}: {errorBucketEx.Message}");
+                    }
                 }
                 finally
                 {
@@ -66,7 +88,7 @@ internal sealed class MtrEtl
                                      numero_cdf, residuos, residuos_codigo, residuos_classe, gerador, transportador, destinador,
                                      gerador_cpf_cnpj, transportador_cpf_cnpj, destinador_cpf_cnpj, created_by, created_dt
                               FROM sinir.mtr
-                              ORDER BY created_dt
+                              ORDER BY numero
                               LIMIT @limit";
         var list = new List<MtrRow>();
         using var conn = await _db.OpenAsync();
@@ -77,29 +99,29 @@ internal sealed class MtrEtl
         {
             var r = new MtrRow
             {
-                Numero = rdr.GetString(1),
-                TipoManifesto = rdr.GetString(2),
-                ResponsavelEmissao = rdr.GetString(3),
-                TemMtrComplementar = rdr.IsDBNull(4) ? null : rdr.GetString(4),
-                NumeroMtrProvisorio = rdr.IsDBNull(5) ? null : rdr.GetString(5),
-                DataEmissao = rdr.GetString(6),
-                DataRecebimento = rdr.IsDBNull(7) ? null : rdr.GetString(7),
-                Situacao = rdr.GetString(8),
-                ResponsavelRecebimento = rdr.IsDBNull(9) ? null : rdr.GetString(9),
-                Justificativa = rdr.IsDBNull(10) ? null : rdr.GetString(10),
-                Tratamento = rdr.GetString(11),
-                NumeroCdf = rdr.IsDBNull(12) ? null : rdr.GetString(12),
-                Residuos = rdr.GetString(13),
-                ResiduosCodigo = rdr.GetString(14),
-                ResiduosClasse = rdr.GetString(15),
-                Gerador = rdr.GetString(16),
-                Transportador = rdr.GetString(17),
-                Destinador = rdr.GetString(18),
-                GeradorCpfCnpj = rdr.GetString(19),
-                TransportadorCpfCnpj = rdr.GetString(20),
-                DestinadorCpfCnpj = rdr.GetString(21),
-                CreatedBy = rdr.GetString(22),
-                CreatedDt = rdr.GetDateTime(23)
+                Numero = rdr.GetString(0),
+                TipoManifesto = rdr.GetString(1),
+                ResponsavelEmissao = rdr.GetString(2),
+                TemMtrComplementar = rdr.IsDBNull(3) ? null : rdr.GetString(3),
+                NumeroMtrProvisorio = rdr.IsDBNull(4) ? null : rdr.GetString(4),
+                DataEmissao = rdr.GetString(5),
+                DataRecebimento = rdr.IsDBNull(6) ? null : rdr.GetString(6),
+                Situacao = rdr.GetString(7),
+                ResponsavelRecebimento = rdr.IsDBNull(8) ? null : rdr.GetString(8),
+                Justificativa = rdr.IsDBNull(9) ? null : rdr.GetString(9),
+                Tratamento = rdr.GetString(10),
+                NumeroCdf = rdr.IsDBNull(11) ? null : rdr.GetString(11),
+                Residuos = rdr.GetString(12),
+                ResiduosCodigo = rdr.GetString(13),
+                ResiduosClasse = rdr.GetString(14),
+                Gerador = rdr.GetString(15),
+                Transportador = rdr.GetString(16),
+                Destinador = rdr.GetString(17),
+                GeradorCpfCnpj = rdr.GetString(18),
+                TransportadorCpfCnpj = rdr.GetString(19),
+                DestinadorCpfCnpj = rdr.GetString(20),
+                CreatedBy = rdr.GetString(21),
+                CreatedDt = rdr.GetDateTime(22)
             };
             list.Add(r);
         }
@@ -233,7 +255,13 @@ internal sealed class MtrEtl
     private static DateTime? ParseDate(string? s)
     {
         if (string.IsNullOrWhiteSpace(s)) return null;
-        if (DateTime.TryParse(s, out var dt)) return dt;
+        var value = s.Trim();
+        if (DateTime.TryParseExact(value, SupportedDateFormats, PtBrCulture, DateTimeStyles.AssumeLocal, out var dt))
+        {
+            return dt;
+        }
+        if (DateTime.TryParse(value, PtBrCulture, DateTimeStyles.AssumeLocal, out dt)) return dt;
+        if (DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out dt)) return dt;
         return null;
     }
 
@@ -263,8 +291,10 @@ internal sealed class MtrEtl
         cmd.Parameters.AddWithValue("@rr", (object?)idRespReceb ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@sit", idSituacao);
         cmd.Parameters.AddWithValue("@trat", (object?)idTratamento ?? DBNull.Value);
-        cmd.Parameters.AddWithValue("@cdf", (object?)Normalization.Clean(m.NumeroCdf) ?? DBNull.Value);
-        cmd.Parameters.AddWithValue("@just", (object?)Normalization.Clean(m.Justificativa) ?? DBNull.Value);
+        var numeroCdf = Normalization.CleanOrNull(m.NumeroCdf);
+        cmd.Parameters.AddWithValue("@cdf", (object?)numeroCdf ?? DBNull.Value);
+        var justificativa = Normalization.CleanOrNull(m.Justificativa);
+        cmd.Parameters.AddWithValue("@just", (object?)justificativa ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@de", (object?)ParseDate(m.DataEmissao) ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@dr", (object?)ParseDate(m.DataRecebimento) ?? DBNull.Value);
         await cmd.ExecuteNonQueryAsync();
@@ -439,15 +469,15 @@ internal sealed class MtrEtl
                 cmd.Parameters.AddWithValue("@numero", m.Numero);
                 cmd.Parameters.AddWithValue("@tipo", Normalization.Clean(m.TipoManifesto));
                 cmd.Parameters.AddWithValue("@re", Normalization.Clean(m.ResponsavelEmissao));
-                cmd.Parameters.AddWithValue("@temc", (object?)Normalization.Clean(m.TemMtrComplementar) ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@mtrp", (object?)Normalization.Clean(m.NumeroMtrProvisorio) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@temc", (object?)Normalization.CleanOrNull(m.TemMtrComplementar) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@mtrp", (object?)Normalization.CleanOrNull(m.NumeroMtrProvisorio) ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@de", Normalization.Clean(m.DataEmissao));
-                cmd.Parameters.AddWithValue("@dr", (object?)Normalization.Clean(m.DataRecebimento) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@dr", (object?)Normalization.CleanOrNull(m.DataRecebimento) ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@sit", Normalization.Clean(m.Situacao));
-                cmd.Parameters.AddWithValue("@rr", (object?)Normalization.Clean(m.ResponsavelRecebimento) ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@just", (object?)Normalization.Clean(m.Justificativa) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@rr", (object?)Normalization.CleanOrNull(m.ResponsavelRecebimento) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@just", (object?)Normalization.CleanOrNull(m.Justificativa) ?? DBNull.Value);
                 var trat = Normalization.Clean(m.Tratamento); cmd.Parameters.AddWithValue("@trat", trat.Length == 0 ? DBNull.Value : trat);
-                cmd.Parameters.AddWithValue("@cdf", (object?)Normalization.Clean(m.NumeroCdf) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@cdf", (object?)Normalization.CleanOrNull(m.NumeroCdf) ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@res", m.Residuos);
                 cmd.Parameters.AddWithValue("@res_cod", m.ResiduosCodigo);
                 cmd.Parameters.AddWithValue("@res_cls", m.ResiduosClasse);
@@ -464,10 +494,76 @@ internal sealed class MtrEtl
                 await cmd.ExecuteNonQueryAsync();
             }
 
-            const string del = "DELETE FROM sinir.mtr WHERE id=@id";
+            const string del = "DELETE FROM sinir.mtr WHERE numero=@numero";
             using (var dc = new MySqlCommand(del, conn, tx))
             {
-                dc.Parameters.AddWithValue("@id", m.Id);
+                dc.Parameters.AddWithValue("@numero", m.Numero);
+                await dc.ExecuteNonQueryAsync();
+            }
+
+            await tx.CommitAsync();
+        }
+        catch
+        {
+            await tx.RollbackAsync();
+            throw;
+        }
+    }
+
+    private async Task MoveToErrorBucketAsync(MtrRow m, Exception ex)
+    {
+        using var conn = await _db.OpenAsync();
+        using var tx = await conn.BeginTransactionAsync();
+        try
+        {
+            const string ins = @"INSERT INTO sinir.mtr_normalize_error
+                (numero, tipo_manifesto, responsavel_emissao, tem_mtr_complementar, numero_mtr_provisorio,
+                 data_emissao, data_recebimento, situacao, responsavel_recebimento, justificativa, tratamento,
+                 numero_cdf, residuos, residuos_codigo, residuos_classe, gerador, transportador, destinador,
+                 gerador_cpf_cnpj, transportador_cpf_cnpj, destinador_cpf_cnpj, cpfs_cnpjs, created_by, created_dt,
+                 error_description)
+              VALUES
+                (@numero, @tipo, @re, @temc, @mtrp, @de, @dr, @sit, @rr, @just, @trat, @cdf,
+                 @res, @res_cod, @res_cls, @ger, @transp, @dest, @g_cpf, @t_cpf, @d_cpf, @cpfs, @cb, @cd, @err)";
+
+            var errorDescription = ex.Message ?? "Unknown error";
+            if (errorDescription.Length > 2048) errorDescription = errorDescription[..2048];
+            using (var cmd = new MySqlCommand(ins, conn, tx))
+            {
+                cmd.Parameters.AddWithValue("@numero", m.Numero);
+                cmd.Parameters.AddWithValue("@tipo", Normalization.Clean(m.TipoManifesto));
+                cmd.Parameters.AddWithValue("@re", Normalization.Clean(m.ResponsavelEmissao));
+                cmd.Parameters.AddWithValue("@temc", (object?)Normalization.CleanOrNull(m.TemMtrComplementar) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@mtrp", (object?)Normalization.CleanOrNull(m.NumeroMtrProvisorio) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@de", Normalization.Clean(m.DataEmissao));
+                cmd.Parameters.AddWithValue("@dr", (object?)Normalization.CleanOrNull(m.DataRecebimento) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@sit", Normalization.Clean(m.Situacao));
+                cmd.Parameters.AddWithValue("@rr", (object?)Normalization.CleanOrNull(m.ResponsavelRecebimento) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@just", (object?)Normalization.CleanOrNull(m.Justificativa) ?? DBNull.Value);
+                var trat = Normalization.Clean(m.Tratamento);
+                cmd.Parameters.AddWithValue("@trat", trat.Length == 0 ? DBNull.Value : trat);
+                cmd.Parameters.AddWithValue("@cdf", (object?)Normalization.CleanOrNull(m.NumeroCdf) ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@res", m.Residuos);
+                cmd.Parameters.AddWithValue("@res_cod", m.ResiduosCodigo);
+                cmd.Parameters.AddWithValue("@res_cls", m.ResiduosClasse);
+                cmd.Parameters.AddWithValue("@ger", m.Gerador);
+                cmd.Parameters.AddWithValue("@transp", m.Transportador);
+                cmd.Parameters.AddWithValue("@dest", m.Destinador);
+                cmd.Parameters.AddWithValue("@g_cpf", Normalization.OnlyDigits(m.GeradorCpfCnpj));
+                cmd.Parameters.AddWithValue("@t_cpf", Normalization.OnlyDigits(m.TransportadorCpfCnpj));
+                cmd.Parameters.AddWithValue("@d_cpf", Normalization.OnlyDigits(m.DestinadorCpfCnpj));
+                var cpfs = string.Join(',', new[] { m.GeradorCpfCnpj, m.TransportadorCpfCnpj, m.DestinadorCpfCnpj }.Select(Normalization.OnlyDigits));
+                cmd.Parameters.AddWithValue("@cpfs", cpfs);
+                cmd.Parameters.AddWithValue("@cb", m.CreatedBy);
+                cmd.Parameters.AddWithValue("@cd", m.CreatedDt);
+                cmd.Parameters.AddWithValue("@err", errorDescription);
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+            const string del = "DELETE FROM sinir.mtr WHERE numero=@numero";
+            using (var dc = new MySqlCommand(del, conn, tx))
+            {
+                dc.Parameters.AddWithValue("@numero", m.Numero);
                 await dc.ExecuteNonQueryAsync();
             }
 

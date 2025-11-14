@@ -9,6 +9,12 @@ internal static class Normalization
 
     public static string Clean(string? s) => (s ?? string.Empty).Trim();
 
+    public static string? CleanOrNull(string? s)
+    {
+        var cleaned = Clean(s);
+        return cleaned.Length == 0 ? null : cleaned;
+    }
+
     public static string OnlyDigits(string? s) => NonDigits.Replace(s ?? string.Empty, "");
 
     public static bool HasDangerousMark(string? s) => DangerousMark.IsMatch(s ?? string.Empty);
@@ -17,7 +23,8 @@ internal static class Normalization
     {
         if (string.IsNullOrWhiteSpace(raw)) return string.Empty;
         var left = raw.Split('-', 2)[0];
-        return OnlyDigits(left);
+        var onlyDigits = OnlyDigits(left);
+        return onlyDigits?.Length == 0 ? left : onlyDigits;
     }
 
     public static double Similarity(string a, string b)
@@ -57,4 +64,3 @@ internal static class Normalization
         return d[n, m];
     }
 }
-

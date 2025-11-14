@@ -6058,5 +6058,89 @@
     "descricao": "Resíduos urbanos e equiparados não anteriormente especificados – ",
     "perigoso": 0,
     "unidade_medida_sigla": "kg"
+  },
+  {
+    "codigo_residuo": "Classe A",
+    "descricao": "Resíduos reutilizáveis ou recicláveis como agregados, tais como: a) de construção, demolição, reformas e reparos de pavimentação e de outras obras de infraestrutura, inclusive solos provenientes de terraplanagem; b) de construção, demolição, reformas e reparos de edificações: componentes cerâmicos (tijolos, blocos, telhas, placas de revestimento etc.), argamassa e concreto; c) de processo de fabricação e/ou demolição de peças pré-moldadas em concreto (blocos, tubos, meio-fios etc.) produzidas nos canteiros de obras. Classe A conforme Resolução CONAMA 307/02 - Contempla os resíduos códigos 170101, 170102, 170103, 170107, 170302, 170504, 170508, 170604 e 170904, conforme IBAMA 13/2012.",
+    "perigoso": 0,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Classe B",
+    "descricao": "Resíduos recicláveis para outras destinações tais como plásticos, papel, papelão, metais, vidros, madeiras, embalagens vazias de tintas imobiliárias e gesso. Classe B conforme Resolução CONAMA 307/02 - Contempla os resíduos códigos 170201, 170202, 170203, 170401, 170402, 170403, 170404, 170405, 170406, 170407, 170411, 170412, 170413 e 170802, conforme IBAMA 13/2012",
+    "perigoso": 0,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Classe C",
+    "descricao": "Resíduos para os quais não foram desenvolvidas tecnologias ou aplicações economicamente viáveis que permitam a sua reciclagem ou recuperação, Classe C conforme Resolução CONAMA 307/02",
+    "perigoso": 0,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Classe D",
+    "descricao": "Resíduos perigosos oriundos do processo de construção, tais como tintas, solventes, óleos e outros ou aqueles contaminados ou prejudiciais à saúde oriundos de demolições, reformas e reparos de clínicas radiológicas, instalações industriais e outros, bem como telhas e demais objetos e materiais que contenham amianto ou outros produtos nocivos à saúde. Classe D conforme Resolução CONAMA 307/02 Contempla os resíduos códigos 170106(*), 170204(*), 170301(*), 170303(*), 170409(*), 170410(*), 170502(*), 170503(*), 170505(*), 170507(*), 170509(*), 170601(*), 170603(*), 170605(*), 170801(*), 170901(*), 170902(*) e 170903(*) conforme IBAMA 13/2012.",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupos A1, A2, A3, A4 ou A5, conforme ANVISA RDC 222/2018 - Contempla os resíduos códigos 180101(*), 180102(*), 180103(*), 180104(*), 180105(*),  180106(*), 180107(*), 180108(*), 180109(*), 180110(*), 180111(*), 180112(*), 180113(*), 180114(*) e 180115(*) conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A1",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo A1, conforme ANVISA RDC 222/18 - Contempla os resíduos códigos 180101(*), 180102(*),180103(*) e 180104(*) conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A2",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo  A2, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180105(*)  conforme IBAMA 13/2012.",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A3",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo  A3, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180106(*)  conforme IBAMA 13/2012.",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A4",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo A4, conforme ANVISA RDC 222/18 - Contempla os resíduos códigos 180107(*), 180108(*), 180109(*), 180110(*), 180111(*), 180112(*), 180113(*) e 180114(*) conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo A5",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo  A5, conforme ANVISA RDC 222/18 - Contempla os resíduos código 180115(*)  conforme IBAMA 13/2012.",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo B",
+    "descricao": "Resíduos de Serviços de Saúde classificados como Grupo B, conforme ANVISA RDC 222/2018 - Contempla os resíduos códigos 180201(*), 180202(*), 180203(*), 180204(*), 180205(*), 200131(*)  e 200132 conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo C",
+    "descricao": "Materiais resultantes de laboratórios de pesquisa e ensino na área de saúde, laboratórios de análises clínicas e serviços de medicina nuclear e radioterapia que contenha radionuclídeos em quantidade superior  aos limites de eliminação (CNEN-6.05), classificados como Grupo C conforme ANVISA RDC 222/2018 - Contempla o resíduo código 180301(*) conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo D",
+    "descricao": "Resíduos que não apresentam risco biológico, químico ou radiológico à saúde ou ao meio ambiente, podendo ser equiparados aos resíduos domiciliares, classificados como Grupo D conforme RDC ANVISA 222/2018.",
+    "perigoso": 0,
+    "unidade_medida_sigla": null
+  },
+  {
+    "codigo_residuo": "Grupo E",
+    "descricao": "Materiais perfurocortantes ou escarificantes, tais como: lâminas de barbear, agulhas, escalpes, ampolas de vidro, brocas, limas endodônticas, pontas diamantadas, lâminas de bisturi, lancetas, tubos capilares;  micropipetas; lâminas e lamínulas; espátulas; e todos os utensílios de vidro quebrados no laboratório (pipetas, tubos de coleta sanguínea e placas de Petri) e outras similares, classificados como Grupo E conforme ANVISA RDC 222/2018 - Contempla o resíduo código 180401(*) conforme IBAMA 13/2012",
+    "perigoso": 1,
+    "unidade_medida_sigla": null
   }
 ]
