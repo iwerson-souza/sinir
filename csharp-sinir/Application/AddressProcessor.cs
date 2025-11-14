@@ -59,25 +59,25 @@ internal static class AddressProcessor
             rounds++;
             Console.WriteLine($"[address] Rodada {rounds}: processando {cnpjs.Count} CNPJ(s) com DOP={config.MaxDegreeOfParallelism}.");
             var resolved = await ResolveAddressesAsync(
+                svc,
                 cnpjs,
                 http,
                 TimeSpan.FromSeconds(config.RequestTimeoutSeconds),
                 config.MaxDegreeOfParallelism);
-            if (resolved.Count == 0)
-            {
-                Console.WriteLine("[address] Nenhum endereço encontrado nesta rodada. Encerrando para evitar loop infinito.");
-                break;
-            }
 
-            await svc.UpsertStakeholderAddressesAsync(resolved, "address-mode");
-            totalPersisted += resolved.Count;
-            Console.WriteLine($"[address] Rodada {rounds} concluída. Registros aplicados: {resolved.Count}. Total acumulado: {totalPersisted}.");
+            if (resolved.Count > 0)
+            {
+                await svc.UpsertStakeholderAddressesAsync(resolved, "address-mode");
+                totalPersisted += resolved.Count;
+                Console.WriteLine($"[address] Rodada {rounds} concluída. Registros aplicados: {resolved.Count}. Total acumulado: {totalPersisted}.");
+            }
         }
 
         Console.WriteLine($"[address] Finalizado. Registros com endereço persistido: {totalPersisted}.");
     }
 
     private static async Task<List<Stakeholder>> ResolveAddressesAsync(
+        IntegrationService svc,
         IReadOnlyCollection<string> cnpjs,
         HttpClient http,
         TimeSpan timeoutPerRequest,
@@ -115,10 +115,12 @@ internal static class AddressProcessor
                     {
                         Console.WriteLine($"[address] {cnpj}: {stakeholders.Count} endereço(s) obtido(s).");
                     }
+                    await svc.MarkStakeholdersVerifiedAsync(cnpj, "address-mode");
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"[address] Erro ao consultar {cnpj}: {ex.Message}");
+                    await svc.MarkStakeholdersVerifiedAsync(cnpj, "address-mode");
                 }
                 finally
                 {

@@ -16,7 +16,11 @@ CREATE TABLE IF NOT EXISTS stakeholder (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `sinir`.`stakeholder` 
-ADD COLUMN `endereco` VARCHAR(255) NULL AFTER `nome`;
+ADD COLUMN `endereco` VARCHAR(500) NULL AFTER `nome`;
+
+ALTER TABLE `sinir`.`stakeholder` 
+ADD COLUMN `endereco_verificado` TINYINT(1) NULL DEFAULT 0 AFTER `endereco`;
+
 
 
 CREATE TABLE IF NOT EXISTS mtr_load (

@@ -18,7 +18,7 @@ internal sealed class IntegrationService
 
     public async Task<List<Stakeholder>> ListStakeholdersAsync()
     {
-        const string sql = "SELECT unidade, cpf_cnpj, nome, endereco, data_inicial, data_final FROM stakeholder";
+        const string sql = "SELECT unidade, cpf_cnpj, nome, endereco, endereco_verificado, data_inicial, data_final FROM stakeholder";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         using var rdr = await cmd.ExecuteReaderAsync();
@@ -31,8 +31,9 @@ internal sealed class IntegrationService
                 CpfCnpj = rdr.GetString(1),
                 Nome = rdr.GetString(2),
                 Endereco = rdr.IsDBNull(3) ? null : rdr.GetString(3),
-                DataInicial = rdr.IsDBNull(4) ? (DateTime?)null : rdr.GetDateTime(4),
-                DataFinal = rdr.IsDBNull(5) ? (DateTime?)null : rdr.GetDateTime(5)
+                EnderecoVerificado = !rdr.IsDBNull(4) && rdr.GetBoolean(4),
+                DataInicial = rdr.IsDBNull(5) ? (DateTime?)null : rdr.GetDateTime(5),
+                DataFinal = rdr.IsDBNull(6) ? (DateTime?)null : rdr.GetDateTime(6)
             });
         }
         return list;
@@ -224,7 +225,7 @@ internal sealed class IntegrationService
     {
         const string sql = @"SELECT DISTINCT cpf_cnpj
                              FROM stakeholder
-                             WHERE endereco IS NULL AND LENGTH(cpf_cnpj)=14
+                             WHERE endereco IS NULL AND (endereco_verificado IS NULL OR endereco_verificado=0) AND LENGTH(cpf_cnpj)=14
                              ORDER BY cpf_cnpj
                              LIMIT @limit";
         using var conn = await OpenAsync();
@@ -241,10 +242,11 @@ internal sealed class IntegrationService
 
     public async Task UpsertStakeholderAddressesAsync(IEnumerable<Stakeholder> stakeholders, string user)
     {
-        const string sql = @"INSERT INTO stakeholder (unidade, cpf_cnpj, nome, endereco, data_inicial, data_final, created_by, created_dt)
-                             VALUES (@unidade, @cpf, @nome, @endereco, NULL, NULL, @user, NOW())
+        const string sql = @"INSERT INTO stakeholder (unidade, cpf_cnpj, nome, endereco, endereco_verificado, data_inicial, data_final, created_by, created_dt)
+                             VALUES (@unidade, @cpf, @nome, @endereco, 1, NULL, NULL, @user, NOW())
                              ON DUPLICATE KEY UPDATE
                                  endereco=VALUES(endereco),
+                                 endereco_verificado=1,
                                  nome=VALUES(nome),
                                  last_modified_by=@user,
                                  last_modified_dt=NOW()";
@@ -259,5 +261,19 @@ internal sealed class IntegrationService
             cmd.Parameters.AddWithValue("@user", user);
             await cmd.ExecuteNonQueryAsync();
         }
+    }
+
+    public async Task MarkStakeholdersVerifiedAsync(string cpfCnpj, string user)
+    {
+        const string sql = @"UPDATE stakeholder
+                             SET endereco_verificado=1,
+                                 last_modified_by=@user,
+                                 last_modified_dt=NOW()
+                             WHERE cpf_cnpj=@cpf";
+        using var conn = await OpenAsync();
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@user", user);
+        cmd.Parameters.AddWithValue("@cpf", cpfCnpj);
+        await cmd.ExecuteNonQueryAsync();
     }
 }
