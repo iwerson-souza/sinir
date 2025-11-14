@@ -94,6 +94,17 @@ CREATE TABLE entidade_responsavel (
   CONSTRAINT fk_responsavel_entidade FOREIGN KEY (id_entidade) REFERENCES entidade(id_entidade)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `entidade_unidade` (
+  `id_unidade` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_entidade` bigint(20) NOT NULL,
+  `unidade` varchar(32) NOT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_unidade`),
+  KEY `fk_unidade_entidade` (`id_entidade`),
+  CONSTRAINT `fk_unidade_entidade` FOREIGN KEY (`id_entidade`) REFERENCES `entidade` (`id_entidade`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 -- ==========================================================
 -- Catálogo de resíduos
 -- ==========================================================

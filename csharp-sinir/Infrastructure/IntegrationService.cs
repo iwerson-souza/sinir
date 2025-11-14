@@ -18,7 +18,7 @@ internal sealed class IntegrationService
 
     public async Task<List<Stakeholder>> ListStakeholdersAsync()
     {
-        const string sql = "SELECT unidade, cpf_cnpj, nome, data_inicial, data_final FROM stakeholder";
+        const string sql = "SELECT unidade, cpf_cnpj, nome, endereco, data_inicial, data_final FROM stakeholder";
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         using var rdr = await cmd.ExecuteReaderAsync();
@@ -30,8 +30,9 @@ internal sealed class IntegrationService
                 Unidade = rdr.GetString(0),
                 CpfCnpj = rdr.GetString(1),
                 Nome = rdr.GetString(2),
-                DataInicial = rdr.IsDBNull(3) ? (DateTime?)null : rdr.GetDateTime(3),
-                DataFinal = rdr.IsDBNull(4) ? (DateTime?)null : rdr.GetDateTime(4)
+                Endereco = rdr.IsDBNull(3) ? null : rdr.GetString(3),
+                DataInicial = rdr.IsDBNull(4) ? (DateTime?)null : rdr.GetDateTime(4),
+                DataFinal = rdr.IsDBNull(5) ? (DateTime?)null : rdr.GetDateTime(5)
             });
         }
         return list;
@@ -216,6 +217,47 @@ internal sealed class IntegrationService
                 cmd.Parameters.AddWithValue("@user", user);
                 await cmd.ExecuteNonQueryAsync();
             }
+        }
+    }
+
+    public async Task<List<string>> ListDistinctCnpjsMissingAddressAsync(int limit)
+    {
+        const string sql = @"SELECT DISTINCT cpf_cnpj
+                             FROM stakeholder
+                             WHERE endereco IS NULL AND LENGTH(cpf_cnpj)=14
+                             ORDER BY cpf_cnpj
+                             LIMIT @limit";
+        using var conn = await OpenAsync();
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@limit", limit);
+        using var rdr = await cmd.ExecuteReaderAsync();
+        var list = new List<string>();
+        while (await rdr.ReadAsync())
+        {
+            list.Add(rdr.GetString(0));
+        }
+        return list;
+    }
+
+    public async Task UpsertStakeholderAddressesAsync(IEnumerable<Stakeholder> stakeholders, string user)
+    {
+        const string sql = @"INSERT INTO stakeholder (unidade, cpf_cnpj, nome, endereco, data_inicial, data_final, created_by, created_dt)
+                             VALUES (@unidade, @cpf, @nome, @endereco, NULL, NULL, @user, NOW())
+                             ON DUPLICATE KEY UPDATE
+                                 endereco=VALUES(endereco),
+                                 nome=VALUES(nome),
+                                 last_modified_by=@user,
+                                 last_modified_dt=NOW()";
+        using var conn = await OpenAsync();
+        foreach (var s in stakeholders)
+        {
+            using var cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@unidade", s.Unidade);
+            cmd.Parameters.AddWithValue("@cpf", s.CpfCnpj);
+            cmd.Parameters.AddWithValue("@nome", s.Nome);
+            cmd.Parameters.AddWithValue("@endereco", (object?)s.Endereco ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@user", user);
+            await cmd.ExecuteNonQueryAsync();
         }
     }
 }

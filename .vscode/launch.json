@@ -13,6 +13,19 @@
       "cwd": "${workspaceFolder}/csharp-resilead",
       "console": "integratedTerminal",
       "stopAtEntry": false
+    },
+    {
+      "name": "Sinir (.NET)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-sinir",
+      "program": "${workspaceFolder}/csharp-sinir/bin/Debug/net8.0/Sinir.Integration.Local.dll",
+      "args": [
+        "${input:sinirMode}"
+      ],
+      "cwd": "${workspaceFolder}/csharp-sinir",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
     }
   ],
   "inputs": [
@@ -26,6 +39,18 @@
         { "label": "mtr", "value": "mtr" }
       ],
       "default": "ref-load"
+    },
+    {
+      "id": "sinirMode",
+      "type": "pickString",
+      "description": "Selecionar modo do Sinir",
+      "options": [
+        { "label": "run", "value": "run" },
+        { "label": "setup", "value": "setup" },
+        { "label": "process", "value": "process" },
+        { "label": "address", "value": "address" }
+      ],
+      "default": "run"
     }
   ]
 }

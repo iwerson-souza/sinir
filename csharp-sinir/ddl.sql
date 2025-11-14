@@ -15,6 +15,10 @@ CREATE TABLE IF NOT EXISTS stakeholder (
   KEY idx_stakeholder_data_final (data_final)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `sinir`.`stakeholder` 
+ADD COLUMN `endereco` VARCHAR(255) NULL AFTER `nome`;
+
+
 CREATE TABLE IF NOT EXISTS mtr_load (
   url           VARCHAR(256) NOT NULL,
   unidade       VARCHAR(32)   NOT NULL,

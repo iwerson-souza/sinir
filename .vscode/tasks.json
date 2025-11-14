@@ -17,6 +17,23 @@
         "reveal": "always",
         "panel": "dedicated"
       }
+    },
+    {
+      "label": "build-sinir",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/csharp-sinir/Sinir.Integration.Local.csproj",
+        "-c",
+        "Debug"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
     }
   ]
 }
