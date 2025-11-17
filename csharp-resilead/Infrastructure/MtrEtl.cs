@@ -139,12 +139,22 @@ internal sealed class MtrEtl
             var situacaoId = await EnsureSituacaoAsync(conn, tx, Normalization.Clean(m.Situacao));
             var tratamentoId = await EnsureTratamentoAsync(conn, tx, Normalization.Clean(m.Tratamento)); // may return null if blank
 
-            // Resolve entidades (must exist from Stakeholder process)
-            var idGerador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, m.GeradorCpfCnpj);
-            var idTransportador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, m.TransportadorCpfCnpj);
-            var idDestinador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, m.DestinadorCpfCnpj);
+            // Resolve entidades/unidades (must exist from Stakeholder process)
+            var geradorInfo = ParseStakeholderUnidade(m.Gerador, m.GeradorCpfCnpj);
+            var transportadorInfo = ParseStakeholderUnidade(m.Transportador, m.TransportadorCpfCnpj);
+            var destinadorInfo = ParseStakeholderUnidade(m.Destinador, m.DestinadorCpfCnpj);
+
+            var idGerador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, geradorInfo.CpfCnpj);
+            var idTransportador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, transportadorInfo.CpfCnpj);
+            var idDestinador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, destinadorInfo.CpfCnpj);
             if (idGerador is null || idTransportador is null || idDestinador is null)
                 throw new InvalidOperationException("Missing entidade(s) for MTR. Run stakeholder ETL first.");
+
+            var idGeradorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, geradorInfo.CpfCnpj, geradorInfo.Unidade);
+            var idTransportadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, transportadorInfo.CpfCnpj, transportadorInfo.Unidade);
+            var idDestinadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, destinadorInfo.CpfCnpj, destinadorInfo.Unidade);
+            if (idGeradorUnidade is null || idTransportadorUnidade is null || idDestinadorUnidade is null)
+                throw new InvalidOperationException("Missing unidade(s) for MTR. Run stakeholder ETL first.");
 
             // Insert-only tipo_entidade relations if missing
             await EnsureTipoEntidadeAsync(conn, tx, idGerador.Value, "GERADOR");
@@ -160,7 +170,7 @@ internal sealed class MtrEtl
             }
 
             // Upsert registro (update limited subset on reprocess)
-            await UpsertRegistroAsync(conn, tx, m, tipoManifestoId, situacaoId, tratamentoId, idGerador.Value, idTransportador.Value, idDestinador.Value, idRespEmissao, idRespReceb);
+            await UpsertRegistroAsync(conn, tx, m, tipoManifestoId, situacaoId, tratamentoId, idGeradorUnidade.Value, idTransportadorUnidade.Value, idDestinadorUnidade.Value, idRespEmissao, idRespReceb);
 
             // Motorista/Veículo (from transportador JSON)
             await EnsureMotoristaVeiculoAsync(conn, tx, idTransportador.Value, m.Transportador, idTransportador.Value);
@@ -184,6 +194,20 @@ internal sealed class MtrEtl
         const string sql = "SELECT id_entidade FROM resilead.entidade WHERE cpf_cnpj=@c";
         using var cmd = new MySqlCommand(sql, conn, tx);
         cmd.Parameters.AddWithValue("@c", Normalization.OnlyDigits(cpfCnpj));
+        var obj = await cmd.ExecuteScalarAsync();
+        return obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
+    }
+
+    private static async Task<long?> GetEntidadeUnidadeIdAsync(MySqlConnection conn, MySqlTransaction tx, string cpfCnpj, string? unidade)
+    {
+        if (string.IsNullOrWhiteSpace(cpfCnpj) || string.IsNullOrWhiteSpace(unidade)) return null;
+        const string sql = @"SELECT u.id_unidade
+                             FROM resilead.entidade_unidade u
+                             INNER JOIN resilead.entidade e ON e.id_entidade = u.id_entidade
+                             WHERE e.cpf_cnpj=@c AND u.unidade=@u";
+        using var cmd = new MySqlCommand(sql, conn, tx);
+        cmd.Parameters.AddWithValue("@c", Normalization.OnlyDigits(cpfCnpj));
+        cmd.Parameters.AddWithValue("@u", unidade);
         var obj = await cmd.ExecuteScalarAsync();
         return obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
     }
@@ -265,11 +289,26 @@ internal sealed class MtrEtl
         return null;
     }
 
+    private static StakeholderUnidade ParseStakeholderUnidade(string json, string fallbackCpfCnpj)
+    {
+        using var doc = JsonDocument.Parse(json);
+        var root = doc.RootElement;
+        var cpf = root.TryGetProperty("CpfCnpj", out var cpfEl) ? cpfEl.GetString() : null;
+        var unidade = root.TryGetProperty("Unidade", out var unEl) ? unEl.GetString() : null;
+        var cleanedUnidade = Normalization.Clean(unidade);
+        if (cleanedUnidade.Length > 32) cleanedUnidade = cleanedUnidade[..32];
+        return new StakeholderUnidade
+        {
+            CpfCnpj = Normalization.OnlyDigits(string.IsNullOrWhiteSpace(cpf) ? fallbackCpfCnpj : cpf),
+            Unidade = cleanedUnidade.Length == 0 ? null : cleanedUnidade
+        };
+    }
+
     private static async Task UpsertRegistroAsync(MySqlConnection conn, MySqlTransaction tx, MtrRow m, int idTipoManifesto, int idSituacao, int? idTratamento,
-        long idGerador, long idTransportador, long idDestinador, long idRespEmissao, long? idRespReceb)
+        long idGeradorUnidade, long idTransportadorUnidade, long idDestinadorUnidade, long idRespEmissao, long? idRespReceb)
     {
         const string ins = @"INSERT INTO resilead.registro
-            (numero_mtr, id_tipo_manifesto, id_gerador, id_transportador, id_destinador, id_entidade_resp_emissao, id_entidade_resp_recebimento,
+            (numero_mtr, id_tipo_manifesto, id_gerador_unidade, id_transportador_unidade, id_destinador_unidade, id_entidade_resp_emissao, id_entidade_resp_recebimento,
              id_situacao, id_tratamento, numero_cdf, justificativa, data_emissao, data_recebimento)
           VALUES
             (@num, @tm, @g, @t, @d, @re, @rr, @sit, @trat, @cdf, @just, @de, @dr)
@@ -284,9 +323,9 @@ internal sealed class MtrEtl
         using var cmd = new MySqlCommand(ins, conn, tx);
         cmd.Parameters.AddWithValue("@num", m.Numero);
         cmd.Parameters.AddWithValue("@tm", idTipoManifesto);
-        cmd.Parameters.AddWithValue("@g", idGerador);
-        cmd.Parameters.AddWithValue("@t", idTransportador);
-        cmd.Parameters.AddWithValue("@d", idDestinador);
+        cmd.Parameters.AddWithValue("@g", idGeradorUnidade);
+        cmd.Parameters.AddWithValue("@t", idTransportadorUnidade);
+        cmd.Parameters.AddWithValue("@d", idDestinadorUnidade);
         cmd.Parameters.AddWithValue("@re", idRespEmissao);
         cmd.Parameters.AddWithValue("@rr", (object?)idRespReceb ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@sit", idSituacao);
@@ -574,6 +613,12 @@ internal sealed class MtrEtl
             await tx.RollbackAsync();
             throw;
         }
+    }
+
+    private sealed class StakeholderUnidade
+    {
+        public string CpfCnpj { get; init; } = string.Empty;
+        public string? Unidade { get; init; }
     }
 
     private sealed class MtrRow

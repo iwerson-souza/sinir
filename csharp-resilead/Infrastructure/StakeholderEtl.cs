@@ -71,6 +71,8 @@ internal sealed class StakeholderEtl
         } while (_cfg.Stakeholder.Drain);
 
         Console.WriteLine($"[{DateTime.Now:O}] [stakeholder] Completed. ok={processed - errors}, errors={errors}, pf={pf}, pj={pj}, apiHits={apiHits}, inserted={inserted}, updated={updated}.");
+
+        await ProcessUnidadesAsync();
     }
 
     private async Task<List<StakeholderRow>> ReadSourceBatchAsync(int limit)
@@ -81,7 +83,7 @@ internal sealed class StakeholderEtl
                              LEFT JOIN resilead.entidade e ON e.cpf_cnpj = s.cpf_cnpj
                              WHERE e.cpf_cnpj IS NULL
                              AND s.cpf_cnpj NOT IN ('10', '', '00000000000', '00000000000000')
-                             AND c.cpf_cnpj NOT IN ('01236126702402','02814351117000','10174421019292','11749421115111','22905370001000','43354257000154','56386341000010','62142872000141','63609006000180','66724151000109','66860195000158','68727042000162','70460950000184','71256334000179','75046914000192','75845150000103','76228726000148','77313348000163','78410109000194','79943599000157','80515304000120','80523826000174','82787414000177','84004832000176','84004832000176','85672330000186','86331645000122','86588800000190','86952202000159','89192989000196','89313668000100','89570771000128','90284883000100','90284883000100','91853045000164','92091515000162','92107277000136','93274990000137','93700439000108','94902842000182','98095498000118','98442444000181','99940992000102')
+                             AND s.cpf_cnpj NOT IN ('01236126702402','02814351117000','10174421019292','11749421115111','22905370001000','43354257000154','56386341000010','62142872000141','63609006000180','66724151000109','66860195000158','68727042000162','70460950000184','71256334000179','75046914000192','75845150000103','76228726000148','77313348000163','78410109000194','79943599000157','80515304000120','80523826000174','82787414000177','84004832000176','84004832000176','85672330000186','86331645000122','86588800000190','86952202000159','89192989000196','89313668000100','89570771000128','90284883000100','90284883000100','91853045000164','92091515000162','92107277000136','93274990000137','93700439000108','94902842000182','98095498000118','98442444000181','99940992000102', '98204585000166')
                              ORDER BY s.cpf_cnpj
                              LIMIT @limit";
         var list = new List<StakeholderRow>();
@@ -199,6 +201,155 @@ internal sealed class StakeholderEtl
         return new EntidadeUpsertResult { IsPf = tipoPessoa == 'F', ApiHit = apiHit, Inserted = inserted };
     }
 
+    private async Task ProcessUnidadesAsync()
+    {
+        Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] Starting unidade normalization...");
+        var processed = 0; var inserted = 0; var updated = 0; var skipped = 0; var errors = 0;
+        do
+        {
+            var batchSize = Math.Max(_cfg.Stakeholder.BatchSize, _cfg.Processing.BatchSize);
+            var batch = await ReadUnidadeBatchAsync(batchSize);
+            if (batch.Count == 0)
+            {
+                if (processed == 0)
+                {
+                    Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] No pending unidades to normalize.");
+                }
+                break;
+            }
+
+            Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] Fetched {batch.Count} unidade(s).");
+            var dop = Math.Max(1, _cfg.Processing.MaxDegreeOfParallelism);
+            var lockObj = new object();
+            var totalInBatch = batch.Count;
+            var processedInBatch = 0;
+
+            await Parallel.ForEachAsync(batch, new ParallelOptions { MaxDegreeOfParallelism = dop }, async (u, ct) =>
+            {
+                try
+                {
+                    var res = await UpsertEntidadeUnidadeAsync(u);
+                    lock (lockObj)
+                    {
+                        processed++;
+                        if (res.Inserted) inserted++;
+                        else if (res.Updated) updated++;
+                        else skipped++;
+                    }
+                    var pi = Interlocked.Increment(ref processedInBatch);
+                    var action = res.Inserted ? "insert" : res.Updated ? "update" : "skip";
+                    Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] {pi}/{totalInBatch} {action} - {u.CpfCnpj} {u.Unidade}");
+                }
+                catch (Exception ex)
+                {
+                    lock (lockObj) { errors++; }
+                    var pi = Interlocked.Increment(ref processedInBatch);
+                    Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] {pi}/{totalInBatch} ERROR {u.CpfCnpj} {u.Unidade}: {ex.Message}");
+                }
+            });
+
+        } while (_cfg.Stakeholder.Drain);
+
+        Console.WriteLine($"[{DateTime.Now:O}] [stakeholder:unit] Completed. ok={processed - errors}, errors={errors}, inserted={inserted}, updated={updated}, skipped={skipped}.");
+    }
+
+    private async Task<List<UnidadeRow>> ReadUnidadeBatchAsync(int limit)
+    {
+        const string sql = @"
+            SELECT s.unidade, s.cpf_cnpj, s.endereco
+            FROM sinir.stakeholder s
+            INNER JOIN resilead.entidade e ON e.cpf_cnpj = s.cpf_cnpj
+            LEFT JOIN resilead.entidade_unidade u ON u.unidade = s.unidade
+            WHERE (
+                    u.id_unidade IS NULL
+                    OR (
+                        (u.endereco IS NULL AND (s.endereco IS NOT NULL AND TRIM(s.endereco) <> ''))
+                        OR (s.endereco IS NULL AND u.endereco IS NOT NULL)
+                        OR (u.endereco IS NOT NULL AND s.endereco IS NOT NULL AND u.endereco <> s.endereco)
+                    )
+                  )
+            ORDER BY s.unidade
+            LIMIT @limit";
+
+        var list = new List<UnidadeRow>();
+        using var conn = await _db.OpenAsync();
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@limit", limit);
+        using var rdr = await cmd.ExecuteReaderAsync();
+        while (await rdr.ReadAsync())
+        {
+            list.Add(new UnidadeRow
+            {
+                Unidade = rdr.GetString(0),
+                CpfCnpj = rdr.GetString(1),
+                Endereco = rdr.IsDBNull(2) ? null : rdr.GetString(2)
+            });
+        }
+        return list;
+    }
+
+    private async Task<UnidadeUpsertResult> UpsertEntidadeUnidadeAsync(UnidadeRow row)
+    {
+        var cpf = Normalization.OnlyDigits(row.CpfCnpj);
+        var unidade = Normalization.Clean(row.Unidade);
+        if (string.IsNullOrWhiteSpace(cpf) || string.IsNullOrWhiteSpace(unidade))
+        {
+            return new UnidadeUpsertResult { Skipped = true };
+        }
+
+        unidade = unidade.Length > 32 ? unidade[..32] : unidade;
+        var endereco = NormalizeAddress(row.Endereco);
+
+        using var conn = await _db.OpenAsync();
+        long? idEntidade = null;
+        const string sel = "SELECT id_entidade FROM resilead.entidade WHERE cpf_cnpj=@cpf LIMIT 1";
+        using (var cmd = new MySqlCommand(sel, conn))
+        {
+            cmd.Parameters.AddWithValue("@cpf", cpf);
+            var obj = await cmd.ExecuteScalarAsync();
+            if (obj != null && obj != DBNull.Value)
+            {
+                idEntidade = Convert.ToInt64(obj);
+            }
+        }
+
+        if (idEntidade is null)
+        {
+            return new UnidadeUpsertResult { Skipped = true };
+        }
+
+        const string updSql = "UPDATE resilead.entidade_unidade SET endereco=@endereco WHERE unidade=@unidade";
+        using (var upd = new MySqlCommand(updSql, conn))
+        {
+            upd.Parameters.AddWithValue("@endereco", endereco);
+            upd.Parameters.AddWithValue("@unidade", unidade);
+            var rows = await upd.ExecuteNonQueryAsync();
+            if (rows > 0)
+            {
+                return new UnidadeUpsertResult { Updated = true };
+            }
+        }
+
+        const string insSql = @"INSERT INTO resilead.entidade_unidade (id_entidade, unidade, endereco)
+                                 VALUES (@entidade, @unidade, @endereco)";
+        using (var ins = new MySqlCommand(insSql, conn))
+        {
+            ins.Parameters.AddWithValue("@entidade", idEntidade.Value);
+            ins.Parameters.AddWithValue("@unidade", unidade);
+            ins.Parameters.AddWithValue("@endereco", endereco);
+            await ins.ExecuteNonQueryAsync();
+            return new UnidadeUpsertResult { Inserted = true };
+        }
+    }
+
+    private static string? NormalizeAddress(string? endereco)
+    {
+        if (string.IsNullOrWhiteSpace(endereco)) return null;
+        var cleaned = Normalization.Clean(endereco);
+        if (cleaned.Length == 0) return null;
+        return cleaned.Length > 500 ? cleaned[..500] : cleaned;
+    }
+
     private static string? NullIfEmpty(string? s)
     {
         return string.IsNullOrWhiteSpace(s) ? null : s.Trim();
@@ -210,10 +361,24 @@ internal sealed class StakeholderEtl
         public string Nome { get; set; } = string.Empty;
     }
 
+    private sealed class UnidadeRow
+    {
+        public string Unidade { get; set; } = string.Empty;
+        public string CpfCnpj { get; set; } = string.Empty;
+        public string Endereco { get; set; } = string.Empty;
+    }
+
     private sealed class EntidadeUpsertResult
     {
         public bool IsPf { get; init; }
         public bool ApiHit { get; init; }
         public bool Inserted { get; init; }
+    }
+
+    private sealed class UnidadeUpsertResult
+    {
+        public bool Inserted { get; init; }
+        public bool Updated { get; init; }
+        public bool Skipped { get; init; }
     }
 }

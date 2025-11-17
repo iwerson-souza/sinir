@@ -98,12 +98,13 @@ CREATE TABLE `entidade_unidade` (
   `id_unidade` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_entidade` bigint(20) NOT NULL,
   `unidade` varchar(32) NOT NULL,
-  `endereco` varchar(255) DEFAULT NULL,
+  `endereco` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_unidade`),
   KEY `fk_unidade_entidade` (`id_entidade`),
   CONSTRAINT `fk_unidade_entidade` FOREIGN KEY (`id_entidade`) REFERENCES `entidade` (`id_entidade`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE resilead.`entidade_unidade` ADD INDEX `idx_unidade` (`unidade`);
 
 -- ==========================================================
 -- Catálogo de resíduos
@@ -125,9 +126,9 @@ CREATE TABLE registro (
   id_registro BIGINT AUTO_INCREMENT PRIMARY KEY,
   numero_mtr VARCHAR(20) NOT NULL UNIQUE,
   id_tipo_manifesto INT,
-  id_gerador BIGINT,
-  id_transportador BIGINT,
-  id_destinador BIGINT,
+  id_gerador_unidade BIGINT NOT NULL,
+  id_transportador_unidade BIGINT NOT NULL,
+  id_destinador_unidade BIGINT NOT NULL,
   id_entidade_resp_emissao BIGINT,
   id_entidade_resp_recebimento BIGINT,
   id_situacao INT,
@@ -139,9 +140,9 @@ CREATE TABLE registro (
   data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
   data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_mtr_tipo_manifesto FOREIGN KEY (id_tipo_manifesto) REFERENCES tipo_manifesto(id_tipo_manifesto),
-  CONSTRAINT fk_mtr_gerador FOREIGN KEY (id_gerador) REFERENCES entidade(id_entidade),
-  CONSTRAINT fk_mtr_transportador FOREIGN KEY (id_transportador) REFERENCES entidade(id_entidade),
-  CONSTRAINT fk_mtr_destinador FOREIGN KEY (id_destinador) REFERENCES entidade(id_entidade),
+  CONSTRAINT fk_mtr_gerador_un FOREIGN KEY (id_gerador_unidade) REFERENCES entidade_unidade(id_unidade),
+  CONSTRAINT fk_mtr_transportador_un FOREIGN KEY (id_transportador_unidade) REFERENCES entidade_unidade(id_unidade),
+  CONSTRAINT fk_mtr_destinador_un FOREIGN KEY (id_destinador_unidade) REFERENCES entidade_unidade(id_unidade),
   CONSTRAINT fk_mtr_resp_emissao FOREIGN KEY (id_entidade_resp_emissao) REFERENCES entidade_responsavel(id_responsavel),
   CONSTRAINT fk_mtr_resp_recebimento FOREIGN KEY (id_entidade_resp_recebimento) REFERENCES entidade_responsavel(id_responsavel),
   CONSTRAINT fk_mtr_situacao FOREIGN KEY (id_situacao) REFERENCES situacao(id_situacao),
@@ -184,9 +185,9 @@ CREATE INDEX idx_entidade_municipio_ibge ON entidade (codigo_municipio_ibge);
   id_situacao INT,
   id_tratamento INT,
 */
-CREATE INDEX idx_reg_gerador ON registro (id_gerador);
-CREATE INDEX idx_reg_transportador ON registro (id_transportador);
-CREATE INDEX idx_reg_destinador ON registro (id_destinador);
+CREATE INDEX idx_reg_gerador ON registro (id_gerador_unidade);
+CREATE INDEX idx_reg_transportador ON registro (id_transportador_unidade);
+CREATE INDEX idx_reg_destinador ON registro (id_destinador_unidade);
 
 CREATE INDEX idx_reg_data_emissao ON registro (data_emissao);
 CREATE INDEX idx_reg_situacao ON registro (id_situacao);
