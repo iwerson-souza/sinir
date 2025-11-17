@@ -88,6 +88,7 @@ internal sealed class MtrEtl
                                      numero_cdf, residuos, residuos_codigo, residuos_classe, gerador, transportador, destinador,
                                      gerador_cpf_cnpj, transportador_cpf_cnpj, destinador_cpf_cnpj, created_by, created_dt
                               FROM sinir.mtr
+                              WHERE LENGTH(cpfs_cnpjs) > 34
                               ORDER BY numero
                               LIMIT @limit";
         var list = new List<MtrRow>();
@@ -185,7 +186,7 @@ internal sealed class MtrEtl
         {
             await tx.RollbackAsync();
             Console.WriteLine($"[mtr] Failed for {m.Numero}: {ex.Message}");
-            return false;
+            throw ex;
         }
     }
 

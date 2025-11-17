@@ -23,7 +23,9 @@ internal class Program
                 await new MtrEtl(config).RunAsync();
                 break;
             default:
-                Console.WriteLine("Usage: csharp-resilead <ref-load|stakeholder|mtr>");
+                await new RefDataLoader(config).RunAsync();
+                await new StakeholderEtl(config).RunAsync();
+                await new MtrEtl(config).RunAsync();
                 break;
         }
 

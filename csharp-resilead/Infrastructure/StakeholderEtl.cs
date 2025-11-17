@@ -259,14 +259,10 @@ internal sealed class StakeholderEtl
             SELECT s.unidade, s.cpf_cnpj, s.endereco
             FROM sinir.stakeholder s
             INNER JOIN resilead.entidade e ON e.cpf_cnpj = s.cpf_cnpj
-            LEFT JOIN resilead.entidade_unidade u ON u.unidade = s.unidade
+            LEFT JOIN resilead.entidade_unidade u ON u.unidade = s.unidade AND u.id_entidade = e.id_entidade
             WHERE (
                     u.id_unidade IS NULL
-                    OR (
-                        (u.endereco IS NULL AND (s.endereco IS NOT NULL AND TRIM(s.endereco) <> ''))
-                        OR (s.endereco IS NULL AND u.endereco IS NOT NULL)
-                        OR (u.endereco IS NOT NULL AND s.endereco IS NOT NULL AND u.endereco <> s.endereco)
-                    )
+                    OR COALESCE(NULLIF(TRIM(u.endereco), ''), '') <> COALESCE(NULLIF(TRIM(s.endereco), ''), '')
                   )
             ORDER BY s.unidade
             LIMIT @limit";
@@ -318,11 +314,12 @@ internal sealed class StakeholderEtl
             return new UnidadeUpsertResult { Skipped = true };
         }
 
-        const string updSql = "UPDATE resilead.entidade_unidade SET endereco=@endereco WHERE unidade=@unidade";
+        const string updSql = "UPDATE resilead.entidade_unidade SET endereco=@endereco WHERE unidade=@unidade AND id_entidade=@entidade";
         using (var upd = new MySqlCommand(updSql, conn))
         {
             upd.Parameters.AddWithValue("@endereco", endereco);
             upd.Parameters.AddWithValue("@unidade", unidade);
+            upd.Parameters.AddWithValue("@entidade", idEntidade.Value);
             var rows = await upd.ExecuteNonQueryAsync();
             if (rows > 0)
             {
