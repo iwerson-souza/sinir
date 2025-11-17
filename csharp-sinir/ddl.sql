@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS mtr (
   numero_cdf             VARCHAR(64)  NULL,
   residuos               JSON         NOT NULL,
   residuos_codigo        VARCHAR(2048) NOT NULL,
-  residuos_classe        VARCHAR(2048) NOT NULL,
+  residuos_classe        VARCHAR(4096) NOT NULL,
   gerador                JSON         NOT NULL,
   transportador          JSON         NOT NULL,
   destinador             JSON         NOT NULL,
