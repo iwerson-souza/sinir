@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.Json;
 using MySql.Data.MySqlClient;
@@ -40,6 +41,7 @@ internal sealed class MtrEtl
                 if (processed == 0) Console.WriteLine($"[{DateTime.Now:O}] [mtr] No pending MTRs to normalize.");
                 break;
             }
+            var cache = await BuildBatchCacheAsync(batch);
             rounds++;
             Console.WriteLine($"[{DateTime.Now:O}] [mtr] Round {rounds}: fetched {batch.Count} record(s).");
             var totalInBatch = batch.Count; var pi = 0;
@@ -47,7 +49,7 @@ internal sealed class MtrEtl
             {
                 try
                 {
-                    var ok = await NormalizeOneAsync(m);
+                    var ok = await NormalizeOneAsync(m, cache);
                     if (ok)
                     {
                         await MoveToHistoryAndDeleteAsync(m);
@@ -129,31 +131,100 @@ internal sealed class MtrEtl
         return list;
     }
 
-    private async Task<bool> NormalizeOneAsync(MtrRow m)
+    private async Task<BatchCache> BuildBatchCacheAsync(List<MtrRow> batch)
+    {
+        var cache = new BatchCache();
+        if (batch.Count == 0) return cache;
+
+        var cpfSet = new HashSet<string>(StringComparer.Ordinal);
+        var unidadeSet = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var m in batch)
+        {
+            var gi = ParseStakeholderUnidade(m.Gerador, m.GeradorCpfCnpj);
+            var ti = ParseStakeholderUnidade(m.Transportador, m.TransportadorCpfCnpj);
+            var di = ParseStakeholderUnidade(m.Destinador, m.DestinadorCpfCnpj);
+            cpfSet.Add(gi.CpfCnpj); cpfSet.Add(ti.CpfCnpj); cpfSet.Add(di.CpfCnpj);
+            if (!string.IsNullOrWhiteSpace(gi.Unidade)) unidadeSet.Add(gi.Unidade!);
+            if (!string.IsNullOrWhiteSpace(ti.Unidade)) unidadeSet.Add(ti.Unidade!);
+            if (!string.IsNullOrWhiteSpace(di.Unidade)) unidadeSet.Add(di.Unidade!);
+        }
+
+        using var conn = await _db.OpenAsync();
+
+        // Entidades por CPF
+        if (cpfSet.Count > 0)
+        {
+            var cpfList = cpfSet.ToArray();
+            var paramNames = cpfList.Select((_, i) => $"@c{i}").ToArray();
+            var sql = $"SELECT id_entidade, cpf_cnpj FROM resilead.entidade WHERE cpf_cnpj IN ({string.Join(",", paramNames)})";
+            using var cmd = new MySqlCommand(sql, conn);
+            for (var i = 0; i < cpfList.Length; i++) cmd.Parameters.AddWithValue(paramNames[i], cpfList[i]);
+            using var rdr = await cmd.ExecuteReaderAsync();
+            while (await rdr.ReadAsync())
+            {
+                var id = rdr.GetInt64(0);
+                var cpf = Normalization.OnlyDigits(rdr.GetString(1));
+                cache.EntidadesByCpf[cpf] = id;
+            }
+        }
+
+        // Unidades por (cpf, unidade)
+        if (cpfSet.Count > 0 && unidadeSet.Count > 0)
+        {
+            var cpfList = cpfSet.ToArray();
+            var unidadeList = unidadeSet.ToArray();
+            var cpfParams = cpfList.Select((_, i) => $"@cpf{i}").ToArray();
+            var unParams = unidadeList.Select((_, i) => $"@un{i}").ToArray();
+            var sql = $@"SELECT u.id_unidade, e.cpf_cnpj, u.unidade
+                         FROM resilead.entidade_unidade u
+                         INNER JOIN resilead.entidade e ON e.id_entidade = u.id_entidade
+                         WHERE e.cpf_cnpj IN ({string.Join(",", cpfParams)}) AND u.unidade IN ({string.Join(",", unParams)})";
+            using var cmd = new MySqlCommand(sql, conn);
+            for (var i = 0; i < cpfList.Length; i++) cmd.Parameters.AddWithValue(cpfParams[i], cpfList[i]);
+            for (var i = 0; i < unidadeList.Length; i++) cmd.Parameters.AddWithValue(unParams[i], unidadeList[i]);
+            using var rdr = await cmd.ExecuteReaderAsync();
+            while (await rdr.ReadAsync())
+            {
+                var id = rdr.GetInt64(0);
+                var cpf = Normalization.OnlyDigits(rdr.GetString(1));
+                var unidade = rdr.GetString(2);
+                cache.UnidadeByKey[(cpf, unidade)] = id;
+            }
+        }
+
+        // Referências pequenas: tipo_manifesto, situacao, tratamento
+        await LoadRefAsync(conn, "resilead.tipo_manifesto", "id_tipo_manifesto", "descricao", cache.TipoManifestoByDesc);
+        await LoadRefAsync(conn, "resilead.situacao", "id_situacao", "descricao", cache.SituacaoByDesc);
+        await LoadRefAsync(conn, "resilead.tratamento", "id_tratamento", "descricao", cache.TratamentoByDesc);
+
+        return cache;
+    }
+
+    private async Task<bool> NormalizeOneAsync(MtrRow m, BatchCache cache)
     {
         using var conn = await _db.OpenAsync();
         using var tx = await conn.BeginTransactionAsync();
         try
         {
             // Ensure reference data (insert if missing)
-            var tipoManifestoId = await EnsureTipoManifestoAsync(conn, tx, Normalization.Clean(m.TipoManifesto));
-            var situacaoId = await EnsureSituacaoAsync(conn, tx, Normalization.Clean(m.Situacao));
-            var tratamentoId = await EnsureTratamentoAsync(conn, tx, Normalization.Clean(m.Tratamento)); // may return null if blank
+            var tipoManifestoId = await EnsureTipoManifestoAsync(conn, tx, Normalization.Clean(m.TipoManifesto), cache);
+            var situacaoId = await EnsureSituacaoAsync(conn, tx, Normalization.Clean(m.Situacao), cache);
+            var tratamentoId = await EnsureTratamentoAsync(conn, tx, Normalization.Clean(m.Tratamento), cache); // may return null if blank
 
             // Resolve entidades/unidades (must exist from Stakeholder process)
             var geradorInfo = ParseStakeholderUnidade(m.Gerador, m.GeradorCpfCnpj);
             var transportadorInfo = ParseStakeholderUnidade(m.Transportador, m.TransportadorCpfCnpj);
             var destinadorInfo = ParseStakeholderUnidade(m.Destinador, m.DestinadorCpfCnpj);
 
-            var idGerador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, geradorInfo.CpfCnpj);
-            var idTransportador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, transportadorInfo.CpfCnpj);
-            var idDestinador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, destinadorInfo.CpfCnpj);
+            var idGerador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, geradorInfo.CpfCnpj, cache);
+            var idTransportador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, transportadorInfo.CpfCnpj, cache);
+            var idDestinador = await GetEntidadeIdByCpfCnpjAsync(conn, tx, destinadorInfo.CpfCnpj, cache);
             if (idGerador is null || idTransportador is null || idDestinador is null)
                 throw new InvalidOperationException("Missing entidade(s) for MTR. Run stakeholder ETL first.");
 
-            var idGeradorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, geradorInfo.CpfCnpj, geradorInfo.Unidade);
-            var idTransportadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, transportadorInfo.CpfCnpj, transportadorInfo.Unidade);
-            var idDestinadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, destinadorInfo.CpfCnpj, destinadorInfo.Unidade);
+            var idGeradorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, geradorInfo.CpfCnpj, geradorInfo.Unidade, cache);
+            var idTransportadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, transportadorInfo.CpfCnpj, transportadorInfo.Unidade, cache);
+            var idDestinadorUnidade = await GetEntidadeUnidadeIdAsync(conn, tx, destinadorInfo.CpfCnpj, destinadorInfo.Unidade, cache);
             if (idGeradorUnidade is null || idTransportadorUnidade is null || idDestinadorUnidade is null)
                 throw new InvalidOperationException("Missing unidade(s) for MTR. Run stakeholder ETL first.");
 
@@ -163,11 +234,11 @@ internal sealed class MtrEtl
             await EnsureTipoEntidadeAsync(conn, tx, idDestinador.Value, "DESTINADOR");
 
             // Responsáveis (insert-if-missing, dedupe by id_entidade + tipo + nome normalized)
-            var idRespEmissao = await EnsureResponsavelAsync(conn, tx, idGerador.Value, "EMISSAO", m.ResponsavelEmissao);
+            var idRespEmissao = await EnsureResponsavelAsync(conn, tx, idGerador.Value, "EMISSAO", m.ResponsavelEmissao, cache);
             long? idRespReceb = null;
             if (!string.IsNullOrWhiteSpace(m.ResponsavelRecebimento))
             {
-                idRespReceb = await EnsureResponsavelAsync(conn, tx, idDestinador.Value, "RECEBIMENTO", m.ResponsavelRecebimento!);
+                idRespReceb = await EnsureResponsavelAsync(conn, tx, idDestinador.Value, "RECEBIMENTO", m.ResponsavelRecebimento!, cache);
             }
 
             // Upsert registro (update limited subset on reprocess)
@@ -190,57 +261,80 @@ internal sealed class MtrEtl
         }
     }
 
-    private static async Task<long?> GetEntidadeIdByCpfCnpjAsync(MySqlConnection conn, MySqlTransaction tx, string cpfCnpj)
+    private static async Task<long?> GetEntidadeIdByCpfCnpjAsync(MySqlConnection conn, MySqlTransaction tx, string cpfCnpj, BatchCache cache)
     {
+        var normCpf = Normalization.OnlyDigits(cpfCnpj);
+        if (cache.EntidadesByCpf.TryGetValue(normCpf, out var id)) return id;
         const string sql = "SELECT id_entidade FROM resilead.entidade WHERE cpf_cnpj=@c";
         using var cmd = new MySqlCommand(sql, conn, tx);
-        cmd.Parameters.AddWithValue("@c", Normalization.OnlyDigits(cpfCnpj));
+        cmd.Parameters.AddWithValue("@c", normCpf);
         var obj = await cmd.ExecuteScalarAsync();
-        return obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
+        var result = obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
+        if (result is not null) cache.EntidadesByCpf[normCpf] = result.Value;
+        return result;
     }
 
-    private static async Task<long?> GetEntidadeUnidadeIdAsync(MySqlConnection conn, MySqlTransaction tx, string cpfCnpj, string? unidade)
+    private static async Task<long?> GetEntidadeUnidadeIdAsync(MySqlConnection conn, MySqlTransaction tx, string cpfCnpj, string? unidade, BatchCache cache)
     {
         if (string.IsNullOrWhiteSpace(cpfCnpj) || string.IsNullOrWhiteSpace(unidade)) return null;
+        var normCpf = Normalization.OnlyDigits(cpfCnpj);
+        var key = (normCpf, unidade);
+        if (cache.UnidadeByKey.TryGetValue(key, out var cached)) return cached;
         const string sql = @"SELECT u.id_unidade
                              FROM resilead.entidade_unidade u
                              INNER JOIN resilead.entidade e ON e.id_entidade = u.id_entidade
                              WHERE e.cpf_cnpj=@c AND u.unidade=@u";
         using var cmd = new MySqlCommand(sql, conn, tx);
-        cmd.Parameters.AddWithValue("@c", Normalization.OnlyDigits(cpfCnpj));
+        cmd.Parameters.AddWithValue("@c", normCpf);
         cmd.Parameters.AddWithValue("@u", unidade);
         var obj = await cmd.ExecuteScalarAsync();
-        return obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
+        var result = obj is null || obj == DBNull.Value ? null : Convert.ToInt64(obj);
+        if (result is not null) cache.UnidadeByKey[key] = result.Value;
+        return result;
     }
 
-    private static async Task<int> EnsureTipoManifestoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao)
+    private static string NormalizeKey(string? s) => Normalization.Clean(s ?? string.Empty).ToUpperInvariant();
+
+    private static async Task<int> EnsureTipoManifestoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao, BatchCache cache)
     {
+        var key = NormalizeKey(descricao);
+        if (cache.TipoManifestoByDesc.TryGetValue(key, out var cached)) return cached;
         const string ins = "INSERT IGNORE INTO resilead.tipo_manifesto(descricao) VALUES (@d)";
         using (var ic = new MySqlCommand(ins, conn, tx)) { ic.Parameters.AddWithValue("@d", descricao); await ic.ExecuteNonQueryAsync(); }
         const string sel = "SELECT id_tipo_manifesto FROM resilead.tipo_manifesto WHERE descricao=@d";
         using var sc = new MySqlCommand(sel, conn, tx); sc.Parameters.AddWithValue("@d", descricao);
-        return Convert.ToInt32(await sc.ExecuteScalarAsync());
+        var id = Convert.ToInt32(await sc.ExecuteScalarAsync());
+        cache.TipoManifestoByDesc[key] = id;
+        return id;
     }
 
-    private static async Task<int> EnsureSituacaoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao)
+    private static async Task<int> EnsureSituacaoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao, BatchCache cache)
     {
+        var key = NormalizeKey(descricao);
+        if (cache.SituacaoByDesc.TryGetValue(key, out var cached)) return cached;
         const string ins = "INSERT IGNORE INTO resilead.situacao(descricao) VALUES (@d)";
         using (var ic = new MySqlCommand(ins, conn, tx)) { ic.Parameters.AddWithValue("@d", descricao); await ic.ExecuteNonQueryAsync(); }
         const string sel = "SELECT id_situacao FROM resilead.situacao WHERE descricao=@d";
         using var sc = new MySqlCommand(sel, conn, tx); sc.Parameters.AddWithValue("@d", descricao);
-        return Convert.ToInt32(await sc.ExecuteScalarAsync());
+        var id = Convert.ToInt32(await sc.ExecuteScalarAsync());
+        cache.SituacaoByDesc[key] = id;
+        return id;
     }
 
-    private static async Task<int?> EnsureTratamentoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao)
+    private static async Task<int?> EnsureTratamentoAsync(MySqlConnection conn, MySqlTransaction tx, string descricao, BatchCache cache)
     {
         if (string.IsNullOrWhiteSpace(descricao)) return null;
         descricao = descricao.Trim();
         if (descricao.Length == 0) return null;
+        var key = NormalizeKey(descricao);
+        if (cache.TratamentoByDesc.TryGetValue(key, out var cached)) return cached;
         const string ins = "INSERT IGNORE INTO resilead.tratamento(descricao) VALUES (@d)";
         using (var ic = new MySqlCommand(ins, conn, tx)) { ic.Parameters.AddWithValue("@d", descricao); await ic.ExecuteNonQueryAsync(); }
         const string sel = "SELECT id_tratamento FROM resilead.tratamento WHERE descricao=@d";
         using var sc = new MySqlCommand(sel, conn, tx); sc.Parameters.AddWithValue("@d", descricao);
-        return Convert.ToInt32(await sc.ExecuteScalarAsync());
+        var id = Convert.ToInt32(await sc.ExecuteScalarAsync());
+        cache.TratamentoByDesc[key] = id;
+        return id;
     }
 
     private static async Task EnsureTipoEntidadeAsync(MySqlConnection conn, MySqlTransaction tx, long idEntidade, string tipo)
@@ -252,9 +346,11 @@ internal sealed class MtrEtl
         await cmd.ExecuteNonQueryAsync();
     }
 
-    private static async Task<long> EnsureResponsavelAsync(MySqlConnection conn, MySqlTransaction tx, long idEntidade, string tipo, string nome)
+    private static async Task<long> EnsureResponsavelAsync(MySqlConnection conn, MySqlTransaction tx, long idEntidade, string tipo, string nome, BatchCache cache)
     {
         var normNome = Normalization.NormalizeName(nome);
+        var key = (idEntidade, tipo, normNome);
+        if (cache.ResponsavelByKey.TryGetValue(key, out var cached)) return cached;
         const string sel = @"SELECT id_responsavel FROM resilead.entidade_responsavel
                              WHERE id_entidade=@e AND tipo_responsavel=@t AND UPPER(TRIM(nome))=UPPER(TRIM(@n))";
         using (var sc = new MySqlCommand(sel, conn, tx))
@@ -263,7 +359,12 @@ internal sealed class MtrEtl
             sc.Parameters.AddWithValue("@t", tipo);
             sc.Parameters.AddWithValue("@n", normNome);
             var obj = await sc.ExecuteScalarAsync();
-            if (obj is not null && obj != DBNull.Value) return Convert.ToInt64(obj);
+            if (obj is not null && obj != DBNull.Value)
+            {
+                var id = Convert.ToInt64(obj);
+                cache.ResponsavelByKey[key] = id;
+                return id;
+            }
         }
         const string ins = @"INSERT INTO resilead.entidade_responsavel(id_entidade, nome, tipo_responsavel)
                              VALUES (@e, @n, @t)";
@@ -273,7 +374,9 @@ internal sealed class MtrEtl
             ic.Parameters.AddWithValue("@n", nome);
             ic.Parameters.AddWithValue("@t", tipo);
             await ic.ExecuteNonQueryAsync();
-            return ic.LastInsertedId;
+            var id = ic.LastInsertedId;
+            cache.ResponsavelByKey[key] = id;
+            return id;
         }
     }
 
@@ -385,6 +488,19 @@ internal sealed class MtrEtl
                 ic.Parameters.AddWithValue("@p", (object?)proprio ?? DBNull.Value);
                 await ic.ExecuteNonQueryAsync();
             }
+        }
+    }
+
+    private static async Task LoadRefAsync(MySqlConnection conn, string table, string idCol, string descCol, Dictionary<string, int> dict)
+    {
+        var sql = $"SELECT {idCol}, {descCol} FROM {table}";
+        using var cmd = new MySqlCommand(sql, conn);
+        using var rdr = await cmd.ExecuteReaderAsync();
+        while (await rdr.ReadAsync())
+        {
+            var id = rdr.GetInt32(0);
+            var desc = rdr.GetString(1);
+            dict[NormalizeKey(desc)] = id;
         }
     }
 
@@ -620,6 +736,16 @@ internal sealed class MtrEtl
     {
         public string CpfCnpj { get; init; } = string.Empty;
         public string? Unidade { get; init; }
+    }
+
+    private sealed class BatchCache
+    {
+        public Dictionary<string, long> EntidadesByCpf { get; } = new(StringComparer.Ordinal);
+        public Dictionary<(string cpf, string unidade), long> UnidadeByKey { get; } = new();
+        public Dictionary<string, int> TipoManifestoByDesc { get; } = new(StringComparer.Ordinal);
+        public Dictionary<string, int> SituacaoByDesc { get; } = new(StringComparer.Ordinal);
+        public Dictionary<string, int> TratamentoByDesc { get; } = new(StringComparer.Ordinal);
+        public Dictionary<(long idEntidade, string tipo, string nomeNorm), long> ResponsavelByKey { get; } = new();
     }
 
     private sealed class MtrRow
