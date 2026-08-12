@@ -1,5 +1,5 @@
 Param(
-    [ValidateSet('run','setup','process','address')]
+    [ValidateSet('run','setup','process','address','discovery')]
     [string]$Mode = 'run',
 
     [ValidateSet('Debug','Release')]

@@ -180,7 +180,7 @@ internal sealed class StakeholderEtl
         using var conn = await _db.OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@cpf", cpfCnpj);
-        cmd.Parameters.AddWithValue("@nome", nome);
+        cmd.Parameters.AddWithValue("@nome", (object?)nome ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@tp", tipoPessoaStr);
         cmd.Parameters.AddWithValue("@uf", (object?)uf ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@mun", (object?)municipio ?? DBNull.Value);

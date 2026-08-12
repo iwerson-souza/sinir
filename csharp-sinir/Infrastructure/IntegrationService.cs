@@ -276,4 +276,46 @@ internal sealed class IntegrationService
         cmd.Parameters.AddWithValue("@cpf", cpfCnpj);
         await cmd.ExecuteNonQueryAsync();
     }
+
+    public async Task<string?> GetMaxStakeholderDiscoveryUnitAsync()
+    {
+        const string sql = @"SELECT unidade
+                             FROM stakeholder_discovery
+                             ORDER BY CAST(unidade AS UNSIGNED) DESC
+                             LIMIT 1";
+        using var conn = await OpenAsync();
+        using var cmd = new MySqlCommand(sql, conn);
+        var result = await cmd.ExecuteScalarAsync();
+        return result == null || result == DBNull.Value ? null : Convert.ToString(result);
+    }
+
+    public async Task UpsertStakeholderDiscoveryAsync(
+        string unidade,
+        DateTime dataInicial,
+        DateTime dataFinal,
+        bool tested,
+        bool hasData,
+        string user)
+    {
+        const string sql = @"INSERT INTO stakeholder_discovery
+                             (unidade, data_inicial, data_final, tested, has_data, created_by, created_dt, last_modified_by, last_modified_dt)
+                             VALUES
+                             (@unidade, @data_inicial, @data_final, @tested, @has_data, @user, NOW(), @user, NOW())
+                             ON DUPLICATE KEY UPDATE
+                                 data_inicial=VALUES(data_inicial),
+                                 data_final=VALUES(data_final),
+                                 tested=VALUES(tested),
+                                 has_data=VALUES(has_data),
+                                 last_modified_by=VALUES(last_modified_by),
+                                 last_modified_dt=VALUES(last_modified_dt)";
+        using var conn = await OpenAsync();
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@unidade", unidade);
+        cmd.Parameters.AddWithValue("@data_inicial", dataInicial);
+        cmd.Parameters.AddWithValue("@data_final", dataFinal);
+        cmd.Parameters.AddWithValue("@tested", tested);
+        cmd.Parameters.AddWithValue("@has_data", hasData);
+        cmd.Parameters.AddWithValue("@user", user);
+        await cmd.ExecuteNonQueryAsync();
+    }
 }

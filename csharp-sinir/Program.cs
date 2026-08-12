@@ -30,9 +30,13 @@ internal class Program
             case "process":
                 await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
                 break;
+            case "discovery":
+                await DiscoveryRunner.RunAsync(config);
+                break;
             case "run":
                 await Runner.SetupAsync(config);
                 await Runner.ProcessUntilEmptyAsync(config, mtrsRoot, saveToDisk);
+                await AddressProcessor.RunAsync(config);
                 break;
             case "address":
                 await AddressProcessor.RunAsync(config);

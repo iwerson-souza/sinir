@@ -42,6 +42,18 @@ internal static class SinirStrategy
         };
     }
 
+    public static List<string> BuildUrls(string unidade, DateTime startDate, DateTime endDate)
+    {
+        var format = new Func<DateTime, string>(d => $"{d:dd-MM-yyyy}");
+        return Templates
+            .Select(t =>
+                (BaseUrl + t)
+                    .Replace("{ID}", unidade)
+                    .Replace("{START_DATE}", format(startDate))
+                    .Replace("{END_DATE}", format(endDate)))
+            .ToList();
+    }
+
     private static List<(DateTime StartDate, DateTime EndDate)> GetMonthlyPeriods(DateTime startDate, DateTime endDate)
     {
         var periods = new List<(DateTime, DateTime)>();
