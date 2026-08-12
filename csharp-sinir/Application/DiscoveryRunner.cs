@@ -70,6 +70,8 @@ internal static class DiscoveryRunner
 
             await svc.UpsertStakeholderDiscoveryAsync(
                 unidade,
+                result.CpfCnpj,
+                result.Nome,
                 DiscoveryStartDate,
                 DiscoveryEndDate,
                 result.Tested,
@@ -77,7 +79,7 @@ internal static class DiscoveryRunner
                 "system");
 
             Console.WriteLine(
-                $"[Discovery] Unidade {unidade} finished. tested={result.Tested}, has_data={result.HasData}, urls_ok={result.SuccessfulUrls}/3.");
+                $"[Discovery] Unidade {unidade} finished. tested={result.Tested}, has_data={result.HasData}, urls_ok={result.SuccessfulUrls}/3, cpf_cnpj={result.CpfCnpj ?? "<null>"}, nome={result.Nome ?? "<null>"}.");
         }
 
         Console.WriteLine("[Discovery] Completed.");
@@ -88,6 +90,8 @@ internal static class DiscoveryRunner
         var urls = SinirStrategy.BuildUrls(unidade, DiscoveryStartDate, DiscoveryEndDate);
         var successfulUrls = 0;
         var hasData = false;
+        string? cpfCnpj = null;
+        string? nome = null;
 
         foreach (var url in urls)
         {
@@ -114,6 +118,15 @@ internal static class DiscoveryRunner
                 if (mtrs.Count > 0)
                 {
                     hasData = true;
+                    if (cpfCnpj == null || nome == null)
+                    {
+                        var match = TryResolveIdentity(unidade, mtrs);
+                        if (match != null)
+                        {
+                            cpfCnpj ??= match.Value.CpfCnpj;
+                            nome ??= match.Value.Nome;
+                        }
+                    }
                     Console.WriteLine($"[Discovery] Unidade {unidade} returned {mtrs.Count} MTR(s).");
                 }
                 else
@@ -135,8 +148,33 @@ internal static class DiscoveryRunner
         {
             Tested = successfulUrls == urls.Count,
             HasData = hasData,
-            SuccessfulUrls = successfulUrls
+            SuccessfulUrls = successfulUrls,
+            CpfCnpj = cpfCnpj,
+            Nome = nome
         };
+    }
+
+    private static (string? CpfCnpj, string? Nome)? TryResolveIdentity(string unidade, IEnumerable<Domain.MtrRecord> mtrs)
+    {
+        foreach (var mtr in mtrs)
+        {
+            if (mtr.Destinador.Unidade == unidade)
+            {
+                return (NullIfBlank(mtr.Destinador.CpfCnpj), NullIfBlank(mtr.Destinador.Nome));
+            }
+
+            if (mtr.Transportador.Unidade == unidade)
+            {
+                return (NullIfBlank(mtr.Transportador.CpfCnpj), NullIfBlank(mtr.Transportador.Nome));
+            }
+
+            if (mtr.Gerador.Unidade == unidade)
+            {
+                return (NullIfBlank(mtr.Gerador.CpfCnpj), NullIfBlank(mtr.Gerador.Nome));
+            }
+        }
+
+        return null;
     }
 
     private static List<string> LoadCandidateUnits()
@@ -165,5 +203,12 @@ internal static class DiscoveryRunner
         public bool Tested { get; init; }
         public bool HasData { get; init; }
         public int SuccessfulUrls { get; init; }
+        public string? CpfCnpj { get; init; }
+        public string? Nome { get; init; }
+    }
+
+    private static string? NullIfBlank(string? value)
+    {
+        return string.IsNullOrWhiteSpace(value) ? null : value.Trim();
     }
 }

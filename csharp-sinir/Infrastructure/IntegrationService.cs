@@ -291,6 +291,8 @@ internal sealed class IntegrationService
 
     public async Task UpsertStakeholderDiscoveryAsync(
         string unidade,
+        string? cpfCnpj,
+        string? nome,
         DateTime dataInicial,
         DateTime dataFinal,
         bool tested,
@@ -298,10 +300,12 @@ internal sealed class IntegrationService
         string user)
     {
         const string sql = @"INSERT INTO stakeholder_discovery
-                             (unidade, data_inicial, data_final, tested, has_data, created_by, created_dt, last_modified_by, last_modified_dt)
+                             (unidade, cpf_cnpj, nome, data_inicial, data_final, tested, has_data, created_by, created_dt, last_modified_by, last_modified_dt)
                              VALUES
-                             (@unidade, @data_inicial, @data_final, @tested, @has_data, @user, NOW(), @user, NOW())
+                             (@unidade, @cpf_cnpj, @nome, @data_inicial, @data_final, @tested, @has_data, @user, NOW(), @user, NOW())
                              ON DUPLICATE KEY UPDATE
+                                 cpf_cnpj=VALUES(cpf_cnpj),
+                                 nome=VALUES(nome),
                                  data_inicial=VALUES(data_inicial),
                                  data_final=VALUES(data_final),
                                  tested=VALUES(tested),
@@ -311,6 +315,8 @@ internal sealed class IntegrationService
         using var conn = await OpenAsync();
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@unidade", unidade);
+        cmd.Parameters.AddWithValue("@cpf_cnpj", (object?)cpfCnpj ?? DBNull.Value);
+        cmd.Parameters.AddWithValue("@nome", (object?)nome ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@data_inicial", dataInicial);
         cmd.Parameters.AddWithValue("@data_final", dataFinal);
         cmd.Parameters.AddWithValue("@tested", tested);
